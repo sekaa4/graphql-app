@@ -13,7 +13,9 @@
     "prettier": "prettier . --ignore-path .gitignore",
     "format:check": "npm run prettier -- --check",
     "format:fix": "npm run prettier -- --write",
-    "validate": "run-p lint type:check format:check"
+    "lint:css": "stylelint src",
+    "lint:css:fix": "npm run lint:css -- --fix",
+    "validate": "run-p lint lint:css:fix type:check format:check"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -30,6 +32,8 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@next/eslint-plugin-next": "^13.3.0",
     "@types/eslint": "^8.37.0",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
@@ -40,7 +44,12 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "npm-run-all": "^4.1.5",
+    "postcss-scss": "^4.0.6",
     "prettier": "2.8.8",
-    "sass": "^1.59.3"
+    "sass": "^1.59.3",
+    "stylelint": "^15.6.0",
+    "stylelint-config-clean-order": "^5.0.1",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^9.0.0"
   }
 }

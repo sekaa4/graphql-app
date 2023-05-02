@@ -1,0 +1,22 @@
+#root {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  row-gap: 2rem;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(221, 218, 213);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3f4244;
+  border-radius: 20px;
+  border: 2px solid rgb(221, 218, 213);
+}

@@ -1,0 +1,46 @@
+{
+  "name": "graphql-app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://github.com/ImmelstronDev/GraphQL-app",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --fix",
+    "prepare": "husky install",
+    "type:check": "tsc",
+    "prettier": "prettier . --ignore-path .gitignore",
+    "format:check": "npm run prettier -- --check",
+    "format:fix": "npm run prettier -- --write",
+    "validate": "run-p lint type:check format:check"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
+    "@types/node": "18.16.3",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
+    "@types/react-redux": "^7.1.25",
+    "eslint": "8.39.0",
+    "eslint-config-next": "13.3.4",
+    "next": "13.3.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-redux": "^8.0.5",
+    "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.3.0",
+    "@types/eslint": "^8.37.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.8.8",
+    "sass": "^1.59.3"
+  }
+}

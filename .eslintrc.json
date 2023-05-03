@@ -27,7 +27,10 @@
         "extensions": [".ts", ".tsx"]
       }
     ],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": true, "optionalDependencies": false, "peerDependencies": false }
+    ],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "no-use-before-define": "off",

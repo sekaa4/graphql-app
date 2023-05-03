@@ -1,10 +1,14 @@
 /** @type {import('next').NextConfig} */
+
+import path from 'path';
+
 const nextConfig = {
   reactStrictMode: true,
 
   i18n: {
-    locales: ['en'],
     defaultLocale: 'en',
+    locales: ['en', 'ru'],
+    localePath: path.resolve('./public/locales'),
   },
 };
 

@@ -18,6 +18,10 @@
     "validate": "run-p lint lint:css:fix type:check format:check"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.8",
+    "@emotion/styled": "^11.10.8",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.3",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/node": "18.16.3",
     "@types/react": "18.2.0",

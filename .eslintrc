@@ -31,6 +31,16 @@
       "error",
       { "devDependencies": true, "optionalDependencies": false, "peerDependencies": false }
     ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/no-unsafe-return": "warn",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "no-use-before-define": "off",

@@ -1,3 +1,10 @@
+
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
 #root {
   position: relative;
 
@@ -21,4 +28,39 @@
   background-color: #3f4244;
   border: 2px solid rgb(221 218 213);
   border-radius: 20px;
+}
+
+.graphql-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0;
+}
+
+.graphql-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  background-color: lightgrey;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.graphql-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 100%;
+  padding: 5px;
+}
+
+.sidebar-tool {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
 }

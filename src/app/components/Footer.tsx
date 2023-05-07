@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Graphql = () => {
+const Footer = () => {
   return (
     <div>
-      
+
     </div>
   );
 };
 
-export default Graphql;
+export default Footer;

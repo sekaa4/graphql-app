@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { CustomSchema, schemaActions } from '@/entities/CustomSchema';
-import { SideBar } from '@/entities/SideBar';
+import { SideBarLazy } from '@/entities/SideBar/ui/SideBar.lazy';
 import { fetchSchema } from '@/shared/api/fetchSchema';
 
 const Home = () => {
@@ -28,9 +28,11 @@ const Home = () => {
         </div>
         <div className="graphql-editor-right"></div>
       </div>
-      <SideBar>
-        <CustomSchema />
-      </SideBar>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SideBarLazy>
+          <CustomSchema />
+        </SideBarLazy>
+      </Suspense>
     </>
   );
 };

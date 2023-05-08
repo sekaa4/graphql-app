@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-export const SideBar = (props: PropsWithChildren) => {
+const SideBar = (props: PropsWithChildren) => {
   const { children } = props;
 
   return (
@@ -11,3 +11,5 @@ export const SideBar = (props: PropsWithChildren) => {
     </div>
   );
 };
+
+export default SideBar;

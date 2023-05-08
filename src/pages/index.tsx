@@ -2,8 +2,9 @@ import { Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { CustomSchema, schemaActions } from '@/entities/CustomSchema';
-import { SideBarLazy } from '@/entities/SideBar/ui/SideBar.lazy';
+import { DocumentSchemaLazy } from '@/entities/SideBar/ui/DocumentSchema.lazy';
 import { fetchSchema } from '@/shared/api/fetchSchema';
+import { Sidebar } from '@/widgets/layouts/side-bar';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Home = () => {
 
   return (
     <>
+      <Sidebar />
       <input className="graphql-input" />
       <div className="graphql-editor">
         <div className="graphql-textarea-wrapper">
@@ -28,10 +30,11 @@ const Home = () => {
         </div>
         <div className="graphql-editor-right"></div>
       </div>
+      {/* need draw when click on icon */}
       <Suspense fallback={<div>Loading...</div>}>
-        <SideBarLazy>
+        <DocumentSchemaLazy>
           <CustomSchema />
-        </SideBarLazy>
+        </DocumentSchemaLazy>
       </Suspense>
     </>
   );

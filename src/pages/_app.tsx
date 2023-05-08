@@ -3,9 +3,9 @@ import '@/shared/design/globals.scss';
 import type { AppProps } from 'next/app';
 
 import { StoreProvider } from '@/app/providers/StoreProvider';
-import MainLayout from '@/widgets/layouts/main';
+import { MainLayout } from '@/widgets/layouts/main';
 
-const App = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <StoreProvider>
       <MainLayout>
@@ -15,4 +15,4 @@ const App = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default App;
+export default MyApp;

@@ -1,1 +1,1 @@
-export * from './ui/SideBar';
+export * from './ui/DocumentSchema';

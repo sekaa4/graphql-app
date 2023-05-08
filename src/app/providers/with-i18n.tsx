@@ -1,6 +1,5 @@
-import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 
-const MyApp = ({ Component, pageProps }: AppProps) => <Component {...pageProps} />;
+import MyApp from '@/pages/_app';
 
 export default appWithTranslation(MyApp);

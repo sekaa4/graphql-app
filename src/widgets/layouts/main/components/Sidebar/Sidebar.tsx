@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Sidebar = () => {
+export const Sidebar: React.FC = () => {
   return (
     <div className="graphql-sidebar">
       <div className="sidebar-tool">icon</div>
@@ -10,5 +10,3 @@ const Sidebar = () => {
     </div>
   );
 };
-
-export default Sidebar;

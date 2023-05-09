@@ -10,6 +10,8 @@ import { DocumentSchemaLazy } from '@/entities/SideBar/ui/DocumentSchema.lazy';
 import { fetchSchema } from '@/shared/api/fetchSchema';
 import { Sidebar } from '@/widgets/layouts/side-bar';
 
+import homeStyles from '@/pages/home.module.css';
+
 const Home = () => {
   const dispatch = useDispatch();
   const [user, loading, error] = useAuthState(auth);
@@ -41,8 +43,12 @@ const Home = () => {
       <main className="graphql-editor">
         <div className="graphql-textarea-wrapper">
           <textarea className="graphql-textarea"></textarea>
+      <input className={homeStyles.input} />
+      <main className={homeStyles.editor}>
+        <div className={homeStyles.textareawrapper}>
+          <textarea className={homeStyles.textarea}></textarea>
         </div>
-        <div className="graphql-editor-right"></div>
+        <div></div>
       </main>
       {/* need draw when click on icon */}
       <Suspense fallback={<div>Loading...</div>}>

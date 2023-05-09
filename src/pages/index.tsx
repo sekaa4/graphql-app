@@ -38,12 +38,12 @@ const Home = () => {
       </Button>
 
       <input className="graphql-input" />
-      <div className="graphql-editor">
+      <main className="graphql-editor">
         <div className="graphql-textarea-wrapper">
           <textarea className="graphql-textarea"></textarea>
         </div>
         <div className="graphql-editor-right"></div>
-      </div>
+      </main>
       {/* need draw when click on icon */}
       <Suspense fallback={<div>Loading...</div>}>
         <DocumentSchemaLazy>

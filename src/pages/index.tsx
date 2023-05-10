@@ -39,19 +39,26 @@ const Home = (props: SSRPageProps) => {
 
   return (
     <>
-      <Link href="/" locale={changeTo}>
-        {changeTo === 'ru' ? (
-          <>
-            <button>{t('locale-ru', { changeTo })}</button>
-            <button disabled>{t('locale-eng', { changeTo })}</button>
-          </>
-        ) : (
-          <>
-            <button disabled>{t('locale-ru', { changeTo })}</button>
-            <button>{t('locale-eng', { changeTo })}</button>
-          </>
-        )}
-      </Link>
+      {changeTo === 'ru' ? (
+        <div>
+          <Link href="/" locale={changeTo}>
+            <Button variant="contained">{t('locale-ru')}</Button>
+          </Link>
+          <Button variant="contained" disabled style={{ pointerEvents: 'none' }}>
+            {t('locale-eng', { changeTo })}
+          </Button>
+        </div>
+      ) : (
+        <div>
+          <Button variant="contained" disabled style={{ pointerEvents: 'none' }}>
+            {t('locale-ru', { changeTo })}
+          </Button>
+          <Link href="/" locale={changeTo}>
+            <Button variant="contained">{t('locale-eng')}</Button>
+          </Link>
+        </div>
+      )}
+
       <Sidebar />
       <Button variant="contained" onClick={() => logout()}>
         LogOut

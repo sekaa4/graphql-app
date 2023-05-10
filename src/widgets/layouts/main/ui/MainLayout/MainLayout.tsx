@@ -1,16 +1,16 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
+
+import layoutStyles from '@/widgets/layouts/main/ui/MainLayout/layout.module.css';
 
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
 
-interface LayoutProps {
-  children: ReactNode;
-}
+interface MainLayoutProps {}
 
-export const MainLayout = ({ children }: LayoutProps) => {
+export const MainLayout = ({ children }: PropsWithChildren<MainLayoutProps>) => {
   return (
-    <div className="graphql-wrapper">
-      <div className="graphql-container">
+    <div className={layoutStyles.wrapper}>
+      <div className={layoutStyles.container}>
         <Header />
         {children}
         <Footer />

@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 
-export const Sidebar: React.FC = () => {
+export const Sidebar: FC = () => {
   return (
     <div className="graphql-sidebar">
       <div className="sidebar-tool">icon</div>

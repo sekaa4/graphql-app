@@ -1,0 +1,1 @@
+//write global declarations here

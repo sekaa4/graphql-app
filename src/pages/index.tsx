@@ -38,11 +38,6 @@ const Home = () => {
       <Button variant="contained" onClick={() => logout()}>
         LogOut
       </Button>
-
-      <input className="graphql-input" />
-      <main className="graphql-editor">
-        <div className="graphql-textarea-wrapper">
-          <textarea className="graphql-textarea"></textarea>
       <input className={homeStyles.input} />
       <main className={homeStyles.editor}>
         <div className={homeStyles.textareawrapper}>

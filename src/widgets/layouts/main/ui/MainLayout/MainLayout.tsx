@@ -1,9 +1,9 @@
 import { PropsWithChildren } from 'react';
 
+import layoutStyles from '@/widgets/layouts/main/ui/MainLayout/layout.module.css';
+
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
-
-import layoutStyles from '@/widgets/layouts/main/ui/MainLayout/layout.module.css';
 
 interface MainLayoutProps {}
 

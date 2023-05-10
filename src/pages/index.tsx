@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { Suspense, useEffect } from 'react';
@@ -12,6 +11,7 @@ import { DocumentSchemaLazy } from '@/entities/SideBar/ui/DocumentSchema.lazy';
 import homeStyles from '@/pages/home.module.css';
 import { fetchSchema } from '@/shared/api/fetchSchema';
 import { getCoreServerSideProps, SSRPageProps } from '@/shared/lib/ssr';
+import { LangSwitcher } from '@/shared/ui/LangSwitcher/LangSwitcher';
 import { Sidebar } from '@/widgets/layouts/side-bar';
 
 const Home = (props: SSRPageProps) => {
@@ -35,30 +35,9 @@ const Home = (props: SSRPageProps) => {
     if (!user) router.push('/welcome');
   }, [router, user]);
 
-  const changeTo = router.locale === 'en' ? 'ru' : 'en';
-
   return (
     <>
-      {changeTo === 'ru' ? (
-        <div>
-          <Link href="/" locale={changeTo}>
-            <Button variant="contained">{t('locale-ru')}</Button>
-          </Link>
-          <Button variant="contained" disabled style={{ pointerEvents: 'none' }}>
-            {t('locale-eng', { changeTo })}
-          </Button>
-        </div>
-      ) : (
-        <div>
-          <Button variant="contained" disabled style={{ pointerEvents: 'none' }}>
-            {t('locale-ru', { changeTo })}
-          </Button>
-          <Link href="/" locale={changeTo}>
-            <Button variant="contained">{t('locale-eng')}</Button>
-          </Link>
-        </div>
-      )}
-
+      <LangSwitcher />
       <Sidebar />
       <Button variant="contained" onClick={() => logout()}>
         LogOut

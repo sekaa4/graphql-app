@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { GraphQlSchema } from '../../types/graphQlSchema';
+import { GraphQlSchema } from '../../types/GraphQlSchema.type';
 import { getGraphQlSchema } from '../getGraphQlSchema/getGraphQlSchema';
 
 export const getGraphQlSchemaValue = createSelector(

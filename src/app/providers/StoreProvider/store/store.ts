@@ -1,14 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import { schemaReducer } from '@/entities/CustomSchema';
+import { schemaReducer } from '@/features/SideBar/model/slice/schemaSlice';
+import rtkAPI from '@/shared/api/rtkApi';
 
-import { StateSchema } from './StateSchema';
+const rootReducer = combineReducers({
+  graphQlSchema: schemaReducer,
+  [rtkAPI.reducerPath]: rtkAPI.reducer,
+});
 
-export const createReduxStore = (initialState?: StateSchema) => {
-  return configureStore<StateSchema>({
-    reducer: {
-      graphQlSchema: schemaReducer,
-    },
+export const createReduxStore = (initialState?: RootState) => {
+  return configureStore({
+    reducer: rootReducer,
     preloadedState: initialState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(rtkAPI.middleware),
   });
 };
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof createReduxStore>;
+export type AppDispatch = AppStore['dispatch'];

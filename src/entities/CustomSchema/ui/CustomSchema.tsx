@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
+interface CustomSchemaProps {
+  schema?: string;
+}
 
-import { getGraphQlSchemaValue } from '../model/selectors/getGraphQlSchemaValue/getGraphQlSchemaValue';
+export const CustomSchema = (props: CustomSchemaProps) => {
+  const { schema } = props;
 
-export const CustomSchema = () => {
-  const currentSchema = useSelector(getGraphQlSchemaValue);
-
-  return <div>{currentSchema ? currentSchema : 'loading...'}</div>;
+  return <div>{schema ? schema : 'Invalid schema, pls try one more time'}</div>;
 };

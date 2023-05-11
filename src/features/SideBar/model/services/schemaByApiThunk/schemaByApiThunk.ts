@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { buildClientSchema, getIntrospectionQuery, IntrospectionQuery, printSchema } from 'graphql';
 
-export const schemaByAPI = createAsyncThunk<string | undefined, string>(
+export const schemaByApiThunk = createAsyncThunk<string | undefined, string>(
   'schemaByAPI',
   async (api, thunkAPI) => {
     try {

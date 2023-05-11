@@ -1,12 +1,14 @@
 import { PropsWithChildren } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const SideBar = (props: PropsWithChildren) => {
   const { children } = props;
+  const { t } = useTranslation('common');
 
   return (
     <div>
-      <div>Docs </div>
-      <div>A GraphQL schema provides a root type for each kind of operation.</div>
+      <div>{t('doc')}</div>
+      <div>{t('descriptionDoc')}</div>
       {children}
     </div>
   );

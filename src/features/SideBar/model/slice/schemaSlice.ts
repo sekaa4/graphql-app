@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { schemaByAPI } from '../services/schemaByAPI/schemaByAPI';
+import { schemaByApiThunk } from '../services/schemaByApiThunk/schemaByApiThunk';
 import { GraphQlSchema } from '../types/GraphQlSchema.type';
 
 const initialState: GraphQlSchema = {
@@ -15,17 +15,17 @@ export const schemaSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(schemaByAPI.pending, (state) => {
+      .addCase(schemaByApiThunk.pending, (state) => {
         state.error = undefined;
         state.isLoading = true;
       })
-      .addCase(schemaByAPI.fulfilled, (state, action: PayloadAction<string | undefined>) => {
+      .addCase(schemaByApiThunk.fulfilled, (state, action: PayloadAction<string | undefined>) => {
         if (action.payload) {
           state.currentSchema = action.payload;
         }
         state.isLoading = false;
       })
-      .addCase(schemaByAPI.rejected, (state, action) => {
+      .addCase(schemaByApiThunk.rejected, (state, action) => {
         state.isLoading = false;
         if (typeof action.payload === 'string') {
           state.error = action.payload;

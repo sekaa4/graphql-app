@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import { schemaReducer } from '@/entities/CustomSchema';
+import { schemaReducer } from '@/features/SideBar/model/slice/schemaSlice';
 import rtkAPI from '@/shared/api/rtkApi';
 
 const rootReducer = combineReducers({

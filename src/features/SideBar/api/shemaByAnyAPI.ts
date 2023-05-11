@@ -20,8 +20,9 @@ const schemaByAnyAPI = rtkAPI.injectEndpoints({
       transformResponse: (response: { data: IntrospectionQuery }) => {
         const { data: introspection } = response;
 
-        const str = printSchema(buildClientSchema(introspection));
-        return str;
+        const schemaSDL = printSchema(buildClientSchema(introspection));
+
+        return schemaSDL;
       },
     }),
   }),

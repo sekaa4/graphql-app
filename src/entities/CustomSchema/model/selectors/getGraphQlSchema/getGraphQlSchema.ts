@@ -1,3 +1,3 @@
-import type { StateSchema } from '@/app/providers/StoreProvider';
+import { RootState } from '@/app/providers/StoreProvider/store/store';
 
-export const getGraphQlSchema = (state: StateSchema) => state.graphQlSchema;
+export const getGraphQlSchema = (state: RootState) => state.graphQlSchema;

@@ -1,12 +1,10 @@
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
-import { StateSchema } from '../store/StateSchema';
-import { createReduxStore } from '../store/store';
-
+import { createReduxStore, RootState } from '../store/store';
 interface StoreProviderProps {
   children?: ReactNode;
-  initialState?: StateSchema;
+  initialState?: RootState;
 }
 
 export const StoreProvider = (props: StoreProviderProps) => {

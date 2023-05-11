@@ -1,5 +1,7 @@
 {
   "locale-ru": "RU",
   "locale-eng": "EN",
-  "h1": "Loading..."
+  "h1": "Loading...",
+  "doc": "Documentation",
+  "descriptionDoc": "A GraphQL schema provides a root type for each kind of operation."
 }

@@ -1,15 +1,9 @@
-import { useEffect } from 'react';
+interface CustomSchemaProps {
+  schema?: string;
+}
 
-import { fetchSchemaByAPI } from '../api/shemaByAnyAPI';
+export const CustomSchema = (props: CustomSchemaProps) => {
+  const { schema } = props;
 
-const GRAPHQL_END_POINT_SCHEMA = 'https://rickandmortyapi.com/graphql';
-
-export const CustomSchema = () => {
-  const [getSchemaByAPI, { isLoading, data: currentSchema, error }] = fetchSchemaByAPI();
-
-  useEffect(() => {
-    getSchemaByAPI(GRAPHQL_END_POINT_SCHEMA);
-  }, [getSchemaByAPI]);
-
-  return <div>{currentSchema ? currentSchema : 'loading...'}</div>;
+  return <div>{schema ? schema : 'Invalid schema, pls try one more time'}</div>;
 };

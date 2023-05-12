@@ -8,7 +8,7 @@ import { auth, logout } from '@/app/components/FireBase';
 import { CustomSchema } from '@/entities/CustomSchema';
 import { fetchSchemaByAPI } from '@/features/SideBar/api/shemaByAnyAPI';
 import { DocumentSchemaLazy } from '@/features/SideBar/ui/DocumentSchema.lazy';
-import homeStyles from '@/pages/home.module.css';
+import homeStyles from '@/pages/main/main.module.css';
 import { getCoreServerSideProps, SSRPageProps } from '@/shared/lib/ssr';
 import { LangSwitcher } from '@/shared/ui/LangSwitcher/LangSwitcher';
 import { Sidebar } from '@/widgets/layouts/side-bar';

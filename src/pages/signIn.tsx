@@ -18,7 +18,7 @@ const SignIN = () => {
       // maybe trigger a loading screen
       return;
     }
-    if (user) router.push('/');
+    if (user) router.push('/main');
   }, [user, loading, router]);
   return (
     <>

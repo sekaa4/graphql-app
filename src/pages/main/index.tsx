@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useLayoutEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth, logout } from '@/app/components/FireBase';
@@ -27,7 +27,7 @@ const Home = (props: SSRPageProps) => {
   }, [getSchemaByAPI]);
 
   useEffect(() => {
-    if (!user) router.push('/index');
+    if (!user) router.push('/');
   }, [router, user]);
 
   return (

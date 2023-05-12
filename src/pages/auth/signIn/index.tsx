@@ -18,7 +18,7 @@ const SignIN = () => {
       // maybe trigger a loading screen
       return;
     }
-    if (user) router.push('/');
+    if (user) router.push('/main');
   }, [user, loading, router]);
   return (
     <>
@@ -47,7 +47,7 @@ const SignIN = () => {
             <Link href="/reset">Forgot Password</Link>
           </div>
           <div>
-            Do not have an account? <Link href="/signUp">Register</Link> now.
+            Do not have an account? <Link href="/auth/signUp">Register</Link> now.
           </div>
         </div>
       </div>

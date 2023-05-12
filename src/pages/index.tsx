@@ -1,59 +1,70 @@
-import { Button } from '@mui/material';
-import { useRouter } from 'next/router';
+import { Avatar, Button } from '@mui/material';
+import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
-import { Suspense, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { auth, logout } from '@/app/components/FireBase';
-import { CustomSchema } from '@/entities/CustomSchema';
-import { fetchSchemaByAPI } from '@/features/SideBar/api/shemaByAnyAPI';
-import { DocumentSchemaLazy } from '@/features/SideBar/ui/DocumentSchema.lazy';
-import homeStyles from '@/pages/home.module.css';
-import { getCoreServerSideProps, SSRPageProps } from '@/shared/lib/ssr';
+import { auth } from '@/app/components/FireBase';
+import { DescDeveloper1 } from '@/features/SideBar';
+import { DescDeveloper2 } from '@/features/SideBar/ui/DescDeveloper2';
+import { DescDeveloper3 } from '@/features/SideBar/ui/DescDeveloper3';
+import cls from '@/pages/index.module.scss';
+import { getCoreServerSideProps } from '@/shared/lib/ssr';
 import { LangSwitcher } from '@/shared/ui/LangSwitcher/LangSwitcher';
 import { Sidebar } from '@/widgets/layouts/side-bar';
 
-const GRAPHQL_END_POINT_SCHEMA = 'https://rickandmortyapi.com/graphql';
-
-const Home = (props: SSRPageProps) => {
+const Welcome = () => {
   const [user, loading, error] = useAuthState(auth);
-  const router = useRouter();
   const { t } = useTranslation('common');
-
-  const [getSchemaByAPI, { data: currentSchema, error: errorAPI, isLoading }] = fetchSchemaByAPI();
-
-  useEffect(() => {
-    getSchemaByAPI(GRAPHQL_END_POINT_SCHEMA);
-  }, [getSchemaByAPI]);
-
-  useEffect(() => {
-    if (!user) router.push('/welcome');
-  }, [router, user]);
 
   return (
     <>
       <LangSwitcher />
       <Sidebar />
-      <Button variant="contained" onClick={() => logout()}>
-        LogOut
-      </Button>
-      <input className={homeStyles.input} />
-      <main className={homeStyles.editor}>
-        <div className={homeStyles.textareawrapper}>
-          <textarea className={homeStyles.textarea}></textarea>
+
+      {!user ? (
+        <div className={cls.auth_container}>
+          <Link href="/auth/signIn">
+            <Button variant="contained">SignIn</Button>
+          </Link>
+
+          <Link href="/auth/signUp">
+            <Button variant="contained">SignUp</Button>
+          </Link>
         </div>
-        <div></div>
-      </main>
-      {/* need draw when click on icon */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <DocumentSchemaLazy>
-          <CustomSchema schema={currentSchema} />
-        </DocumentSchemaLazy>
-      </Suspense>
+      ) : (
+        <div className={cls.auth_container}>
+          <Link href="/main">
+            <Button variant="contained"> Go to Main Page</Button>
+          </Link>
+        </div>
+      )}
+
+      <h1>{t('Welcome')}</h1>
+
+      <ul>
+        <li>
+          <Avatar
+            alt="Pavel Demuskov"
+            src="https://avatars.githubusercontent.com/u/99259052?s=400&u=967b7f7b9f97e38ba68065bc08056325bed8e1f7&v=4"
+          />
+          <DescDeveloper1 />
+        </li>
+        <li>
+          <Avatar
+            alt="Sergey Pansevich"
+            src="https://avatars.githubusercontent.com/u/106100393?v=4"
+          />
+          <DescDeveloper2 />
+        </li>
+        <li>
+          <Avatar alt="Anton" src="https://avatars.githubusercontent.com/u/72494592?v=4" />
+          <DescDeveloper3 />
+        </li>
+      </ul>
     </>
   );
 };
 
 export const getServerSideProps = getCoreServerSideProps(['common']);
 
-export default Home;
+export default Welcome;

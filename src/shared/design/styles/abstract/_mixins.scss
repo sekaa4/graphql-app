@@ -1,0 +1,18 @@
+@mixin font($size, $height: $size, $weight: bold, $style: normal) {
+  font-size: $size;
+  font-weight: $weight;
+  font-style: $style;
+  line-height: $height;
+}
+
+@mixin media-tablet {
+  @media screen and (width <= 770px) {
+    @content;
+  }
+}
+
+@mixin media-small-tablet {
+  @media screen and (width <= 510px) {
+    @content;
+  }
+}

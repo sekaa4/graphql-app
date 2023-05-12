@@ -7,11 +7,11 @@ const Welcome = () => {
   return (
     <>
       <Sidebar />
-      <Link href="/signIn">
+      <Link href="/auth/signIn">
         <Button variant="contained">SignIn</Button>
       </Link>
 
-      <Link href="/signUp">
+      <Link href="/auth/signUp">
         <Button variant="contained">SignUp</Button>
       </Link>
     </>

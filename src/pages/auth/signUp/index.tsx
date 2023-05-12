@@ -5,49 +5,58 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
+import { auth, registerWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
 import { Sidebar } from '@/widgets/layouts/side-bar';
 
-const SignIN = () => {
+const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
+
+  const register = () => {
+    if (!name) alert('Please enter name');
+    registerWithEmailAndPassword(name, email, password);
+  };
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
-    if (user) router.push('/main');
+    if (loading) return;
+    if (user) router.push('/');
   }, [user, loading, router]);
   return (
     <>
       <Sidebar />
-      <div className="login">
-        <div className="login__container">
+      <div className="register">
+        <div className="register__container">
           <TextField
             type="text"
+            className="register__textBox"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Full Name"
+          />
+          <TextField
+            type="text"
+            className="register__textBox"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail"
+            placeholder="E-mail Address"
           />
           <TextField
             type="password"
+            className="register__textBox"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
-          <Button variant="contained" onClick={() => logInWithEmailAndPassword(email, password)}>
-            SignIn
+          <Button variant="contained" onClick={register}>
+            Register
           </Button>
           <Button variant="contained" onClick={signInWithGoogle}>
-            SignIn with Google
+            Register with Google
           </Button>
           <div>
-            <Link href="/reset">Forgot Password</Link>
-          </div>
-          <div>
-            Do not have an account? <Link href="/signUp">Register</Link> now.
+            Already have an account? <Link href="/auth/signIn">Login</Link> now.
           </div>
         </div>
       </div>
@@ -55,4 +64,4 @@ const SignIN = () => {
   );
 };
 
-export default SignIN;
+export default SignUp;

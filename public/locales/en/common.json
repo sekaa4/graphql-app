@@ -3,5 +3,12 @@
   "locale-eng": "EN",
   "h1": "Loading...",
   "doc": "Documentation",
-  "descriptionDoc": "A GraphQL schema provides a root type for each kind of operation."
+  "descriptionDoc": "A GraphQL schema provides a root type for each kind of operation.",
+  "descDeveloper1": "Team lead. Brilliant alpha male with a perfect sense of beauty",
+  "descDeveloper2": "Developer",
+  "descDeveloper3": "Developer",
+  "nameDeveloper1": "Pavel Demuskov",
+  "nameDeveloper2": "Sergey Pansevich",
+  "nameDeveloper3": "Anton Shliaha",
+  "Welcome": "Welcome"
 }

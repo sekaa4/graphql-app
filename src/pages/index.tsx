@@ -1,17 +1,22 @@
 import { Avatar, Button } from '@mui/material';
 import Link from 'next/link';
-
-import { Sidebar } from '@/widgets/layouts/side-bar';
-
-import cls from '@/pages/index.module.scss';
+import { useTranslation } from 'next-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
+
 import { auth } from '@/app/components/FireBase';
+import { DescDeveloper1 } from '@/features/SideBar';
+import cls from '@/pages/index.module.scss';
+import { getCoreServerSideProps } from '@/shared/lib/ssr';
+import { LangSwitcher } from '@/shared/ui/LangSwitcher/LangSwitcher';
+import { Sidebar } from '@/widgets/layouts/side-bar';
 
 const Welcome = () => {
   const [user, loading, error] = useAuthState(auth);
+  const { t } = useTranslation('common');
 
   return (
     <>
+      <LangSwitcher />
       <Sidebar />
 
       {!user ? (
@@ -32,7 +37,7 @@ const Welcome = () => {
         </div>
       )}
 
-      <h1>Welcome</h1>
+      <h1>{t('Welcome')}</h1>
 
       <ul>
         <li>
@@ -40,6 +45,7 @@ const Welcome = () => {
             alt="Pavel Demuskov"
             src="https://avatars.githubusercontent.com/u/99259052?s=400&u=967b7f7b9f97e38ba68065bc08056325bed8e1f7&v=4"
           />
+          <DescDeveloper1 />
         </li>
         <li>
           <Avatar
@@ -54,5 +60,7 @@ const Welcome = () => {
     </>
   );
 };
+
+export const getServerSideProps = getCoreServerSideProps(['common']);
 
 export default Welcome;

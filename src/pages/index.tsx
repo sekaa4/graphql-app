@@ -5,6 +5,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth } from '@/app/components/FireBase';
 import { DescDeveloper1 } from '@/features/SideBar';
+import { DescDeveloper2 } from '@/features/SideBar/ui/DescDeveloper2';
+import { DescDeveloper3 } from '@/features/SideBar/ui/DescDeveloper3';
 import cls from '@/pages/index.module.scss';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
 import { LangSwitcher } from '@/shared/ui/LangSwitcher/LangSwitcher';
@@ -52,9 +54,11 @@ const Welcome = () => {
             alt="Sergey Pansevich"
             src="https://avatars.githubusercontent.com/u/106100393?v=4"
           />
+          <DescDeveloper2 />
         </li>
         <li>
           <Avatar alt="Anton" src="https://avatars.githubusercontent.com/u/72494592?v=4" />
+          <DescDeveloper3 />
         </li>
       </ul>
     </>

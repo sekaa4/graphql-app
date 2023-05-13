@@ -3,11 +3,16 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  width: 100%;
 }
 
 .git {
   display: flex;
   flex-direction: row;
+}
+
+.git img {
+  max-height: 50px;
 }
 
 .links {

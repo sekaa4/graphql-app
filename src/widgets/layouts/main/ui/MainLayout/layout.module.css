@@ -8,13 +8,21 @@
 }
 
 .container {
-  display: flex;
-  flex-flow: column nowrap;
-
+  position: relative;
+  background: #ffffff;
+  min-height: 100%;
   width: 100%;
   height: 100%;
-  padding: 5px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
 
-  background-color: lightgrey;
-  border-radius: 8px;
+}
+
+.page {
+  width: 100%;
+  margin-top: 80px;
 }

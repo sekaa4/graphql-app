@@ -1,7 +1,4 @@
-import { SerializedError } from '@reduxjs/toolkit';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import React, { PropsWithChildren } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { CustomSchema } from '@/entities/CustomSchema';
 import { CustomSchemaTree } from '@/entities/CustomSchemaTree';
@@ -15,15 +12,12 @@ import { getDocumentationCurPath, getDocumentationPrevPath } from '../model/sele
 import { documentationActions } from '../model/slice/documentationSlice';
 interface DocumentSchemaProps {
   schema?: string;
-  error?: FetchBaseQueryError | SerializedError;
-  isLoading: boolean;
 }
 const DocumentSchema = (props: PropsWithChildren<DocumentSchemaProps>) => {
-  const { children, isLoading, error, schema } = props;
+  const { children, schema } = props;
   const curPath = useAppSelector(getDocumentationCurPath);
   const prevPath = useAppSelector(getDocumentationPrevPath);
   const dispatch = useAppDispatch();
-  const { t } = useTranslation('common');
   const path = { curPath, prevPath };
 
   const handleClickNextPath = (e: React.MouseEvent<HTMLSpanElement>) => {
@@ -42,26 +36,19 @@ const DocumentSchema = (props: PropsWithChildren<DocumentSchemaProps>) => {
 
   return (
     <div>
-      {isLoading && <div>LOADING...</div>}
-      {!isLoading && !error && schema && !curPath && (
+      {schema && !curPath && (
         <CustomSchema
           schema={graphQlSchemaOperations(schema)}
           handleClickNextPath={handleClickNextPath}
         />
       )}
-      {!isLoading && !error && schema && curPath && (
+      {schema && curPath && (
         <CustomSchemaTree
           path={path}
           fields={graphQlSchemaFieldsOperations(schema, curPath)}
           handleClickNextPath={handleClickNextPath}
           handleClickPrevPath={handleClickPrevPath}
         />
-      )}
-      {!isLoading && error && (
-        <>
-          <div>{t('invalidSchema')}</div>
-          <div>{JSON.stringify(error, null, 2)}</div>
-        </>
       )}
       {children}
     </div>

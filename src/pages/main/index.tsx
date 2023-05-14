@@ -17,6 +17,7 @@ const Home = (props: SSRPageProps) => {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
   const [isOpen, setStatusOpen] = useState<boolean>(false);
+  const [isDisabled, setStatusButton] = useState<boolean>(true);
   const { t } = useTranslation('common');
 
   const [getSchemaByAPI, { data: currentSchema, error: errorAPI, isLoading }] = fetchSchemaByAPI();
@@ -28,6 +29,10 @@ const Home = (props: SSRPageProps) => {
   useEffect(() => {
     if (!user) router.push('/');
   }, [router, user]);
+
+  useEffect(() => {
+    if (currentSchema) setStatusButton(false);
+  }, [currentSchema]);
 
   return (
     <>
@@ -45,16 +50,23 @@ const Home = (props: SSRPageProps) => {
       </main>
       <Button
         variant="contained"
+        disabled={isDisabled}
         onClick={() => {
-          setStatusOpen(!isOpen);
+          currentSchema && setStatusOpen(!isOpen);
         }}
       >
         Docs
       </Button>
       {isOpen && (
         <Suspense fallback={<div>Loading...</div>}>
-          <DocumentSchemaLazy schema={currentSchema} error={errorAPI} isLoading={isLoading} />
+          <DocumentSchemaLazy schema={currentSchema} />
         </Suspense>
+      )}
+      {!isLoading && errorAPI && (
+        <>
+          <div>{t('invalidSchema')}</div>
+          <div>{JSON.stringify(errorAPI, null, 2)}</div>
+        </>
       )}
     </>
   );

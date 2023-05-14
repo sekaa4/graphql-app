@@ -1,4 +1,15 @@
-import { buildSchema, GraphQLObjectType, GraphQLScalarType, GraphQLSchema } from 'graphql';
+import {
+  buildSchema,
+  GraphQLEnumType,
+  GraphQLInputObjectType,
+  GraphQLInterfaceType,
+  GraphQLObjectType,
+  GraphQLScalarType,
+  GraphQLSchema,
+  GraphQLUnionType,
+} from 'graphql';
+
+import { GraphQlSchemaObjFields } from '@/entities/CustomSchemaTree/types/GraphQlSchemaObjFields.type';
 
 const getSchemaObj = (schema: string) => {
   return buildSchema(schema);
@@ -22,24 +33,44 @@ const graphQlSchemaOperations = (schema: string) => {
     typesOfSchemaObj,
   };
 };
+type unknow =
+  | GraphQLScalarType
+  | GraphQLObjectType
+  | GraphQLInterfaceType
+  | GraphQLUnionType
+  | GraphQLEnumType
+  | GraphQLInputObjectType;
 
-const graphQlSchemaFieldsOperations = (schema: string, path: string) => {
+const graphQlSchemaFieldsOperations = (schema: string, path: string): GraphQlSchemaObjFields => {
   const schemaObj = getSchemaObj(schema);
-  const typedObj = schemaObj.getType(path);
-  if (typedObj instanceof GraphQLObjectType) {
+  const typedObj = schemaObj.getType(path) as unknow;
+  const { description, name } = typedObj;
+
+  if ('_fields' in typedObj) {
     const fieldsOfConfigTypedObj = typedObj.getFields();
     const keys = Object.keys(fieldsOfConfigTypedObj) as Array<keyof typeof fieldsOfConfigTypedObj>;
 
     return {
-      isScalarType: false,
+      description,
       keys,
       fieldsOfConfigTypedObj,
+      name,
     };
   }
-  const { description, name } = typedObj as GraphQLScalarType;
+
+  if ('_values' in typedObj) {
+    const fieldsOfConfigEnumTyped = typedObj.getValues();
+    const description = typedObj.description;
+
+    return {
+      isEnum: true,
+      description,
+      fieldsOfConfigEnumTyped,
+      name,
+    };
+  }
 
   return {
-    isScalarType: true,
     description,
     name,
   };

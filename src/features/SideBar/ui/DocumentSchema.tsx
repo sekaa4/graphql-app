@@ -59,7 +59,7 @@ const DocumentSchema = (props: PropsWithChildren<DocumentSchemaProps>) => {
       )}
       {!isLoading && error && (
         <>
-          <div>{'Invalid schema, pls try one more time'}</div>
+          <div>{t('invalidSchema')}</div>
           <div>{JSON.stringify(error, null, 2)}</div>
         </>
       )}

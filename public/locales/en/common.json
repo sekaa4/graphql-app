@@ -10,5 +10,6 @@
   "nameDeveloper1": "Pavel Demuskov",
   "nameDeveloper2": "Sergey Pansevich",
   "nameDeveloper3": "Anton Shliaha",
-  "Welcome": "Welcome"
+  "Welcome": "Welcome",
+  "invalidSchema": "It is not possible to get the scheme at the specified address, check the correctness of the entered address"
 }

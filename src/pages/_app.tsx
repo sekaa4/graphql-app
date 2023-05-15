@@ -1,4 +1,4 @@
-import '@/shared/design/globals.scss';
+import '@/shared/design/styles/index.scss';
 
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';

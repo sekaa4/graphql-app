@@ -9,12 +9,12 @@ interface MainLayoutProps {}
 
 export const MainLayout = ({ children }: PropsWithChildren<MainLayoutProps>) => {
   return (
-      <div className={layoutStyles.container}>
-        <Header />
-        <Box component="main" className={layoutStyles.page}>
+    <div className={layoutStyles.container}>
+      <Header />
+      <Box component="main" className={layoutStyles.page}>
         {children}
-        </Box>
-        <Footer />
-      </div>
+      </Box>
+      <Footer />
+    </div>
   );
 };

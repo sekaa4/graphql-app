@@ -63,10 +63,9 @@ const graphQlSchemaFieldsOperations = (schema: string, path: string): GraphQlSch
     const description = typedObj.description;
 
     return {
-      isEnum: true,
       description,
-      fieldsOfConfigEnumTyped,
       name,
+      fieldsOfConfigEnumTyped,
     };
   }
 

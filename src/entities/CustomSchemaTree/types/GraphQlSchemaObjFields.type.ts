@@ -7,5 +7,4 @@ export type GraphQlSchemaObjFields = {
   fieldsOfConfigTypedObj?: GraphQLFieldMap<any, any> | GraphQLInputFieldMap;
   fieldsOfConfigEnumTyped?: readonly GraphQLEnumValue[];
   keys?: (string | number)[];
-  isEnum?: boolean;
 };

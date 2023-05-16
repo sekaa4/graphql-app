@@ -2,6 +2,8 @@ import { getNamedType, GraphQLList, GraphQLNonNull } from 'graphql';
 import React from 'react';
 import { v4 } from 'uuid';
 
+import { ListOfDocFields, ListOfEnumDocFields } from '@/shared/ui';
+
 import { GraphQlSchemaObjFields } from '../types/GraphQlSchemaObjFields.type';
 
 interface CustomSchemaProps {
@@ -21,7 +23,7 @@ export const CustomSchemaTree = (props: CustomSchemaProps) => {
     handleClickNextPath,
     handleClickPrevPath,
   } = props;
-  const { description, fieldsOfConfigTypedObj, fieldsOfConfigEnumTyped, keys, isEnum } = fields;
+  const { description, fieldsOfConfigTypedObj, fieldsOfConfigEnumTyped, keys } = fields;
 
   return (
     <>
@@ -40,100 +42,36 @@ export const CustomSchemaTree = (props: CustomSchemaProps) => {
       <div>{description}</div>
       <ul>
         {keys &&
+          fieldsOfConfigTypedObj &&
           keys.map((nameField) => {
-            if (fieldsOfConfigTypedObj && fieldsOfConfigTypedObj[nameField] && !isEnum) {
-              const namedType = getNamedType(fieldsOfConfigTypedObj[nameField].type);
-              const isGraphQLList = fieldsOfConfigTypedObj[nameField].type instanceof GraphQLList;
-              const isGraphQLNonNull =
-                fieldsOfConfigTypedObj[nameField].type instanceof GraphQLNonNull;
+            const nameFieldObj = fieldsOfConfigTypedObj[nameField];
+            const namedType = getNamedType(nameFieldObj.type);
+            const description = nameFieldObj.description;
+            const isGraphQLList = nameFieldObj.type instanceof GraphQLList;
+            const isGraphQLNonNull = nameFieldObj.type instanceof GraphQLNonNull;
+            const args = 'args' in nameFieldObj && nameFieldObj.args;
 
-              return (
-                <li key={v4()}>
-                  <div>{fieldsOfConfigTypedObj[nameField].description}</div>
-                  <div>
-                    <span>{nameField}:</span>
+            // const args = nameFieldObj;
 
-                    {isGraphQLList && !isGraphQLNonNull && (
-                      <span>
-                        [
-                        <a
-                          id={namedType.name}
-                          onClick={handleClickNextPath}
-                          style={{
-                            cursor: 'pointer',
-                            color: 'yellow',
-                            textDecoration: 'underline',
-                          }}
-                        >
-                          {namedType.name}
-                        </a>
-                        ]
-                      </span>
-                    )}
-                    {isGraphQLList && isGraphQLNonNull && (
-                      <span>
-                        [
-                        <a
-                          id={namedType.name}
-                          onClick={handleClickNextPath}
-                          style={{
-                            cursor: 'pointer',
-                            color: 'yellow',
-                            textDecoration: 'underline',
-                          }}
-                        >
-                          {namedType.name}
-                        </a>
-                        !]
-                      </span>
-                    )}
-                    {!isGraphQLList && isGraphQLNonNull && (
-                      <span>
-                        <a
-                          id={namedType.name}
-                          onClick={handleClickNextPath}
-                          style={{
-                            cursor: 'pointer',
-                            color: 'yellow',
-                            textDecoration: 'underline',
-                          }}
-                        >
-                          {namedType.name}
-                        </a>
-                        !
-                      </span>
-                    )}
-                    {!isGraphQLList && !isGraphQLNonNull && (
-                      <span>
-                        <a
-                          id={namedType.name}
-                          onClick={handleClickNextPath}
-                          style={{
-                            cursor: 'pointer',
-                            color: 'yellow',
-                            textDecoration: 'underline',
-                          }}
-                        >
-                          {namedType.name}
-                        </a>
-                      </span>
-                    )}
-                  </div>
-                </li>
-              );
-            }
+            return (
+              <ListOfDocFields
+                key={v4()}
+                isGraphQLList={isGraphQLList}
+                isGraphQLNonNull={isGraphQLNonNull}
+                namedType={namedType}
+                nameField={nameField}
+                description={description}
+                args={args}
+                handleClickNextPath={handleClickNextPath}
+              />
+            );
           })}
         {fieldsOfConfigEnumTyped &&
           fieldsOfConfigEnumTyped.map((nameField) => {
-            const namedField = nameField;
-            return (
-              <li key={v4()}>
-                <div>{namedField.description}</div>
-                <div>
-                  <span>{namedField.name}</span>
-                </div>
-              </li>
-            );
+            const description = nameField.description;
+            const name = nameField.name;
+
+            return <ListOfEnumDocFields key={v4()} name={name} description={description} />;
           })}
       </ul>
     </>

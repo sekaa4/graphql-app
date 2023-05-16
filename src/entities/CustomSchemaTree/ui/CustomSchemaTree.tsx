@@ -51,8 +51,6 @@ export const CustomSchemaTree = (props: CustomSchemaProps) => {
             const isGraphQLNonNull = nameFieldObj.type instanceof GraphQLNonNull;
             const args = 'args' in nameFieldObj && nameFieldObj.args;
 
-            // const args = nameFieldObj;
-
             return (
               <ListOfDocFields
                 key={v4()}

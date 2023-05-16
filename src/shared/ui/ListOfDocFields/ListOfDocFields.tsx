@@ -1,7 +1,15 @@
-import { GraphQLArgument, GraphQLNamedType } from 'graphql';
+import {
+  getNamedType,
+  GraphQLArgument,
+  GraphQLList,
+  GraphQLNamedType,
+  GraphQLNonNull,
+} from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import React from 'react';
 import { v4 } from 'uuid';
+
+import { LinkDocType } from './LinkDocType';
 
 interface ListOfDocFieldsProps {
   isGraphQLList: boolean;
@@ -28,86 +36,37 @@ export const ListOfDocFields = (props: ListOfDocFieldsProps) => {
     <li>
       <div>{description}</div>
       <div>
-        {args && (
+        {args && args.length !== 0 && (
           <span className="arg">
             {nameField}(
             {args.map((arg) => {
+              const namedType = getNamedType(arg.type);
+              const isGraphQLList = arg.type instanceof GraphQLList;
+              const isGraphQLNonNull = arg.type instanceof GraphQLNonNull;
+
               return (
                 <div key={v4()}>
-                  {arg.name}: {arg.type.toString()}
+                  {arg.name}:{' '}
+                  <LinkDocType
+                    isGraphQLList={isGraphQLList}
+                    isGraphQLNonNull={isGraphQLNonNull}
+                    namedType={namedType}
+                    handleClickNextPath={handleClickNextPath}
+                  />
                 </div>
               );
             })}
             ):
           </span>
         )}
-        {!args && <span>{nameField}:</span>}
+        {(!args || args.length === 0) && <span>{nameField}:</span>}
 
-        {isGraphQLList && !isGraphQLNonNull && (
-          <span>
-            [
-            <a
-              id={namedType.name}
-              onClick={handleClickNextPath}
-              style={{
-                cursor: 'pointer',
-                color: 'yellow',
-                textDecoration: 'underline',
-              }}
-            >
-              {namedType.name}
-            </a>
-            ]
-          </span>
-        )}
-        {isGraphQLList && isGraphQLNonNull && (
-          <span>
-            [
-            <a
-              id={namedType.name}
-              onClick={handleClickNextPath}
-              style={{
-                cursor: 'pointer',
-                color: 'yellow',
-                textDecoration: 'underline',
-              }}
-            >
-              {namedType.name}
-            </a>
-            !]
-          </span>
-        )}
-        {!isGraphQLList && isGraphQLNonNull && (
-          <span>
-            <a
-              id={namedType.name}
-              onClick={handleClickNextPath}
-              style={{
-                cursor: 'pointer',
-                color: 'yellow',
-                textDecoration: 'underline',
-              }}
-            >
-              {namedType.name}
-            </a>
-            !
-          </span>
-        )}
-        {!isGraphQLList && !isGraphQLNonNull && (
-          <span>
-            <a
-              id={namedType.name}
-              onClick={handleClickNextPath}
-              style={{
-                cursor: 'pointer',
-                color: 'yellow',
-                textDecoration: 'underline',
-              }}
-            >
-              {namedType.name}
-            </a>
-          </span>
-        )}
+        <LinkDocType
+          isGraphQLList={isGraphQLList}
+          isGraphQLNonNull={isGraphQLNonNull}
+          namedType={namedType}
+          handleClickNextPath={handleClickNextPath}
+        />
       </div>
     </li>
   );

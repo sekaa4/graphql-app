@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import { logout } from '@/app/components/FireBase';
 import { Box } from '@mui/material';
 import layoutStyles from '@/widgets/layouts/main/ui/MainLayout/layout.module.css';
 
@@ -10,7 +11,7 @@ interface MainLayoutProps {}
 export const MainLayout = ({ children }: PropsWithChildren<MainLayoutProps>) => {
   return (
     <div className={layoutStyles.container}>
-      <Header />
+      <Header logout={logout} />
       <Box component="main" className={layoutStyles.page}>
         {children}
       </Box>

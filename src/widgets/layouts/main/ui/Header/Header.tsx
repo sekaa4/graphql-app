@@ -7,7 +7,11 @@ import { auth } from '@/app/components/FireBase';
 import cls from '@/pages/index.module.scss';
 import { LangSwitcher } from '@/shared/ui';
 
-export const Header: FC = ({ logout }: { logout: () => {} }) => {
+type HeaderType = {
+  logout: () => void;
+};
+
+export const Header: FC<HeaderType> = ({ logout }) => {
   const [user, loading, error] = useAuthState(auth);
   const [scrolled, setScrolled] = useState(false);
 

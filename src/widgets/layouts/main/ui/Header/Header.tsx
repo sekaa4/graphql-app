@@ -1,12 +1,13 @@
 import { FC, useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Box, Button } from '@mui/material';
 import styles from '@/widgets/layouts/main/ui/Header/Header.module.css';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/app/components/FireBase';
 import cls from '@/pages/index.module.scss';
-import Link from 'next/link';
+import { LangSwitcher } from '@/shared/ui';
 
-export const Header: FC = ({ logout }:{ logout: () => {} }) => {
+export const Header: FC = ({ logout }: { logout: () => {} }) => {
   const [user, loading, error] = useAuthState(auth);
   const [scrolled, setScrolled] = useState(false);
 
@@ -32,6 +33,7 @@ export const Header: FC = ({ logout }:{ logout: () => {} }) => {
   return (
     <Box component="header" className={className}>
       <div className={styles.wrapper}>
+        <LangSwitcher />
         {user ? (
           <Button variant="contained" onClick={logoutHandler}>
             LogOut

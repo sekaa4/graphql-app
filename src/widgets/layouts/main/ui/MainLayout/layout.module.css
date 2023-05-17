@@ -12,7 +12,7 @@
   background: #ffffff;
   min-height: 100%;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,5 +24,6 @@
 
 .page {
   width: 100%;
-  margin-top: 80px;
+  height: 2500px;
+  margin-top: 100px;
 }

@@ -3,11 +3,19 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  margin: 20px 0;
-  height: 40px;
+  padding: 20px 0;
+  height: 100px;
+  transition: all 0.5s;
+}
+
+.sticky.scroll {
+  height: 80px;
+  background-color: #000000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s;
 }
 
 .wrapper {

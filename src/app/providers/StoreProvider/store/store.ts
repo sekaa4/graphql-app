@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import { searchBarReducer } from '@/features/SearchBar';
 import { documentationReducer, schemaReducer } from '@/features/SideBar';
 import rtkAPI from '@/shared/api/rtkApi';
 
@@ -7,6 +8,7 @@ const rootReducer = combineReducers({
   graphQlSchema: schemaReducer,
   [rtkAPI.reducerPath]: rtkAPI.reducer,
   documentationState: documentationReducer,
+  searchBarState: searchBarReducer,
 });
 
 export const createReduxStore = (initialState?: RootState) => {

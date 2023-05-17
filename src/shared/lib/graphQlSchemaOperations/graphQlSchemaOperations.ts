@@ -1,15 +1,7 @@
-import {
-  buildSchema,
-  GraphQLEnumType,
-  GraphQLInputObjectType,
-  GraphQLInterfaceType,
-  GraphQLObjectType,
-  GraphQLScalarType,
-  GraphQLSchema,
-  GraphQLUnionType,
-} from 'graphql';
+import { buildSchema, GraphQLSchema } from 'graphql';
 
 import { GraphQlSchemaObjFields } from '@/entities/CustomSchemaTree/types/GraphQlSchemaObjFields.type';
+import { GraphQLMainTypes } from '@/shared/types/GraphQLMainTypes.type';
 
 const getSchemaObj = (schema: string) => {
   return buildSchema(schema);
@@ -33,17 +25,10 @@ const graphQlSchemaOperations = (schema: string) => {
     typesOfSchemaObj,
   };
 };
-type unknow =
-  | GraphQLScalarType
-  | GraphQLObjectType
-  | GraphQLInterfaceType
-  | GraphQLUnionType
-  | GraphQLEnumType
-  | GraphQLInputObjectType;
 
 const graphQlSchemaFieldsOperations = (schema: string, path: string): GraphQlSchemaObjFields => {
   const schemaObj = getSchemaObj(schema);
-  const typedObj = schemaObj.getType(path) as unknow;
+  const typedObj = schemaObj.getType(path) as GraphQLMainTypes;
   const { description, name } = typedObj;
 
   if ('_fields' in typedObj) {

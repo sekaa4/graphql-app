@@ -18,27 +18,7 @@ const Welcome = () => {
 
   return (
     <>
-      <LangSwitcher />
       <Sidebar />
-
-      {!user ? (
-        <div className={cls.auth_container}>
-          <Link href="/auth/signIn">
-            <Button variant="contained">SignIn</Button>
-          </Link>
-
-          <Link href="/auth/signUp">
-            <Button variant="contained">SignUp</Button>
-          </Link>
-        </div>
-      ) : (
-        <div className={cls.auth_container}>
-          <Link href="/main">
-            <Button variant="contained"> Go to Main Page</Button>
-          </Link>
-        </div>
-      )}
-
       <h1>{t('Welcome')}</h1>
 
       <ul>

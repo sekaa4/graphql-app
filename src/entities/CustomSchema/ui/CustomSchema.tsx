@@ -10,7 +10,7 @@ interface CustomSchemaProps {
     keys: GraphQlSchemaKeysOfObj;
     typesOfSchemaObj: GraphQlSchemaFieldsObj;
   };
-  handleClickNextPath: (e: React.MouseEvent<HTMLSpanElement>) => void;
+  handleClickNextPath: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 export const CustomSchema = (props: CustomSchemaProps) => {
@@ -32,7 +32,7 @@ export const CustomSchema = (props: CustomSchemaProps) => {
                 <li key={v4()}>
                   <span>{type}:</span>
                   <span
-                    id={typesOfSchemaObj[type]?.name}
+                    data-name={typesOfSchemaObj[type]?.name}
                     onClick={handleClickNextPath}
                     style={{
                       cursor: 'pointer',

@@ -12,8 +12,8 @@ interface CustomSchemaProps {
     prevPath: string | null;
   };
   fields: GraphQlSchemaObjFields;
-  handleClickNextPath: (e: React.MouseEvent<HTMLSpanElement>) => void;
-  handleClickPrevPath: (e: React.MouseEvent<HTMLSpanElement>) => void;
+  handleClickNextPath: (e: React.MouseEvent<HTMLElement>) => void;
+  handleClickPrevPath: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export const CustomSchemaTree = (props: CustomSchemaProps) => {
@@ -29,7 +29,7 @@ export const CustomSchemaTree = (props: CustomSchemaProps) => {
     <>
       <div
         onClick={handleClickPrevPath}
-        id={prevPath ?? ''}
+        data-name={prevPath ?? false}
         style={{
           cursor: 'pointer',
           color: 'yellow',

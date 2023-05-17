@@ -5,7 +5,7 @@ interface LinkDocTypeProps {
   isGraphQLList: boolean;
   isGraphQLNonNull: boolean;
   namedType: GraphQLNamedType;
-  handleClickNextPath: (e: React.MouseEvent<HTMLSpanElement>) => void;
+  handleClickNextPath: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 export const LinkDocType = (props: LinkDocTypeProps) => {
@@ -17,7 +17,7 @@ export const LinkDocType = (props: LinkDocTypeProps) => {
         <span>
           [
           <a
-            id={namedType.name}
+            data-name={namedType.name}
             onClick={handleClickNextPath}
             style={{
               cursor: 'pointer',
@@ -34,7 +34,7 @@ export const LinkDocType = (props: LinkDocTypeProps) => {
         <span>
           [
           <a
-            id={namedType.name}
+            data-name={namedType.name}
             onClick={handleClickNextPath}
             style={{
               cursor: 'pointer',
@@ -50,7 +50,7 @@ export const LinkDocType = (props: LinkDocTypeProps) => {
       {!isGraphQLList && isGraphQLNonNull && (
         <span>
           <a
-            id={namedType.name}
+            data-name={namedType.name}
             onClick={handleClickNextPath}
             style={{
               cursor: 'pointer',
@@ -66,7 +66,7 @@ export const LinkDocType = (props: LinkDocTypeProps) => {
       {!isGraphQLList && !isGraphQLNonNull && (
         <span>
           <a
-            id={namedType.name}
+            data-name={namedType.name}
             onClick={handleClickNextPath}
             style={{
               cursor: 'pointer',

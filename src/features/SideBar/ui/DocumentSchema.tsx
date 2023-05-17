@@ -20,18 +20,20 @@ const DocumentSchema = (props: PropsWithChildren<DocumentSchemaProps>) => {
   const dispatch = useAppDispatch();
   const path = { curPath, prevPath };
 
-  const handleClickNextPath = (e: React.MouseEvent<HTMLSpanElement>) => {
+  const handleClickNextPath = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    const path = e.target as HTMLAnchorElement;
+    const path = e.target as HTMLElement;
+    const nextPath = typeof path.dataset.name === 'string' ? path.dataset.name : false;
 
-    dispatch(documentationActions.changeCurPath(path.id));
+    dispatch(documentationActions.changeCurPath(nextPath));
   };
 
-  const handleClickPrevPath = (e: React.MouseEvent<HTMLSpanElement>) => {
+  const handleClickPrevPath = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const path = e.target as HTMLAnchorElement;
+    const path = e.target as HTMLDivElement;
+    const prevPath = typeof path.dataset.name === 'string' ? path.dataset.name : false;
 
-    dispatch(documentationActions.changePrevPath(path.id));
+    dispatch(documentationActions.changePrevPath(prevPath));
   };
 
   return (

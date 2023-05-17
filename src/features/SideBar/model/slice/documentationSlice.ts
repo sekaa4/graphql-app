@@ -12,12 +12,14 @@ export const documentationSlice = createSlice({
   name: 'documentationState',
   initialState,
   reducers: {
-    changeCurPath: (state, action: PayloadAction<string>) => {
-      state.paths = [...state.paths, action.payload];
-      state.prevPath = state.paths.length === 1 ? 'Documentation' : state.curPath;
-      state.curPath = action.payload;
+    changeCurPath: (state, action: PayloadAction<string | false>) => {
+      if (action.payload) {
+        state.paths = [...state.paths, action.payload];
+        state.prevPath = state.paths.length === 1 ? 'Documentation' : state.curPath;
+        state.curPath = action.payload;
+      }
     },
-    changePrevPath: (state, action: PayloadAction<string>) => {
+    changePrevPath: (state, action: PayloadAction<string | false>) => {
       state.paths.pop();
 
       if (state.paths.length === 0) {
@@ -25,7 +27,7 @@ export const documentationSlice = createSlice({
         state.prevPath = null;
         return;
       }
-      if (state.paths.length === 1) {
+      if (state.paths.length === 1 && action.payload) {
         state.curPath = action.payload;
         state.prevPath = 'Documentation';
         return;

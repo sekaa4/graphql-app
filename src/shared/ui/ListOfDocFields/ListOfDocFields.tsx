@@ -18,7 +18,7 @@ interface ListOfDocFieldsProps {
   nameField: string | number;
   description: Maybe<string>;
   args: false | readonly GraphQLArgument[];
-  handleClickNextPath: (e: React.MouseEvent<HTMLSpanElement>) => void;
+  handleClickNextPath: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 export const ListOfDocFields = (props: ListOfDocFieldsProps) => {

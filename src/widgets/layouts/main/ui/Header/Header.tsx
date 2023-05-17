@@ -23,7 +23,9 @@ export const Header: FC = () => {
   return (
     <Box component="header" className={className}>
       <div className={styles.wrapper}>
-        <Button>button</Button>
+        <Button variant="contained" onClick={() => {}}>
+          LogOut
+        </Button>
       </div>
     </Box>
   );

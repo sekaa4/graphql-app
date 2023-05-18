@@ -1,11 +1,12 @@
-import { FC, useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { Box, Button } from '@mui/material';
-import styles from '@/widgets/layouts/main/ui/Header/Header.module.css';
+import Link from 'next/link';
+import { FC, useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 import { auth } from '@/app/components/FireBase';
 import cls from '@/pages/index.module.scss';
 import { LangSwitcher } from '@/shared/ui';
+import styles from '@/widgets/layouts/main/ui/Header/Header.module.css';
 
 type HeaderType = {
   logout: () => void;

@@ -1,6 +1,7 @@
-import { PropsWithChildren } from 'react';
-import { logout } from '@/app/components/FireBase';
 import { Box } from '@mui/material';
+import { PropsWithChildren } from 'react';
+
+import { logout } from '@/app/components/FireBase';
 import layoutStyles from '@/widgets/layouts/main/ui/MainLayout/layout.module.css';
 
 import { Footer } from '../Footer/Footer';

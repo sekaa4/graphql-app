@@ -7,10 +7,11 @@ export const LangSwitcher = () => {
   const router = useRouter();
   const { t } = useTranslation('common');
   const changeTo = router.locale === 'en' ? 'ru' : 'en';
+  const { route } = router;
 
   return changeTo === 'ru' ? (
     <div>
-      <Link href="/" locale={changeTo}>
+      <Link href={route} locale={changeTo}>
         <Button variant="contained">{t('locale-ru')}</Button>
       </Link>
       <Button variant="contained" disabled style={{ pointerEvents: 'none' }}>
@@ -22,7 +23,7 @@ export const LangSwitcher = () => {
       <Button variant="contained" disabled style={{ pointerEvents: 'none' }}>
         {t('locale-ru', { changeTo })}
       </Button>
-      <Link href="/" locale={changeTo}>
+      <Link href={route} locale={changeTo}>
         <Button variant="contained">{t('locale-eng')}</Button>
       </Link>
     </div>

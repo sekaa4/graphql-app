@@ -28,7 +28,7 @@
     "next-i18next.config.mjs",
     "next.config.mjs",
     "commitlint.config.js",
-    "src/app/types/global.d.ts"
+    "./src/app/types/global.d.ts"
   ],
   "exclude": ["node_modules"]
 }

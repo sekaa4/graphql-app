@@ -2,7 +2,7 @@ body {
   @extend %font-prim;
   @extend %transition;
 
-  @include font($size: 1.4rem, $height: 1.8rem, $weight: normal);
+  @include font($size: 1rem, $height: 1.2rem, $weight: normal);
 }
 
 ::-webkit-scrollbar {

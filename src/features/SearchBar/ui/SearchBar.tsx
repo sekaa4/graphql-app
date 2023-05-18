@@ -8,6 +8,8 @@ import { useCallback, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 
+import { getSearchBarInput } from '../model/selectors/getSearchBarInput/getSearchBarInput';
+import { getSearchBarStatus } from '../model/selectors/getSearchBarStatus/getSearchBarStatus';
 import { searchBarActions } from '../model/slice/searchBarSlice';
 
 interface SearchBarProps {
@@ -20,8 +22,8 @@ export const SearchBar = (props: SearchBarProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const dispatch = useAppDispatch();
   const { t } = useTranslation('common');
-  const curSearchBarInput = useAppSelector((state) => state.searchBarState.curSearchBarInput);
-  const isValidAPI = useAppSelector((state) => state.searchBarState.isValidAPI);
+  const curSearchBarInput = useAppSelector(getSearchBarInput);
+  const isValidAPI = useAppSelector(getSearchBarStatus);
   const isEqualValue = curSearchBarInput === searchValue;
 
   const handleClick = useCallback(() => {

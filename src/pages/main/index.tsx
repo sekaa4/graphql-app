@@ -5,7 +5,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth, logout } from '@/app/components/FireBase';
-import { SearchBar, searchBarActions } from '@/features/SearchBar';
+import { getSearchBarInput, SearchBar, searchBarActions } from '@/features/SearchBar';
 import { documentationActions } from '@/features/SideBar';
 import { fetchSchemaByAPI } from '@/features/SideBar/api/shemaByAnyAPI';
 import { DocumentSchemaLazy } from '@/features/SideBar/ui/DocumentSchema.lazy';
@@ -21,9 +21,7 @@ const Home = (props: SSRPageProps) => {
   const [user, loading, error] = useAuthState(auth);
   const [isOpen, setStatusOpen] = useState<boolean>(false);
   const [isDisabled, setDisabledButton] = useState<boolean>(true);
-  const GRAPHQL_END_POINT_SCHEMA = useAppSelector(
-    (state) => state.searchBarState.curSearchBarInput
-  );
+  const curSearchBarInput = useAppSelector(getSearchBarInput);
   const { t } = useTranslation('common');
 
   const [getSchemaByAPI, { data: currentSchema, error: errorAPI, isLoading, isError }] =
@@ -34,8 +32,8 @@ const Home = (props: SSRPageProps) => {
     setStatusOpen(false);
     dispatch(documentationActions.setupInitialState());
     dispatch(searchBarActions.changeStatusSearchBarInput(false));
-    GRAPHQL_END_POINT_SCHEMA && getSchemaByAPI(GRAPHQL_END_POINT_SCHEMA);
-  }, [GRAPHQL_END_POINT_SCHEMA, dispatch, getSchemaByAPI]);
+    curSearchBarInput && getSchemaByAPI(curSearchBarInput);
+  }, [curSearchBarInput, dispatch, getSchemaByAPI]);
 
   useEffect(() => {
     if (!user) router.push('/');

@@ -1,9 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface SearchBarState {
-  curSearchBarInput: string | null;
-  isValidAPI: boolean;
-}
+import { SearchBarState } from '../types/SearchBarState.type';
 
 const initialState: SearchBarState = {
   curSearchBarInput: null,

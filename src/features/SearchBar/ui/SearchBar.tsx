@@ -22,6 +22,7 @@ export const SearchBar = (props: SearchBarProps) => {
   const { t } = useTranslation('common');
   const curSearchBarInput = useAppSelector((state) => state.searchBarState.curSearchBarInput);
   const isValidAPI = useAppSelector((state) => state.searchBarState.isValidAPI);
+  const isEqualValue = curSearchBarInput === searchValue;
 
   const handleClick = useCallback(() => {
     dispatch(searchBarActions.changeSearchBarInput(searchValue));
@@ -33,20 +34,20 @@ export const SearchBar = (props: SearchBarProps) => {
         variant="standard"
         size="small"
         label={
-          (isError && t('apiError')) ||
-          (isValidAPI && t('apiSuccess')) ||
-          (isLoading && t('apiLoading')) ||
+          (isError && isEqualValue && t('apiError')) ||
+          (isValidAPI && isEqualValue && t('apiSuccess')) ||
+          (isLoading && isEqualValue && t('apiLoading')) ||
           'API'
         }
         placeholder={(isError && t('apiPlaceholderError')) || t('apiPlaceholder')}
         inputProps={{ 'aria-label': 'api for documentation' }}
         value={searchValue}
         color={isValidAPI ? 'success' : 'primary'}
-        error={isError}
+        error={isError && isEqualValue}
         onChange={(event) => setSearchValue(event.target.value)}
       />
-      {isValidAPI && !isError && <DoneAllIcon color="success" />}
-      {!isValidAPI && isError && <ReportIcon color="error" />}
+      {isValidAPI && !isError && isEqualValue && <DoneAllIcon color="success" />}
+      {!isValidAPI && isError && isEqualValue && <ReportIcon color="error" />}
 
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
       <IconButton
@@ -55,7 +56,7 @@ export const SearchBar = (props: SearchBarProps) => {
         aria-label="search"
         onClick={handleClick}
         color="info"
-        disabled={curSearchBarInput === searchValue}
+        disabled={isEqualValue}
       >
         <SearchIcon />
       </IconButton>

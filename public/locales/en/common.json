@@ -11,5 +11,10 @@
   "nameDeveloper2": "Sergey Pansevich",
   "nameDeveloper3": "Anton Shliaha",
   "Welcome": "Welcome",
-  "invalidSchema": "It is not possible to get the scheme at the specified address, check the correctness of the entered address"
+  "invalidSchema": "It is not possible to get the scheme at the specified address, check the correctness of the entered address",
+  "apiError": "API Error",
+  "apiSuccess": "API Success",
+  "apiLoading": "API Request",
+  "apiPlaceholder": "Input API for get Documentation",
+  "apiPlaceholderError": "Input valid API"
 }

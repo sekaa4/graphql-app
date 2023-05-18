@@ -44,7 +44,7 @@ export const SearchBar = (props: SearchBarProps) => {
         placeholder={(isError && t('apiPlaceholderError')) || t('apiPlaceholder')}
         inputProps={{ 'aria-label': 'api for documentation' }}
         value={searchValue}
-        color={isValidAPI ? 'success' : 'primary'}
+        color={isValidAPI && isEqualValue ? 'success' : 'primary'}
         error={isError && isEqualValue}
         onChange={(event) => setSearchValue(event.target.value)}
       />

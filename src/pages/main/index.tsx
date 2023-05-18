@@ -12,7 +12,6 @@ import { DocumentSchemaLazy } from '@/features/SideBar/ui/DocumentSchema.lazy';
 import homeStyles from '@/pages/main/main.module.css';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 import { getCoreServerSideProps, SSRPageProps } from '@/shared/lib/ssr';
-import { LangSwitcher } from '@/shared/ui/LangSwitcher/LangSwitcher';
 import { Sidebar } from '@/widgets/layouts/side-bar';
 
 const Home = (props: SSRPageProps) => {
@@ -53,12 +52,9 @@ const Home = (props: SSRPageProps) => {
         LogOut
       </Button>
       <SearchBar isError={isError} isLoading={isLoading} />
-      <main className={homeStyles.editor}>
-        <div className={homeStyles.textareawrapper}>
-          <textarea className={homeStyles.textarea}></textarea>
-        </div>
-        <div></div>
-      </main>
+      <div className={homeStyles.textareawrapper}>
+        <textarea className={homeStyles.textarea}></textarea>
+      </div>
       <Button
         variant="contained"
         disabled={isDisabled}
@@ -79,6 +75,7 @@ const Home = (props: SSRPageProps) => {
           <div>{JSON.stringify(errorAPI, null, 2)}</div>
         </>
       )}
+      <div></div>
     </>
   );
 };

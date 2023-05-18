@@ -36,11 +36,7 @@ const Home = (props: SSRPageProps) => {
 
   return (
     <>
-      <LangSwitcher />
       <Sidebar />
-      <Button variant="contained" onClick={() => logout()}>
-        LogOut
-      </Button>
       <input className={homeStyles.input} />
       <main className={homeStyles.editor}>
         <div className={homeStyles.textareawrapper}>

@@ -8,9 +8,7 @@ export const Footer: FC = () => {
   return (
     <Box component="footer" className={styles.footer}>
       <div className={styles.rss}>
-        <a href="https://rs.school/react/">
-          {/*<img src={rssLogo} alt="RSS logo" />*/}
-        </a>
+        <a href="https://rs.school/react/">{/*<img src={rssLogo} alt="RSS logo" />*/}</a>
       </div>
       <div className={styles.git}>
         {/*<img src={gitLogo} alt="GitHub Logo" />*/}

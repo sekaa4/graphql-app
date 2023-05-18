@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Box, Link } from '@mui/material';
 import styles from '@/widgets/layouts/main/ui/Footer/Footer.module.css';
-import rssLogo from '@/shared/icons/rs_school_js.svg';
-import gitLogo from '@/shared/icons/github-logo.svg';
+import rssLogo from '../../../../../shared/icons/rs_school_js.svg';
+import gitLogo from '../../../../../shared/icons/github-logo.svg';
 
 export const Footer: FC = () => {
   return (

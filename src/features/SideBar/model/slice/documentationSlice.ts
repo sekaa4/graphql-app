@@ -36,6 +36,11 @@ export const documentationSlice = createSlice({
       state.curPath = state.prevPath;
       state.prevPath = typeof value === 'string' ? value : null;
     },
+    setupInitialState: (state) => {
+      state.curPath = null;
+      state.prevPath = null;
+      state.paths = [];
+    },
   },
 });
 

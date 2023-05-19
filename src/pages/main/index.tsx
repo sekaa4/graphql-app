@@ -5,6 +5,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth, logout } from '@/app/components/FireBase';
+import { Editor } from '@/features/Editor';
 import { getSearchBarInput, SearchBar, searchBarActions } from '@/features/SearchBar';
 import { documentationActions } from '@/features/SideBar';
 import { fetchSchemaByAPI } from '@/features/SideBar/api/shemaByAnyAPI';
@@ -53,7 +54,7 @@ const Home = (props: SSRPageProps) => {
       </Button>
       <SearchBar isError={isError} isLoading={isLoading} />
       <div className={homeStyles.textareawrapper}>
-        <textarea className={homeStyles.textarea}></textarea>
+        <Editor />
       </div>
       <Button
         variant="contained"

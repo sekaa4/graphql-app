@@ -13,7 +13,6 @@ import { DocumentSchemaLazy } from '@/features/SideBar/ui/DocumentSchema.lazy';
 import homeStyles from '@/pages/main/main.module.css';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 import { getCoreServerSideProps, SSRPageProps } from '@/shared/lib/ssr';
-import { Sidebar } from '@/widgets/layouts/side-bar';
 
 const Home = (props: SSRPageProps) => {
   const router = useRouter();
@@ -47,11 +46,7 @@ const Home = (props: SSRPageProps) => {
   }, [currentSchema, dispatch, isLoading]);
 
   return (
-    <>
-      <Sidebar />
-      <Button variant="contained" onClick={() => logout()}>
-        LogOut
-      </Button>
+    <div className={homeStyles.wrapper}>
       <SearchBar isError={isError} isLoading={isLoading} />
       <div className={homeStyles.textareawrapper}>
         <Editor />
@@ -77,7 +72,7 @@ const Home = (props: SSRPageProps) => {
         </>
       )}
       <div></div>
-    </>
+    </div>
   );
 };
 

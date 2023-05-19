@@ -18,7 +18,6 @@ const Welcome = () => {
 
   return (
     <>
-      <Sidebar />
       <h1>{t('Welcome')}</h1>
 
       <ul>

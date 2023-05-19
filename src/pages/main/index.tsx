@@ -1,3 +1,4 @@
+import SendIcon from '@mui/icons-material/Send';
 import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -77,7 +78,7 @@ const Home = (props: SSRPageProps) => {
     }));
   };
   const mouseDown = (e: MouseEvent) => {
-    const parent = (e.target as HTMLDivElement).parentElement;
+    const parent = (e.target as HTMLDivElement).closest(`[data-id="resize"]`);
     const coords: DOMRect | undefined = parent?.getBoundingClientRect();
     const width = coords?.width || 0;
     const left = coords?.left || 0;
@@ -104,32 +105,39 @@ const Home = (props: SSRPageProps) => {
   return (
     <div className={homeStyles.wrapper}>
       {motion.active}
-      <div className={homeStyles.left} style={{ width: motion?.width + 'px' }}>
-        <SearchBar isError={isError} isLoading={isLoading} />
-        <div className={homeStyles.textareawrapper}>
-          <textarea className={homeStyles.textarea}></textarea>
+      <div className={homeStyles.left} style={{ width: motion?.width + 'px' }} data-id="resize">
+        <div className={homeStyles.editor}>
+          <SearchBar isError={isError} isLoading={isLoading} />
+          <div className={homeStyles.textareawrapper}>
+            <textarea className={homeStyles.textarea}></textarea>
+          </div>
+          <Button
+            variant="contained"
+            disabled={isDisabled}
+            onClick={() => {
+              currentSchema && setStatusOpen(!isOpen);
+            }}
+          >
+            Docs
+          </Button>
+          {isOpen && (
+            <Suspense fallback={<div>Loading...</div>}>
+              <DocumentSchemaLazy schema={currentSchema} />
+            </Suspense>
+          )}
+          {!isLoading && errorAPI && (
+            <>
+              <div>{t('invalidSchema')}</div>
+              <div>{JSON.stringify(errorAPI, null, 2)}</div>
+            </>
+          )}
+          <div className={homeStyles.resizer} onMouseDown={mouseDown} onMouseUp={mouseUp}></div>
         </div>
-        <Button
-          variant="contained"
-          disabled={isDisabled}
-          onClick={() => {
-            currentSchema && setStatusOpen(!isOpen);
-          }}
-        >
-          Docs
-        </Button>
-        {isOpen && (
-          <Suspense fallback={<div>Loading...</div>}>
-            <DocumentSchemaLazy schema={currentSchema} />
-          </Suspense>
-        )}
-        {!isLoading && errorAPI && (
-          <>
-            <div>{t('invalidSchema')}</div>
-            <div>{JSON.stringify(errorAPI, null, 2)}</div>
-          </>
-        )}
-        <div className={homeStyles.resizer} onMouseDown={mouseDown} onMouseUp={mouseUp}></div>
+        <div className={homeStyles.tools}>
+          <div className={homeStyles.icon}>
+            <SendIcon fontSize="large" />
+          </div>
+        </div>
       </div>
       <div className={homeStyles.right}></div>
     </div>

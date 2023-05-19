@@ -23,13 +23,41 @@
 
   position: relative;
 
-  overflow: auto;
+  overflow: hidden;
+  display: flex;
 
   width: 50%;
 
   background-color: white;
   border: 1px solid #e5e5e5;
   border-radius: 10px;
+}
+
+.left .editor {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.left .tools {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+
+  padding: 15px;
+
+  color: green;
+}
+
+.left .tools .icon {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.left .tools .icon:hover {
+  cursor: pointer;
+  opacity: 1;
 }
 
 .resizer {
@@ -56,16 +84,6 @@
   resize: block;
   overflow: auto;
   flex: 1;
-}
-
-.editor {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: stretch;
-  justify-content: space-between;
-
-  height: 100%;
-  margin: 10px 0;
 }
 
 .textareawrapper {

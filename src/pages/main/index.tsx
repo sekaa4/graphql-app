@@ -18,6 +18,7 @@ type motionState = {
   active: boolean;
   deltaLeft: null | number;
   delta: null | number;
+  width: null | number;
 };
 
 const Home = (props: SSRPageProps) => {
@@ -30,6 +31,7 @@ const Home = (props: SSRPageProps) => {
     active: false,
     deltaLeft: null,
     delta: null,
+    width: null,
   });
   const [width, setWidth] = useState<number | null>(null);
   const curSearchBarInput = useAppSelector(getSearchBarInput);
@@ -62,29 +64,30 @@ const Home = (props: SSRPageProps) => {
       const deltaLeft = motion.deltaLeft ? motion.deltaLeft : 0;
       const clientX = e.clientX ? e.clientX : 0;
       const delta = motion.delta ? motion.delta : 0;
-      setWidth(clientX - deltaLeft + delta);
+      setMotion((motion) => ({
+        ...motion,
+        width: clientX - deltaLeft - delta,
+      }));
     }
   };
-
   const mouseUp = () => {
     setMotion((motion) => ({
       ...motion,
       active: false,
     }));
   };
-
   const mouseDown = (e: MouseEvent) => {
     const parent = (e.target as HTMLDivElement).parentElement;
     const coords: DOMRect | undefined = parent?.getBoundingClientRect();
-    const width = coords?.width ? coords.width : 0;
-    const left = coords?.left ? coords?.left : 0;
+    const width = coords?.width || 0;
+    const left = coords?.left || 0;
     const delta: number = e.clientX - width - left;
-
     setMotion((motion) => ({
       ...motion,
       active: true,
       deltaLeft: left,
       delta: delta,
+      width: width,
     }));
   };
 
@@ -101,7 +104,7 @@ const Home = (props: SSRPageProps) => {
   return (
     <div className={homeStyles.wrapper}>
       {motion.active}
-      <div className={homeStyles.left} style={{ width: width as any }}>
+      <div className={homeStyles.left} style={{ width: motion?.width + 'px' }}>
         <SearchBar isError={isError} isLoading={isLoading} />
         <div className={homeStyles.textareawrapper}>
           <textarea className={homeStyles.textarea}></textarea>

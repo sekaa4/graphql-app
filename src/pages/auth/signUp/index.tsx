@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth, registerWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
+import { getCoreServerSideProps } from '@/shared/lib/ssr';
 import { Sidebar } from '@/widgets/layouts/side-bar';
 
 const SignUp = () => {
@@ -63,5 +64,7 @@ const SignUp = () => {
     </>
   );
 };
+
+export const getServerSideProps = getCoreServerSideProps(['common']);
 
 export default SignUp;

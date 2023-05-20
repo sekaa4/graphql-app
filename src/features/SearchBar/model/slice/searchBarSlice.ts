@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SearchBarState } from '../types/SearchBarState.type';
 
 const initialState: SearchBarState = {
-  curSearchBarInput: null,
+  curSearchBarInput: '',
   isValidAPI: false,
 };
 

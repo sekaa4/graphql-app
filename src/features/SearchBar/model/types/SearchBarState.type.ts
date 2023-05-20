@@ -1,4 +1,4 @@
 export interface SearchBarState {
-  curSearchBarInput: string | null;
+  curSearchBarInput: string;
   isValidAPI: boolean;
 }

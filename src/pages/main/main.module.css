@@ -38,7 +38,6 @@
 .left .editorarea {
   position: relative;
   display: flex;
-  flex: 1;
 }
 
 .left .settings {

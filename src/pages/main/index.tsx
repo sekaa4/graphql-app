@@ -16,10 +16,13 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 import { getCoreServerSideProps, SSRPageProps } from '@/shared/lib/ssr';
 
 type motionState = {
-  active: boolean;
+  activeVertical: boolean;
+  activeHorizontal: boolean;
   deltaLeft: null | number;
+  deltaTop: null | number;
   delta: null | number;
   width: null | number;
+  height: null | number;
 };
 
 const Home = (props: SSRPageProps) => {
@@ -29,10 +32,13 @@ const Home = (props: SSRPageProps) => {
   const [isOpen, setStatusOpen] = useState<boolean>(false);
   const [isDisabled, setDisabledButton] = useState<boolean>(true);
   const [motion, setMotion] = useState<motionState>({
-    active: false,
+    activeVertical: false,
+    activeHorizontal: false,
     deltaLeft: null,
+    deltaTop: null,
     delta: null,
     width: null,
+    height: null,
   });
   const [width, setWidth] = useState<number | null>(null);
   const curSearchBarInput = useAppSelector(getSearchBarInput);
@@ -61,7 +67,7 @@ const Home = (props: SSRPageProps) => {
   }, [currentSchema, dispatch, isLoading]);
 
   const mouseMove = (e: MouseEvent) => {
-    if (motion.active) {
+    if (motion.activeVertical) {
       const deltaLeft = motion.deltaLeft ? motion.deltaLeft : 0;
       const clientX = e.clientX ? e.clientX : 0;
       const delta = motion.delta ? motion.delta : 0;
@@ -69,27 +75,51 @@ const Home = (props: SSRPageProps) => {
         ...motion,
         width: clientX - deltaLeft - delta,
       }));
+    } else if (motion.activeHorizontal) {
+      const deltaTop = motion.deltaTop ? motion.deltaTop : 0;
+      const clientY = e.clientY ? e.clientY : 0;
+      const delta = motion.delta ? motion.delta : 0;
+      setMotion((motion) => ({
+        ...motion,
+        height: clientY - deltaTop - delta,
+      }));
     }
   };
   const mouseUp = () => {
     setMotion((motion) => ({
       ...motion,
-      active: false,
+      activeVertical: false,
+      activeHorizontal: false,
     }));
   };
   const mouseDown = (e: MouseEvent) => {
-    const parent = (e.target as HTMLDivElement).closest(`[data-id="resize"]`);
+    const dataResize = (e.target as HTMLDivElement).dataset?.resize;
+    const parent = (e.target as HTMLDivElement).closest(`[data-id=${dataResize}]`);
     const coords: DOMRect | undefined = parent?.getBoundingClientRect();
-    const width = coords?.width || 0;
-    const left = coords?.left || 0;
-    const delta: number = e.clientX - width - left;
-    setMotion((motion) => ({
-      ...motion,
-      active: true,
-      deltaLeft: left,
-      delta: delta,
-      width: width,
-    }));
+    if (dataResize === 'resize-vertical') {
+      const width = coords?.width || 0;
+      const left = coords?.left || 0;
+      const delta: number = e.clientX - width - left;
+      setMotion((motion) => ({
+        ...motion,
+        activeVertical: true,
+        deltaLeft: left,
+        delta: delta,
+        width: width,
+      }));
+    }
+    if (dataResize === 'resize-horizontal') {
+      const height = coords?.height || 0;
+      const top = coords?.top || 0;
+      const delta: number = e.clientY - height - top;
+      setMotion((motion) => ({
+        ...motion,
+        activeHorizontal: true,
+        deltaTop: top,
+        delta: delta,
+        height: height,
+      }));
+    }
   };
 
   useEffect(() => {
@@ -104,9 +134,16 @@ const Home = (props: SSRPageProps) => {
 
   return (
     <div className={homeStyles.wrapper}>
-      {motion.active}
-      <div className={homeStyles.left} style={{ width: motion?.width + 'px' }} data-id="resize">
-        <div className={homeStyles.editorarea}>
+      <div
+        className={homeStyles.left}
+        style={{ width: motion?.width + 'px' }}
+        data-id="resize-vertical"
+      >
+        <div
+          className={homeStyles.editorarea}
+          data-id="resize-horizontal"
+          style={{ height: motion?.height + 'px' }}
+        >
           <div className={homeStyles.editor}>
             <SearchBar isError={isError} isLoading={isLoading} />
             <div className={homeStyles.textareawrapper}>
@@ -138,7 +175,12 @@ const Home = (props: SSRPageProps) => {
               <SendIcon fontSize="large" />
             </div>
           </div>
-          <div className={homeStyles['resizer-horizontal']}></div>
+          <div
+            data-resize="resize-horizontal"
+            className={homeStyles['resizer-horizontal']}
+            onMouseDown={mouseDown}
+            onMouseUp={mouseUp}
+          ></div>
         </div>
         <div className={homeStyles.settings}>
           <div className={homeStyles.header}>
@@ -147,6 +189,7 @@ const Home = (props: SSRPageProps) => {
           </div>
         </div>
         <div
+          data-resize="resize-vertical"
           className={homeStyles['resizer-vertical']}
           onMouseDown={mouseDown}
           onMouseUp={mouseUp}

@@ -25,12 +25,32 @@
 
   overflow: hidden;
   display: flex;
+  flex-flow: column nowrap;
 
   width: 50%;
+  padding-right: 4px;
 
   background-color: white;
   border: 1px solid #e5e5e5;
   border-radius: 10px;
+}
+
+.left .editorarea {
+  position: relative;
+  display: flex;
+  flex: 1;
+}
+
+.left .settings {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  align-items: stretch;
+}
+
+.left .settings .header {
+  height: 40px;
+  padding: 5px;
 }
 
 .left .editor {
@@ -60,7 +80,7 @@
   opacity: 1;
 }
 
-.resizer {
+.resizer-vertical {
   cursor: col-resize;
 
   position: absolute;
@@ -68,7 +88,7 @@
   right: 0;
   bottom: 0;
 
-  width: 6px;
+  width: 4px;
 
   opacity: 0.2;
   background-color: #3c74ff;
@@ -76,7 +96,25 @@
   transition: opacity 0.3s;
 }
 
-.resizer:hover {
+.resizer-horizontal {
+  cursor: row-resize;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  opacity: 0.2;
+  background-color: green;
+
+  transition: opacity 0.3s;
+}
+
+.resizer-vertical:hover,
+.resizer-horizontal:hover {
   opacity: 1;
 }
 

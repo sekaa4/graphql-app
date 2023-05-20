@@ -106,38 +106,51 @@ const Home = (props: SSRPageProps) => {
     <div className={homeStyles.wrapper}>
       {motion.active}
       <div className={homeStyles.left} style={{ width: motion?.width + 'px' }} data-id="resize">
-        <div className={homeStyles.editor}>
-          <SearchBar isError={isError} isLoading={isLoading} />
-          <div className={homeStyles.textareawrapper}>
-            <textarea className={homeStyles.textarea}></textarea>
+        <div className={homeStyles.editorarea}>
+          <div className={homeStyles.editor}>
+            <SearchBar isError={isError} isLoading={isLoading} />
+            <div className={homeStyles.textareawrapper}>
+              <textarea className={homeStyles.textarea}></textarea>
+            </div>
+            <Button
+              variant="contained"
+              disabled={isDisabled}
+              onClick={() => {
+                currentSchema && setStatusOpen(!isOpen);
+              }}
+            >
+              Docs
+            </Button>
+            {isOpen && (
+              <Suspense fallback={<div>Loading...</div>}>
+                <DocumentSchemaLazy schema={currentSchema} />
+              </Suspense>
+            )}
+            {!isLoading && errorAPI && (
+              <>
+                <div>{t('invalidSchema')}</div>
+                <div>{JSON.stringify(errorAPI, null, 2)}</div>
+              </>
+            )}
           </div>
-          <Button
-            variant="contained"
-            disabled={isDisabled}
-            onClick={() => {
-              currentSchema && setStatusOpen(!isOpen);
-            }}
-          >
-            Docs
-          </Button>
-          {isOpen && (
-            <Suspense fallback={<div>Loading...</div>}>
-              <DocumentSchemaLazy schema={currentSchema} />
-            </Suspense>
-          )}
-          {!isLoading && errorAPI && (
-            <>
-              <div>{t('invalidSchema')}</div>
-              <div>{JSON.stringify(errorAPI, null, 2)}</div>
-            </>
-          )}
-          <div className={homeStyles.resizer} onMouseDown={mouseDown} onMouseUp={mouseUp}></div>
+          <div className={homeStyles.tools}>
+            <div className={homeStyles.icon}>
+              <SendIcon fontSize="large" />
+            </div>
+          </div>
+          <div className={homeStyles['resizer-horizontal']}></div>
         </div>
-        <div className={homeStyles.tools}>
-          <div className={homeStyles.icon}>
-            <SendIcon fontSize="large" />
+        <div className={homeStyles.settings}>
+          <div className={homeStyles.header}>
+            <Button>Variables</Button>
+            <Button>Headers</Button>
           </div>
         </div>
+        <div
+          className={homeStyles['resizer-vertical']}
+          onMouseDown={mouseDown}
+          onMouseUp={mouseUp}
+        ></div>
       </div>
       <div className={homeStyles.right}></div>
     </div>

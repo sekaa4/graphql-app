@@ -16,13 +16,13 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 import { getCoreServerSideProps, SSRPageProps } from '@/shared/lib/ssr';
 
 type motionState = {
-  activeVertical: boolean;
-  activeHorizontal: boolean;
-  deltaLeft: null | number;
-  deltaTop: null | number;
-  delta: null | number;
-  width: null | number;
-  height: null | number;
+  activeVertical?: boolean;
+  activeHorizontal?: boolean;
+  deltaLeft?: null | number;
+  deltaTop?: null | number;
+  delta?: null | number;
+  width?: null | number;
+  height?: null | number;
 };
 
 const Home = (props: SSRPageProps) => {
@@ -67,23 +67,17 @@ const Home = (props: SSRPageProps) => {
   }, [currentSchema, dispatch, isLoading]);
 
   const mouseMove = (e: MouseEvent) => {
+    let params: Partial<motionState> = {};
     if (motion.activeVertical) {
-      const deltaLeft = motion.deltaLeft ? motion.deltaLeft : 0;
-      const clientX = e.clientX ? e.clientX : 0;
-      const delta = motion.delta ? motion.delta : 0;
-      setMotion((motion) => ({
-        ...motion,
-        width: clientX - deltaLeft - delta,
-      }));
+      const { deltaLeft, delta } = motion;
+      const { clientX } = e;
+      params.width = clientX - (deltaLeft || 0) - (delta || 0);
     } else if (motion.activeHorizontal) {
-      const deltaTop = motion.deltaTop ? motion.deltaTop : 0;
-      const clientY = e.clientY ? e.clientY : 0;
-      const delta = motion.delta ? motion.delta : 0;
-      setMotion((motion) => ({
-        ...motion,
-        height: clientY - deltaTop - delta,
-      }));
+      const { deltaTop, delta } = motion;
+      const { clientY } = e;
+      params.height = clientY - (deltaTop || 0) - (delta || 0);
     }
+    setMotion((motion) => ({ ...motion, ...params }));
   };
   const mouseUp = () => {
     setMotion((motion) => ({
@@ -93,33 +87,23 @@ const Home = (props: SSRPageProps) => {
     }));
   };
   const mouseDown = (e: MouseEvent) => {
-    const dataResize = (e.target as HTMLDivElement).dataset?.resize;
-    const parent = (e.target as HTMLDivElement).closest(`[data-id=${dataResize}]`);
+    const el = e.target as HTMLDivElement;
+    const dataResize = el.dataset?.resize;
+    const parent = el.closest(`[data-id=${dataResize}]`);
     const coords: DOMRect | undefined = parent?.getBoundingClientRect();
+    let params: Partial<motionState> = {};
+
     if (dataResize === 'resize-vertical') {
-      const width = coords?.width || 0;
-      const left = coords?.left || 0;
-      const delta: number = e.clientX - width - left;
-      setMotion((motion) => ({
-        ...motion,
-        activeVertical: true,
-        deltaLeft: left,
-        delta: delta,
-        width: width,
-      }));
+      const { width, left } = coords ?? {};
+      const delta: number = e.clientX - (width || 0) - (left || 0);
+      params = { activeVertical: true, width, deltaLeft: left, delta };
     }
     if (dataResize === 'resize-horizontal') {
-      const height = coords?.height || 0;
-      const top = coords?.top || 0;
-      const delta: number = e.clientY - height - top;
-      setMotion((motion) => ({
-        ...motion,
-        activeHorizontal: true,
-        deltaTop: top,
-        delta: delta,
-        height: height,
-      }));
+      const { height, top } = coords ?? {};
+      const delta: number = e.clientY - (height || 0) - (top || 0);
+      params = { activeHorizontal: true, height, deltaTop: top, delta };
     }
+    setMotion((motion: motionState) => ({ ...motion, ...params }));
   };
 
   useEffect(() => {

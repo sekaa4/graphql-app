@@ -9,20 +9,35 @@ import { RequestObj } from '../types/RequestObj.type';
 
 export const Editor = () => {
   const [schemaSDL, setSchemaSDL] = useState<string>('');
+  const [variablesSDL, setVariablesSDL] = useState<string>('{}');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const urlAPI = useAppSelector(getSearchBarInput);
   const [getGraphQlData, { data, error, isLoading }] = fetchGraphQlDataByAnyAPI();
-  const requestObj: RequestObj = {
-    url: urlAPI,
-    request: schemaSDL,
-    variables: {},
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setSchemaSDL(value);
   };
+
+  const handleChangeVariables = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setVariablesSDL(value);
+  };
   const handleButtonClick = () => {
-    getGraphQlData(requestObj);
+    try {
+      const requestObj: RequestObj = {
+        url: urlAPI,
+        request: schemaSDL,
+        variables: JSON.parse(variablesSDL),
+      };
+
+      getGraphQlData(requestObj);
+      setErrorMessage(``);
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorMessage(`Variables are invalid JSON: ${error.message}`);
+      }
+    }
   };
 
   return (
@@ -40,14 +55,28 @@ export const Editor = () => {
             Sent
           </Button>
         </div>
+        <div>
+          <TextareaAutosize
+            minRows={20}
+            cols={30}
+            placeholder="Write GraphQl Variables here"
+            value={variablesSDL}
+            onChange={handleChangeVariables}
+          />
+        </div>
       </section>
       <section>
-        {isLoading && <div>Loading...</div>}
-        {!isLoading && data && <div>{JSON.stringify(data)}</div>}
-        {!isLoading && error && 'data' in error && error.status !== 'PARSING_ERROR' && (
-          <div>{JSON.stringify(error.data)}</div>
+        {errorMessage && <div>{errorMessage}</div>}
+        {!errorMessage && isLoading && <div>Loading...</div>}
+        {!errorMessage && !isLoading && data && <div>{JSON.stringify(data)}</div>}
+        {!errorMessage &&
+          !isLoading &&
+          error &&
+          'data' in error &&
+          error.status !== 'PARSING_ERROR' && <div>{JSON.stringify(error.data)}</div>}
+        {!errorMessage && !isLoading && error && 'message' in error && (
+          <div>{JSON.stringify(error)}</div>
         )}
-        {!isLoading && error && 'message' in error && <div>{JSON.stringify(error)}</div>}
         <div></div>
       </section>
     </>

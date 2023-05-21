@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { auth, logout } from '@/app/components/FireBase';
 
 export const AuthContainer = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
   const { t } = useTranslation('common');

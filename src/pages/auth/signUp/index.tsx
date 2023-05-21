@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Alert, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -17,7 +17,7 @@ const SignUp = () => {
   const router = useRouter();
 
   const register = () => {
-    if (!name) alert('Please enter name');
+    // if (!name) alert('Please enter name');
     registerWithEmailAndPassword(name, email, password);
   };
   useEffect(() => {
@@ -27,25 +27,23 @@ const SignUp = () => {
   return (
     <>
       <Sidebar />
-      <div className="register">
-        <div className="register__container">
+      <div>
+        <div>
+          {/* {!name && <Alert severity="error">Please enter name</Alert>} */}
           <TextField
             type="text"
-            className="register__textBox"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Full Name"
           />
           <TextField
             type="text"
-            className="register__textBox"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-mail Address"
           />
           <TextField
             type="password"
-            className="register__textBox"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"

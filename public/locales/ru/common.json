@@ -16,5 +16,9 @@
   "apiSuccess": "API Получено",
   "apiLoading": "Запрос API",
   "apiPlaceholder": "Введите API для получения Документации",
-  "apiPlaceholderError": "Введите действительный API"
+  "apiPlaceholderError": "Введите действительный API",
+  "ToMainPage": "На Главную",
+  "SignIn": "Войти",
+  "SignUp": "Зарегистрироваться",
+  "Logout": "Выйти"
 }

@@ -2,24 +2,39 @@ import HistoryIcon from '@mui/icons-material/History';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { FC } from 'react';
+import IconButton from '@mui/material/IconButton';
 
 import sidebarStyles from '@/widgets/layouts/side-bar/ui/Sidebar/Sidebar.module.css';
 
-export const Sidebar: FC = () => {
+interface SidebarProps {
+  disabled: boolean;
+  handleDocClick: () => void;
+}
+
+export const Sidebar = (props: SidebarProps) => {
+  const { disabled, handleDocClick } = props;
+
   return (
     <div className={sidebarStyles.container}>
       <div className={sidebarStyles.icon}>
-        <MenuBookIcon />
+        <IconButton disabled={disabled} onClick={handleDocClick}>
+          <MenuBookIcon color={disabled ? undefined : 'success'} />
+        </IconButton>
       </div>
       <div className={sidebarStyles.icon}>
-        <HistoryIcon />
+        <IconButton>
+          <HistoryIcon />
+        </IconButton>
       </div>
       <div className={sidebarStyles.icon}>
-        <RefreshIcon />
+        <IconButton>
+          <RefreshIcon />
+        </IconButton>
       </div>
       <div className={sidebarStyles.icon}>
-        <SettingsIcon />
+        <IconButton>
+          <SettingsIcon />
+        </IconButton>
       </div>
     </div>
   );

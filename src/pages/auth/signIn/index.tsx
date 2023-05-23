@@ -7,7 +7,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
-import { Sidebar } from '@/widgets/layouts/side-bar';
 
 const SignIN = () => {
   const [email, setEmail] = useState('');
@@ -23,7 +22,6 @@ const SignIN = () => {
   }, [user, loading, router]);
   return (
     <>
-      <Sidebar />
       <div className="login">
         <div className="login__container">
           <TextField

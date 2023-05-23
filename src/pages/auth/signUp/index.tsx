@@ -7,7 +7,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth, registerWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
-import { Sidebar } from '@/widgets/layouts/side-bar';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -26,7 +25,6 @@ const SignUp = () => {
   }, [user, loading, router]);
   return (
     <>
-      <Sidebar />
       <div>
         <div>
           {/* {!name && <Alert severity="error">Please enter name</Alert>} */}

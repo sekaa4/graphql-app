@@ -11,10 +11,10 @@ interface MainLayoutProps {}
 
 export const MainLayout = ({ children }: PropsWithChildren<MainLayoutProps>) => {
   return (
-    <div className={layoutStyles.container}>
+    <div className={layoutStyles.wrapper}>
       <Header logout={logout} />
       <Box component="main" className={layoutStyles.page}>
-        {children}
+        <div className={layoutStyles.container}>{children}</div>
       </Box>
       <Footer />
     </div>

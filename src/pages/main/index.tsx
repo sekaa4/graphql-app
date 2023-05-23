@@ -146,47 +146,49 @@ const Home = (props: SSRPageProps) => {
       </div>
       <div className={homeStyles.wrapper}>
         <SearchBar isError={isError} isLoading={isLoading} />
-        <div
-          className={homeStyles.left}
-          style={{ width: motion?.width + 'px' }}
-          data-id="resize-vertical"
-        >
+        <div className={homeStyles['editor-wrapper']}>
           <div
-            className={homeStyles.editorarea}
-            data-id="resize-horizontal"
-            style={{ height: motion?.height + 'px' }}
+            className={homeStyles.left}
+            style={{ width: motion?.width + 'px' }}
+            data-id="resize-vertical"
           >
-            <div className={homeStyles.editor}>
-              {/* <div className={homeStyles.textareawrapper}>
+            <div
+              className={homeStyles.editorarea}
+              data-id="resize-horizontal"
+              style={{ height: motion?.height + 'px' }}
+            >
+              <div className={homeStyles.editor}>
+                {/* <div className={homeStyles.textareawrapper}>
                 <textarea className={homeStyles.textarea}></textarea>
               </div> */}
+              </div>
+              <div className={homeStyles.tools}>
+                <div className={homeStyles.icon}>
+                  <SendIcon fontSize="large" />
+                </div>
+              </div>
+              <div
+                data-resize="resize-horizontal"
+                className={homeStyles['resizer-horizontal']}
+                onMouseDown={mouseDown}
+                onMouseUp={mouseUp}
+              ></div>
             </div>
-            <div className={homeStyles.tools}>
-              <div className={homeStyles.icon}>
-                <SendIcon fontSize="large" />
+            <div className={homeStyles.settings}>
+              <div className={homeStyles.header}>
+                <Button>Variables</Button>
+                <Button>Headers</Button>
               </div>
             </div>
             <div
-              data-resize="resize-horizontal"
-              className={homeStyles['resizer-horizontal']}
+              data-resize="resize-vertical"
+              className={homeStyles['resizer-vertical']}
               onMouseDown={mouseDown}
               onMouseUp={mouseUp}
             ></div>
           </div>
-          <div className={homeStyles.settings}>
-            <div className={homeStyles.header}>
-              <Button>Variables</Button>
-              <Button>Headers</Button>
-            </div>
-          </div>
-          <div
-            data-resize="resize-vertical"
-            className={homeStyles['resizer-vertical']}
-            onMouseDown={mouseDown}
-            onMouseUp={mouseUp}
-          ></div>
+          <div className={homeStyles.right}></div>
         </div>
-        <div className={homeStyles.right}></div>
       </div>
     </>
   );

@@ -10,6 +10,7 @@
 .git {
   display: flex;
   flex-direction: row;
+  column-gap: 10px;
 }
 
 .git img {

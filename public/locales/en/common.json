@@ -20,5 +20,9 @@
   "ToMainPage": "To Main Page",
   "SignIn": "SignIn",
   "SignUp": "SignUp",
-  "error-boundary": "Sorry.. there was an error, try one more time"
+  "Logout": "Logout",
+  "variables": "Variables",
+  "headers": "Headers",
+  "error-boundary": "Sorry.. there was an error, try one more time",
+  "year": "© 2023"
 }

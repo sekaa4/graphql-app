@@ -20,5 +20,5 @@
   "ToMainPage": "To Main Page",
   "SignIn": "SignIn",
   "SignUp": "SignUp",
-  "Logout": "Logout"
+  "error-boundary": "Sorry.. there was an error, try one more time"
 }

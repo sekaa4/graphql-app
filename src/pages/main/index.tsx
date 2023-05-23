@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { auth, logout } from '@/app/components/FireBase';
+import { auth } from '@/app/components/FireBase';
 import { Editor } from '@/features/Editor';
 import { getSearchBarInput, SearchBar, searchBarActions } from '@/features/SearchBar';
 import { documentationActions } from '@/features/SideBar';
@@ -13,7 +13,7 @@ import { fetchSchemaByAPI } from '@/features/SideBar/api/shemaByAnyAPI';
 import { DocumentSchemaLazy } from '@/features/SideBar/ui/DocumentSchema.lazy';
 import homeStyles from '@/pages/main/main.module.css';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
-import { getCoreServerSideProps, SSRPageProps } from '@/shared/lib/ssr';
+import { getCoreServerSideProps } from '@/shared/lib/ssr';
 import { Sidebar } from '@/widgets/layouts/side-bar';
 
 type motionState = {
@@ -26,10 +26,10 @@ type motionState = {
   height?: null | number;
 };
 
-const Home = (props: SSRPageProps) => {
+const Home = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const [user, loading, error] = useAuthState(auth);
+  const [user, ,] = useAuthState(auth);
   const [isOpen, setStatusOpen] = useState<boolean>(false);
   const [isDisabled, setDisabledButton] = useState<boolean>(true);
   const [motion, setMotion] = useState<motionState>({
@@ -41,7 +41,7 @@ const Home = (props: SSRPageProps) => {
     width: null,
     height: null,
   });
-  const [width, setWidth] = useState<number | null>(null);
+  // const [width, setWidth] = useState<number | null>(null);
   const curSearchBarInput = useAppSelector(getSearchBarInput);
   const { t } = useTranslation('common');
 
@@ -176,8 +176,8 @@ const Home = (props: SSRPageProps) => {
             </div>
             <div className={homeStyles.settings}>
               <div className={homeStyles.header}>
-                <Button>Variables</Button>
-                <Button>Headers</Button>
+                <Button>{t('variables')}</Button>
+                <Button>{t('headers')}</Button>
               </div>
             </div>
             <div

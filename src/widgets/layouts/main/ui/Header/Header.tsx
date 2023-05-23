@@ -1,24 +1,16 @@
-import { Box, Button } from '@mui/material';
-import Link from 'next/link';
+import { Box } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { auth } from '@/app/components/FireBase';
-import cls from '@/pages/index.module.scss';
 import { LangSwitcher } from '@/shared/ui';
+import { AuthContainer } from '@/widgets/layouts/AuthContainer';
 import styles from '@/widgets/layouts/main/ui/Header/Header.module.css';
 
 type HeaderType = {
   logout: () => void;
 };
 
-export const Header: FC<HeaderType> = ({ logout }) => {
-  const [user, loading, error] = useAuthState(auth);
+export const Header: FC<HeaderType> = () => {
   const [scrolled, setScrolled] = useState(false);
-
-  const logoutHandler = () => {
-    logout();
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,21 +31,7 @@ export const Header: FC<HeaderType> = ({ logout }) => {
     <Box component="header" className={className}>
       <div className={styles.wrapper}>
         <LangSwitcher />
-        {user ? (
-          <Button variant="contained" onClick={logoutHandler}>
-            LogOut
-          </Button>
-        ) : (
-          <div className={cls.auth_container}>
-            <Link href="/auth/signIn">
-              <Button variant="contained">SignIn</Button>
-            </Link>
-
-            <Link href="/auth/signUp">
-              <Button variant="contained">SignUp</Button>
-            </Link>
-          </div>
-        )}
+        <AuthContainer />
       </div>
     </Box>
   );

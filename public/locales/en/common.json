@@ -16,5 +16,9 @@
   "apiSuccess": "API Success",
   "apiLoading": "API Request",
   "apiPlaceholder": "Input API for get Documentation",
-  "apiPlaceholderError": "Input valid API"
+  "apiPlaceholderError": "Input valid API",
+  "ToMainPage": "To Main Page",
+  "SignIn": "SignIn",
+  "SignUp": "SignUp",
+  "Logout": "Logout"
 }

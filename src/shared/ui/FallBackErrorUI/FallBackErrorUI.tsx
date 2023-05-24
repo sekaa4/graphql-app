@@ -5,7 +5,7 @@ export const FallBackErrorUI: FC = () => {
   const { t } = useTranslation('common');
   return (
     <>
-      <h3>{t('error-boundary')}</h3>
+      <h3>{t('errorBoundary')}</h3>
     </>
   );
 };

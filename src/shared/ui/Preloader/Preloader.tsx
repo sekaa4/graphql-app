@@ -9,7 +9,7 @@ interface PreloaderProps {
 }
 const Preloader = (props: PropsWithChildren<PreloaderProps>) => {
   const { children } = props;
-  const [user, loading] = useAuthState(auth);
+  const [, loading] = useAuthState(auth);
 
   return (
     <>

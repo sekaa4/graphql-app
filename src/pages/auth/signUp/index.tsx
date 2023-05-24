@@ -1,9 +1,10 @@
-import { Alert, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useTranslation } from 'react-i18next';
 
 import { auth, registerWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
@@ -12,8 +13,10 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
+  const { t } = useTranslation('common');
 
   const register = () => {
     // if (!name) alert('Please enter name');
@@ -47,13 +50,13 @@ const SignUp = () => {
             placeholder="Password"
           />
           <Button variant="contained" onClick={register}>
-            Register
+            {t('Registered')}
           </Button>
           <Button variant="contained" onClick={signInWithGoogle}>
-            Register with Google
+            {t('RegisterWithGoogle')}
           </Button>
           <div>
-            Already have an account? <Link href="/auth/signIn">Login</Link> now.
+            {t('AlreadyHaveAnAccount')} <Link href="/auth/signIn">{t('SignIn')}</Link> {t('now')}
           </div>
         </div>
       </div>

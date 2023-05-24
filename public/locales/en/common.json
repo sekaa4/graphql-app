@@ -20,9 +20,17 @@
   "ToMainPage": "To Main Page",
   "SignIn": "SignIn",
   "SignUp": "SignUp",
+  "SignInWithGoogle": "SignIn with Google",
   "Logout": "Logout",
   "variables": "Variables",
   "headers": "Headers",
   "error-boundary": "Sorry.. there was an error, try one more time",
-  "year": "© 2023"
+  "year": "© 2023",
+  "ForgotPassword": "Forgot Password",
+  "DoNotHaveAnAccount": " Do not have an account?",
+  "Register": "Register",
+  "now": "now.",
+  "Registered": "Register",
+  "RegisterWithGoogle": "Register with Google",
+  "AlreadyHaveAnAccount": "Already have an account?"
 }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useTranslation } from 'react-i18next';
 
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
@@ -11,15 +12,13 @@ import { getCoreServerSideProps } from '@/shared/lib/ssr';
 const SignIN = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
+  const { t } = useTranslation('common');
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
     if (user) router.push('/main');
-  }, [user, loading, router]);
+  }, [user, router]);
   return (
     <>
       <div className="login">
@@ -37,16 +36,16 @@ const SignIN = () => {
             placeholder="Password"
           />
           <Button variant="contained" onClick={() => logInWithEmailAndPassword(email, password)}>
-            SignIn
+            {t('SignIn')}
           </Button>
           <Button variant="contained" onClick={signInWithGoogle}>
-            SignIn with Google
+            {t('SignInWithGoogle')}
           </Button>
           <div>
-            <Link href="/reset">Forgot Password</Link>
+            <Link href="/reset">{t('ForgotPassword')}</Link>
           </div>
           <div>
-            Do not have an account? <Link href="/auth/signUp">Register</Link> now.
+            {t('DoNotHaveAnAccount')} <Link href="/auth/signUp">{t('Register')}</Link> {t('now')}
           </div>
         </div>
       </div>

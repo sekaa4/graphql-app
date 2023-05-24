@@ -20,9 +20,17 @@
   "ToMainPage": "На Главную",
   "SignIn": "Войти",
   "SignUp": "Зарегистрироваться",
+  "SignInWithGoogle": "Войти через Google",
   "Logout": "Выйти",
   "variables": "Переменные",
   "headers": "Заголовки",
   "error-boundary": "Извините... произошла ошибка, попробуйте ещё раз",
-  "year": "© 2023"
+  "year": "© 2023",
+  "ForgotPassword": "Забыли пароль",
+  "DoNotHaveAnAccount": " Не зарегистрированны?",
+  "Register": "Зарегистируйтесь",
+  "now": "сейчас.",
+  "Registered": "Зарегистрироваться",
+  "RegisterWithGoogle": "Зарегистрироваться чреез Google",
+  "AlreadyHaveAnAccount": "Уже есть аккаунт?"
 }

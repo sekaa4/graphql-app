@@ -25,5 +25,9 @@
   "variables": "Variables",
   "headers": "Headers",
   "error-boundary": "Sorry.. there was an error, try one more time",
-  "year": "© 2023"
+  "year": "© 2023",
+  "ForgotPassword": "Forgot Password",
+  "DoNotHaveAnAccount": " Do not have an account?",
+  "Register": "Register",
+  "now": "now."
 }

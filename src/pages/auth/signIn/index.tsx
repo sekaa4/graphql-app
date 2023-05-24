@@ -42,10 +42,10 @@ const SignIN = () => {
             {t('SignInWithGoogle')}
           </Button>
           <div>
-            <Link href="/reset">Forgot Password</Link>
+            <Link href="/reset">{t('ForgotPassword')}</Link>
           </div>
           <div>
-            Do not have an account? <Link href="/auth/signUp">Register</Link> now.
+            {t('DoNotHaveAnAccount')} <Link href="/auth/signUp">{t('Register')}</Link> {t('now')}
           </div>
         </div>
       </div>

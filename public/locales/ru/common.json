@@ -29,5 +29,8 @@
   "ForgotPassword": "Забыли пароль",
   "DoNotHaveAnAccount": " Не зарегистрированны?",
   "Register": "Зарегистируйтесь",
-  "now": "сейчас."
+  "now": "сейчас.",
+  "Registered": "Зарегистрироваться",
+  "RegisterWithGoogle": "Зарегистрироваться чреез Google",
+  "AlreadyHaveAnAccount": "Уже есть аккаунт?"
 }

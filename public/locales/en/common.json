@@ -29,5 +29,8 @@
   "ForgotPassword": "Forgot Password",
   "DoNotHaveAnAccount": " Do not have an account?",
   "Register": "Register",
-  "now": "now."
+  "now": "now.",
+  "Registered": "Register",
+  "RegisterWithGoogle": "Register with Google",
+  "AlreadyHaveAnAccount": "Already have an account?"
 }

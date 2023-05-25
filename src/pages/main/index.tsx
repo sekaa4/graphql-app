@@ -1,7 +1,7 @@
-import { Button, Divider } from '@mui/material';
+import { CircularProgress, Divider } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import React, { Suspense, useCallback, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth } from '@/app/components/FireBase';
@@ -22,7 +22,6 @@ const Home = () => {
   const [user, ,] = useAuthState(auth);
   const [isOpen, setStatusOpen] = useState<boolean>(false);
   const [isDisabled, setDisabledButton] = useState<boolean>(true);
-  // const [width, setWidth] = useState<number | null>(null);
   const curSearchBarInput = useAppSelector(getSearchBarInput);
   const { t } = useTranslation('common');
 
@@ -57,27 +56,38 @@ const Home = () => {
   } else {
     return (
       <>
-        <Sidebar disabled={isDisabled} handleDocClick={handleDocClick} />
-        {isOpen && <Divider sx={{ height: '100%', m: 0.5 }} orientation="vertical" />}
-        <div>
-          {isOpen && (
-            <>
-              <Suspense fallback={<div>Loading...</div>}>
-                <DocumentSchemaLazy schema={currentSchema} />
-              </Suspense>
-            </>
-          )}
-          {!isLoading && errorAPI && (
-            <>
-              <div>{t('invalidSchema')}</div>
-              {/* <div>{JSON.stringify(errorAPI, null, '\t')}</div> */}
-            </>
-          )}
-        </div>
-        <div className={homeStyles.wrapper}>
-          <SearchBar isError={isError} isLoading={isLoading} />
-          <div className={homeStyles['editor-wrapper']}>
-            <Editor />
+        <div className={homeStyles['main-container']}>
+          <Sidebar disabled={isDisabled} handleDocClick={handleDocClick} />
+          <div className={homeStyles['whithout-bar']}>
+            {isOpen && <Divider className={homeStyles['divider']} orientation="vertical" />}
+
+            <div>
+              {isOpen && (
+                <>
+                  <Suspense
+                    fallback={
+                      <div className={homeStyles['circular-section']}>
+                        <CircularProgress className={homeStyles.circular} />
+                      </div>
+                    }
+                  >
+                    <DocumentSchemaLazy schema={currentSchema} />
+                  </Suspense>
+                </>
+              )}
+              {!isLoading && errorAPI && (
+                <>
+                  <div>{t('invalidSchema')}</div>
+                  {/* <div>{JSON.stringify(errorAPI, null, '\t')}</div> */}
+                </>
+              )}
+            </div>
+            <div className={homeStyles.wrapper}>
+              <SearchBar isError={isError} isLoading={isLoading} />
+              <div className={homeStyles['editor-wrapper']}>
+                <Editor />
+              </div>
+            </div>
           </div>
         </div>
       </>

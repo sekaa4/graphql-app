@@ -10,6 +10,7 @@ import {
 
 import { getDocumentationCurPath, getDocumentationPrevPath } from '../model/selectors';
 import { documentationActions } from '../model/slice/documentationSlice';
+import cls from './documentSchema.module.css';
 interface DocumentSchemaProps {
   schema?: string;
 }
@@ -37,7 +38,7 @@ const DocumentSchema = (props: PropsWithChildren<DocumentSchemaProps>) => {
   };
 
   return (
-    <div>
+    <div className={cls.wrapper}>
       {schema && !curPath && (
         <CustomSchema
           schema={graphQlSchemaOperations(schema)}

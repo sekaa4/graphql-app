@@ -37,7 +37,7 @@ export const SearchBar = (props: SearchBarProps) => {
         m: '0px auto',
         display: 'flex',
         alignItems: 'center',
-        width: 400,
+        width: '60vw',
       }}
     >
       <TextField

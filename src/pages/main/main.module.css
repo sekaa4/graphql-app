@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex-flow: column wrap;
+  flex-shrink: 1;
   row-gap: 10px;
 
   width: 100%;
@@ -10,6 +11,15 @@
   background-color: #eff7ff;
   border: 1px solid #e5e5e5;
   border-radius: 10px;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+
+  @media (width <= 750px) {
+    flex-direction: column;
+  }
 }
 
 .left {
@@ -136,4 +146,43 @@
 .editor-wrapper {
   display: flex;
   flex-grow: 1;
+  flex-wrap: wrap;
+
+  @media (width <= 750px) {
+    flex-direction: column;
+  }
+}
+
+.whithout-bar {
+  display: flex;
+  width: 100%;
+
+  @media (width <= 750px) {
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.divider {
+  display: block;
+  height: '100%';
+  margin: 0.5rem;
+
+  @media (width <= 750px) {
+    display: none;
+  }
+}
+
+.circular-section {
+  width: 25vw;
+
+  @media (width <= 750px) {
+    width: 100vw;
+    padding: 10px 0;
+  }
+}
+
+.circular {
+  display: block;
+  margin: 0 auto;
 }

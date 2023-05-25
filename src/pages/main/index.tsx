@@ -125,73 +125,77 @@ const Home = () => {
     currentSchema && setStatusOpen(!isOpen);
   };
 
-  return (
-    <>
-      <Sidebar disabled={isDisabled} handleDocClick={handleDocClick} />
-      {isOpen && <Divider sx={{ height: '100%', m: 0.5 }} orientation="vertical" />}
-      <div>
-        {isOpen && (
-          <>
-            <Suspense fallback={<div>Loading...</div>}>
-              <DocumentSchemaLazy schema={currentSchema} />
-            </Suspense>
-          </>
-        )}
-        {!isLoading && errorAPI && (
-          <>
-            <div>{t('invalidSchema')}</div>
-            {/* <div>{JSON.stringify(errorAPI, null, '\t')}</div> */}
-          </>
-        )}
-      </div>
-      <div className={homeStyles.wrapper}>
-        <SearchBar isError={isError} isLoading={isLoading} />
-        <div className={homeStyles['editor-wrapper']}>
-          <div
-            className={homeStyles.left}
-            style={{ width: motion?.width + 'px' }}
-            data-id="resize-vertical"
-          >
+  if (!user) {
+    return <></>;
+  } else {
+    return (
+      <>
+        <Sidebar disabled={isDisabled} handleDocClick={handleDocClick} />
+        {isOpen && <Divider sx={{ height: '100%', m: 0.5 }} orientation="vertical" />}
+        <div>
+          {isOpen && (
+            <>
+              <Suspense fallback={<div>Loading...</div>}>
+                <DocumentSchemaLazy schema={currentSchema} />
+              </Suspense>
+            </>
+          )}
+          {!isLoading && errorAPI && (
+            <>
+              <div>{t('invalidSchema')}</div>
+              {/* <div>{JSON.stringify(errorAPI, null, '\t')}</div> */}
+            </>
+          )}
+        </div>
+        <div className={homeStyles.wrapper}>
+          <SearchBar isError={isError} isLoading={isLoading} />
+          <div className={homeStyles['editor-wrapper']}>
             <div
-              className={homeStyles.editorarea}
-              data-id="resize-horizontal"
-              style={{ height: motion?.height + 'px' }}
+              className={homeStyles.left}
+              style={{ width: motion?.width + 'px' }}
+              data-id="resize-vertical"
             >
-              <div className={homeStyles.editor}>
-                {/* <div className={homeStyles.textareawrapper}>
-                <textarea className={homeStyles.textarea}></textarea>
-              </div> */}
+              <div
+                className={homeStyles.editorarea}
+                data-id="resize-horizontal"
+                style={{ height: motion?.height + 'px' }}
+              >
+                <div className={homeStyles.editor}>
+                  {/* <div className={homeStyles.textareawrapper}>
+                  <textarea className={homeStyles.textarea}></textarea>
+                </div> */}
+                </div>
+                <div className={homeStyles.tools}>
+                  <div className={homeStyles.icon}>
+                    <SendIcon fontSize="large" />
+                  </div>
+                </div>
+                <div
+                  data-resize="resize-horizontal"
+                  className={homeStyles['resizer-horizontal']}
+                  onMouseDown={mouseDown}
+                  onMouseUp={mouseUp}
+                ></div>
               </div>
-              <div className={homeStyles.tools}>
-                <div className={homeStyles.icon}>
-                  <SendIcon fontSize="large" />
+              <div className={homeStyles.settings}>
+                <div className={homeStyles.header}>
+                  <Button>{t('variables')}</Button>
+                  <Button>{t('headers')}</Button>
                 </div>
               </div>
               <div
-                data-resize="resize-horizontal"
-                className={homeStyles['resizer-horizontal']}
+                data-resize="resize-vertical"
+                className={homeStyles['resizer-vertical']}
                 onMouseDown={mouseDown}
                 onMouseUp={mouseUp}
               ></div>
             </div>
-            <div className={homeStyles.settings}>
-              <div className={homeStyles.header}>
-                <Button>{t('variables')}</Button>
-                <Button>{t('headers')}</Button>
-              </div>
-            </div>
-            <div
-              data-resize="resize-vertical"
-              className={homeStyles['resizer-vertical']}
-              onMouseDown={mouseDown}
-              onMouseUp={mouseUp}
-            ></div>
+            <div className={homeStyles.right}></div>
           </div>
-          <div className={homeStyles.right}></div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export const getServerSideProps = getCoreServerSideProps(['common']);

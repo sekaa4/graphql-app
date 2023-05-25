@@ -14,9 +14,14 @@ export const AuthContainer = () => {
 
   if (router.pathname === '/' && user) {
     return (
-      <Link href="/main">
-        <Button variant="contained">{t('ToMainPage')}</Button>
-      </Link>
+      <>
+        <Link href="/main">
+          <Button variant="contained">{t('ToMainPage')}</Button>
+        </Link>
+        <Button variant="contained" onClick={logout}>
+          {t('Logout')}
+        </Button>
+      </>
     );
   } else if (router.pathname !== '/main' && !user) {
     return (

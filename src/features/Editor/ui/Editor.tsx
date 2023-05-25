@@ -1,8 +1,7 @@
 import SendIcon from '@mui/icons-material/Send';
 import { Button, CircularProgress, IconButton, TextareaAutosize } from '@mui/material';
-import { t } from 'i18next';
+import { useTranslation } from 'next-i18next';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { getSearchBarInput } from '@/features/SearchBar';
 import { useAppSelector } from '@/shared/hooks';
@@ -23,10 +22,11 @@ type motionState = {
 
 export const Editor = () => {
   const [schemaSDL, setSchemaSDL] = useState<string>('');
-  const [variablesSDL, setVariablesSDL] = useState<string>('{}');
+  const [variablesSDL, setVariablesSDL] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const urlAPI = useAppSelector(getSearchBarInput);
   const [getGraphQlData, { data, error, isLoading }] = fetchGraphQlDataByAnyAPI();
+  const [isOpen, setStatusOpen] = useState<boolean>(false);
   const { t } = useTranslation('common');
   const [motion, setMotion] = useState<motionState>({
     activeVertical: false,
@@ -52,7 +52,7 @@ export const Editor = () => {
       const requestObj: RequestObj = {
         url: urlAPI,
         request: schemaSDL,
-        variables: JSON.parse(variablesSDL),
+        variables: (urlAPI && schemaSDL && variablesSDL && JSON.parse(variablesSDL)) || '',
       };
 
       getGraphQlData(requestObj);
@@ -128,9 +128,10 @@ export const Editor = () => {
         >
           <div className={cls.editor}>
             <TextareaAutosize
-              placeholder="Write GraphQl request here"
+              placeholder={t('editorPlaceholder')}
               value={schemaSDL}
               onChange={handleChange}
+              minRows={20}
               className={cls.textareawrapper}
             />
           </div>
@@ -141,25 +142,25 @@ export const Editor = () => {
               </IconButton>
             </div>
           </div>
-          <div
-            data-resize="resize-horizontal"
-            className={cls['resizer-horizontal']}
-            onMouseDown={mouseDown}
-            onMouseUp={mouseUp}
-          ></div>
         </div>
+        <div data-resize="resize-horizontal" className={cls['resizer-horizontal']}></div>
         <div className={cls.settings}>
           <div className={cls.header}>
-            <Button>{t('variables')}</Button>
-            <Button>{t('headers')}</Button>
+            <Button
+              onClick={() => {
+                setStatusOpen(!isOpen);
+              }}
+            >
+              {t('variables')}
+            </Button>
           </div>
-          {true && (
+          {isOpen && (
             <TextareaAutosize
-              minRows={20}
-              cols={30}
-              placeholder="Write GraphQl Variables here"
+              minRows={6}
+              placeholder={t('variablesPlaceholder')}
               value={variablesSDL}
               onChange={handleChangeVariables}
+              className={cls.textareawrapper}
             />
           )}
         </div>
@@ -172,10 +173,10 @@ export const Editor = () => {
       </div>
       <div className={cls.right}>
         {errorMessage && <div>{errorMessage}</div>}
-        {!errorMessage && isLoading && <CircularProgress />}
+        {!errorMessage && isLoading && <CircularProgress className={cls['circular-progress']} />}
         {!errorMessage && !isLoading && data && (
           <div>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <div>{JSON.stringify(data, null, 2)}</div>
           </div>
         )}
         {!errorMessage &&
@@ -184,7 +185,7 @@ export const Editor = () => {
           'data' in error &&
           error.status !== 'PARSING_ERROR' && (
             <div>
-              <pre>{JSON.stringify(error.data, null, 2)}</pre>
+              <div>{JSON.stringify(error.data, null, 2)}</div>
             </div>
           )}
         {!errorMessage && !isLoading && error && 'message' in error && (

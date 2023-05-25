@@ -33,5 +33,7 @@
   "now": "now.",
   "Registered": "Register",
   "RegisterWithGoogle": "Register with Google",
-  "AlreadyHaveAnAccount": "Already have an account?"
+  "AlreadyHaveAnAccount": "Already have an account?",
+  "editorPlaceholder": "Write GraphQl request here",
+  "variablesPlaceholder": "Write GraphQl Variables here"
 }

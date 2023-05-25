@@ -33,5 +33,7 @@
   "now": "сейчас.",
   "Registered": "Зарегистрироваться",
   "RegisterWithGoogle": "Зарегистрироваться чреез Google",
-  "AlreadyHaveAnAccount": "Уже есть аккаунт?"
+  "AlreadyHaveAnAccount": "Уже есть аккаунт?",
+  "editorPlaceholder": "Напишите GraphQL запрос здесь",
+  "variablesPlaceholder": "Напишите GraphQL переменные здесь"
 }

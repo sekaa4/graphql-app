@@ -24,44 +24,49 @@ const SignUp = () => {
   };
   useEffect(() => {
     if (loading) return;
-    if (user) router.push('/');
+    if (user) router.push('/main');
   }, [user, loading, router]);
-  return (
-    <>
-      <div>
+
+  if (user) {
+    return <></>;
+  } else {
+    return (
+      <>
         <div>
-          {/* {!name && <Alert severity="error">Please enter name</Alert>} */}
-          <TextField
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Full Name"
-          />
-          <TextField
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail Address"
-          />
-          <TextField
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-          <Button variant="contained" onClick={register}>
-            {t('Registered')}
-          </Button>
-          <Button variant="contained" onClick={signInWithGoogle}>
-            {t('RegisterWithGoogle')}
-          </Button>
           <div>
-            {t('AlreadyHaveAnAccount')} <Link href="/auth/signIn">{t('SignIn')}</Link> {t('now')}
+            {/* {!name && <Alert severity="error">Please enter name</Alert>} */}
+            <TextField
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Full Name"
+            />
+            <TextField
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="E-mail Address"
+            />
+            <TextField
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+            <Button variant="contained" onClick={register}>
+              {t('Registered')}
+            </Button>
+            <Button variant="contained" onClick={signInWithGoogle}>
+              {t('RegisterWithGoogle')}
+            </Button>
+            <div>
+              {t('AlreadyHaveAnAccount')} <Link href="/auth/signIn">{t('SignIn')}</Link> {t('now')}
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export const getServerSideProps = getCoreServerSideProps(['common']);

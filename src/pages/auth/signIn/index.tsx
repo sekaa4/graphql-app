@@ -19,38 +19,43 @@ const SignIN = () => {
   useEffect(() => {
     if (user) router.push('/main');
   }, [user, router]);
-  return (
-    <>
-      <div className="login">
-        <div className="login__container">
-          <TextField
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail"
-          />
-          <TextField
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-          <Button variant="contained" onClick={() => logInWithEmailAndPassword(email, password)}>
-            {t('SignIn')}
-          </Button>
-          <Button variant="contained" onClick={signInWithGoogle}>
-            {t('SignInWithGoogle')}
-          </Button>
-          <div>
-            <Link href="/reset">{t('ForgotPassword')}</Link>
-          </div>
-          <div>
-            {t('DoNotHaveAnAccount')} <Link href="/auth/signUp">{t('Register')}</Link> {t('now')}
+
+  if (user) {
+    return <></>;
+  } else {
+    return (
+      <>
+        <div className="login">
+          <div className="login__container">
+            <TextField
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="E-mail"
+            />
+            <TextField
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+            <Button variant="contained" onClick={() => logInWithEmailAndPassword(email, password)}>
+              {t('SignIn')}
+            </Button>
+            <Button variant="contained" onClick={signInWithGoogle}>
+              {t('SignInWithGoogle')}
+            </Button>
+            <div>
+              <Link href="/reset">{t('ForgotPassword')}</Link>
+            </div>
+            <div>
+              {t('DoNotHaveAnAccount')} <Link href="/auth/signUp">{t('Register')}</Link> {t('now')}
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export const getServerSideProps = getCoreServerSideProps(['common']);

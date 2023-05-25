@@ -5,8 +5,8 @@
   right: 0;
   left: 0;
 
-  height: 100px;
-  padding: 20px 0;
+  height: 60px;
+  padding: 10px;
 
   background-color: #fff;
   box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
@@ -15,15 +15,19 @@
 }
 
 .sticky.scroll {
-  height: 80px;
+  height: 55px;
+  padding: 7px;
+
   background-color: #000;
   box-shadow: 0 2px 5px rgba(0 0 0 / 10%);
+
   transition: all 0.5s;
 }
 
 .wrapper {
   display: flex;
   flex-flow: row nowrap;
+  column-gap: 10px;
   align-items: center;
   justify-content: flex-end;
 }

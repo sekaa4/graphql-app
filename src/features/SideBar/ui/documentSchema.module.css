@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  row-gap: 5px;
+
+  width: 25vw;
+  height: 100%;
+  padding: 10px;
+
+  font-size: 14px;
+
+  @media (width <= 750px) {
+    width: 100%;
+  }
+}

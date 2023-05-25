@@ -12,19 +12,31 @@ export const LangSwitcher = () => {
   return changeTo === 'ru' ? (
     <div>
       <Link href={route} locale={changeTo}>
-        <Button variant="contained">{t('locale-ru')}</Button>
+        <Button variant="contained" style={{ height: '30px', minWidth: '60px' }}>
+          {t('locale-ru')}
+        </Button>
       </Link>
-      <Button variant="contained" disabled style={{ pointerEvents: 'none' }}>
+      <Button
+        variant="contained"
+        disabled
+        style={{ pointerEvents: 'none', height: '30px', minWidth: '60px' }}
+      >
         {t('locale-eng', { changeTo })}
       </Button>
     </div>
   ) : (
     <div>
-      <Button variant="contained" disabled style={{ pointerEvents: 'none' }}>
+      <Button
+        variant="contained"
+        disabled
+        style={{ pointerEvents: 'none', height: '30px', minWidth: '60px' }}
+      >
         {t('locale-ru', { changeTo })}
       </Button>
       <Link href={route} locale={changeTo}>
-        <Button variant="contained">{t('locale-eng')}</Button>
+        <Button variant="contained" style={{ height: '30px', minWidth: '60px' }}>
+          {t('locale-eng')}
+        </Button>
       </Link>
     </div>
   );

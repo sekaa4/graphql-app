@@ -30,7 +30,16 @@ export const SearchBar = (props: SearchBarProps) => {
     dispatch(searchBarActions.changeSearchBarInput(searchValue));
   }, [dispatch, searchValue]);
   return (
-    <Paper component="div" sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}>
+    <Paper
+      component="div"
+      sx={{
+        p: '2px 4px',
+        m: '0px auto',
+        display: 'flex',
+        alignItems: 'center',
+        width: '60vw',
+      }}
+    >
       <TextField
         sx={{ ml: 1, flex: 1 }}
         variant="standard"

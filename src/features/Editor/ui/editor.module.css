@@ -1,69 +1,51 @@
-.wrapper {
-  display: flex;
-  flex-flow: column wrap;
-  flex-shrink: 1;
-  row-gap: 10px;
-
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-
-  background-color: #eff7ff;
-  border: 1px solid #e5e5e5;
-  border-radius: 10px;
-}
-
-.main-container {
-  display: flex;
-  width: 100%;
-
-  @media (width <= 750px) {
-    flex-direction: column;
-  }
-}
-
 .left {
-  resize: horizontal;
-
   position: relative;
 
   overflow: hidden;
   display: flex;
   flex-flow: column nowrap;
 
-  width: 50%;
+  width: 40%;
+  max-width: 99%;
   padding-right: 4px;
 
   background-color: white;
   border: 1px solid #e5e5e5;
   border-radius: 10px;
+
+  @media (width <= 750px) {
+    flex: 1;
+    width: 100%;
+  }
 }
 
-.left .editorarea {
+.editorarea {
   position: relative;
   display: flex;
   flex-grow: 1;
+
+  @media (width <= 750px) {
+    flex-direction: column-reverse;
+  }
 }
 
-.left .settings {
+.settings {
   display: flex;
-  flex: 1;
   flex-flow: column nowrap;
-  align-items: stretch;
 }
 
-.left .settings .header {
+.header {
   height: 40px;
   padding: 5px;
 }
 
-.left .editor {
+.editor {
   display: flex;
   flex: 1;
   flex-direction: column;
 }
 
-.left .tools {
+.tools {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -71,15 +53,19 @@
   padding: 15px;
 
   color: green;
+
+  @media (width <= 750px) {
+    align-self: center;
+  }
 }
 
-.left .tools .icon {
+.icon {
   cursor: pointer;
   opacity: 0.5;
   transition: 0.3s;
 }
 
-.left .tools .icon:hover {
+.icon:hover {
   cursor: pointer;
   opacity: 1;
 }
@@ -101,9 +87,6 @@
 }
 
 .resizer-horizontal {
-  cursor: row-resize;
-
-  position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
@@ -123,15 +106,27 @@
 }
 
 .right {
-  resize: block;
-  overflow: auto;
   flex: 1;
+  padding: 10px 20px;
+
+  @media (width <= 750px) {
+    flex: 0 1;
+    width: 100%;
+    height: fit-content;
+  }
 }
 
 .textareawrapper {
+  resize: none;
+
   display: flex;
-  flex-basis: 70%;
-  background-color: lightgrey;
+  flex-grow: 0;
+
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+
+  font-size: 14px;
 }
 
 .textarea {
@@ -146,43 +141,9 @@
 .editor-wrapper {
   display: flex;
   flex-grow: 1;
-  flex-wrap: wrap;
-
-  @media (width <= 750px) {
-    flex-direction: column;
-  }
 }
 
-.whithout-bar {
+.circular-progress {
   display: flex;
-  width: 100%;
-
-  @media (width <= 750px) {
-    flex-direction: column;
-    flex-grow: 1;
-  }
-}
-
-.divider {
-  display: block;
-  height: '100%';
-  margin: 0.5rem;
-
-  @media (width <= 750px) {
-    display: none;
-  }
-}
-
-.circular-section {
-  width: 25vw;
-
-  @media (width <= 750px) {
-    width: 100vw;
-    padding: 10px 0;
-  }
-}
-
-.circular {
-  display: block;
   margin: 0 auto;
 }

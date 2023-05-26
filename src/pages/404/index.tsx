@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Button, Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { getCoreStaticSideProps } from '@/shared/lib/ssr';
@@ -12,6 +14,16 @@ const NoteFoundPage = () => {
   const { t } = useTranslation(['error']);
   const errorMessage = t('error');
   const backWelcome = t('backWelcome');
+  const { replace, push, route } = useRouter();
+
+  const handleClick = () => {
+    push('/');
+  };
+
+  useEffect(() => {
+    replace(route, '/404');
+  }, [route]);
+
   return (
     <Box className={cls.main}>
       <Container maxWidth="lg" sx={{ p: 0 }}>
@@ -23,7 +35,7 @@ const NoteFoundPage = () => {
             <Typography variant="h6" sx={{ textAlign: 'center', pb: 2 }}>
               {errorMessage}
             </Typography>
-            <Button variant="contained" sx={{ m: '0 auto', display: 'flex' }}>
+            <Button variant="contained" sx={{ m: '0 auto', display: 'flex' }} onClick={handleClick}>
               {backWelcome}
             </Button>
           </Grid>

@@ -12,6 +12,7 @@
 
 .container {
   display: flex;
+  justify-content: center;
 
   @media (width <= 1050px) {
     flex-direction: column;

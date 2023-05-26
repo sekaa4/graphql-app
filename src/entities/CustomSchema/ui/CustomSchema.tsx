@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { v4 } from 'uuid';
 
 import { GraphQlSchemaFieldsObj, GraphQlSchemaKeysOfObj } from '../types/GraphQlSchemaObj.type';
+import cls from '@/features/SideBar/ui/documentSchema.module.css';
 
 interface CustomSchemaProps {
   schema: {
@@ -22,23 +23,19 @@ export const CustomSchema = (props: CustomSchemaProps) => {
 
   return (
     <>
-      <h2>{t('doc')}</h2>
-      <div>{t('descriptionDoc')}</div>
+      <h2 className={cls.title}>{t('doc')}</h2>
+      <div className={cls.description}>{t('descriptionDoc')}</div>
       <ul>
         {keys &&
           keys.map((type) => {
             if (typesOfSchemaObj[type] instanceof GraphQLObjectType) {
               return (
                 <li key={v4()}>
-                  <span>{type}:</span>
+                  <span className={cls.query}>{type}:</span>
                   <span
                     data-name={typesOfSchemaObj[type]?.name}
                     onClick={handleClickNextPath}
-                    style={{
-                      cursor: 'pointer',
-                      color: 'yellow',
-                      textDecoration: 'underline',
-                    }}
+                    className={cls['query-name']}
                   >
                     {typesOfSchemaObj[type]?.name}
                   </span>

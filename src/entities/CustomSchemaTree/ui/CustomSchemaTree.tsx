@@ -4,6 +4,7 @@ import { v4 } from 'uuid';
 
 import { ListOfDocFields, ListOfEnumDocFields } from '@/shared/ui';
 
+import cls from '@/features/SideBar/ui/documentSchema.module.css';
 import { GraphQlSchemaObjFields } from '../types/GraphQlSchemaObjFields.type';
 
 interface CustomSchemaProps {
@@ -27,18 +28,10 @@ export const CustomSchemaTree = (props: CustomSchemaProps) => {
 
   return (
     <>
-      <div
-        onClick={handleClickPrevPath}
-        data-name={prevPath ?? false}
-        style={{
-          cursor: 'pointer',
-          color: 'yellow',
-          textDecoration: 'underline',
-        }}
-      >
-        {prevPath ?? ''}
+      <div onClick={handleClickPrevPath} data-name={prevPath ?? false} className={cls.breadcrumbs}>
+        {'< ' + prevPath ?? ''}
       </div>
-      <h3>{`${curPath}`}</h3>
+      <h3 className={cls.title}>{`${curPath}`}</h3>
       <div>{description}</div>
       <ul>
         {keys &&

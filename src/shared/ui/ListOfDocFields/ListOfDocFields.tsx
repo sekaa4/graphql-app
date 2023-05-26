@@ -9,6 +9,7 @@ import { Maybe } from 'graphql/jsutils/Maybe';
 import React from 'react';
 import { v4 } from 'uuid';
 
+import cls from '@/features/SideBar/ui/documentSchema.module.css';
 import { LinkDocType } from './LinkDocType';
 
 interface ListOfDocFieldsProps {
@@ -34,11 +35,11 @@ export const ListOfDocFields = (props: ListOfDocFieldsProps) => {
 
   return (
     <li>
-      <div>{description}</div>
+      <div className={cls.description}>{description}</div>
       <div>
         {args && args.length !== 0 && (
           <span className="arg">
-            {nameField}(
+            {<span className={cls['name-field']}>{nameField}</span>}(
             {args.map((arg) => {
               const namedType = getNamedType(arg.type);
               const isGraphQLList = arg.type instanceof GraphQLList;
@@ -46,7 +47,7 @@ export const ListOfDocFields = (props: ListOfDocFieldsProps) => {
 
               return (
                 <div key={v4()}>
-                  {arg.name}:{' '}
+                  {<span className={cls.query}>{arg.name}</span>}:{' '}
                   <LinkDocType
                     isGraphQLList={isGraphQLList}
                     isGraphQLNonNull={isGraphQLNonNull}
@@ -59,7 +60,7 @@ export const ListOfDocFields = (props: ListOfDocFieldsProps) => {
             ):
           </span>
         )}
-        {(!args || args.length === 0) && <span>{nameField}:</span>}
+        {(!args || args.length === 0) && <span className={cls.query}>{nameField}:</span>}
 
         <LinkDocType
           isGraphQLList={isGraphQLList}

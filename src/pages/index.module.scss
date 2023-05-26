@@ -31,6 +31,7 @@
 .developers_container > li {
   width: 30%;
   padding: 20px;
+
   @media (width <= 750px) {
     width: 300px;
   }

@@ -13,34 +13,28 @@ const NoteFoundPage = () => {
   const errorMessage = t('error');
   const backWelcome = t('backWelcome');
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100%',
-        width: '100%',
-      }}
-    >
-      <Container maxWidth="md">
-        <Grid container spacing={2}>
-          <Grid xs={6}>
+    <Box className={cls.main}>
+      <Container maxWidth="lg" sx={{ p: 0 }}>
+        <Grid container className={cls.container}>
+          <Grid item sx={{ gap: '10px', p: 0 }}>
             <Typography variant="h1" sx={{ textAlign: 'center' }}>
               404
             </Typography>
-            <Typography variant="h6" sx={{ textAlign: 'center' }}>
+            <Typography variant="h6" sx={{ textAlign: 'center', pb: 2 }}>
               {errorMessage}
             </Typography>
             <Button variant="contained" sx={{ m: '0 auto', display: 'flex' }}>
               {backWelcome}
             </Button>
           </Grid>
-          <Grid xs={6}>
+          <Grid>
             <Image
               src="https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569__340.jpg"
-              alt=""
+              alt="error image"
               width={500}
               height={250}
+              priority
+              className={cls.image}
             />
           </Grid>
         </Grid>

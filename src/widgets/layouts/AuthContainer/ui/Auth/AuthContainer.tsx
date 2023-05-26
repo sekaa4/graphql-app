@@ -5,13 +5,18 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 
 import { auth, logout } from '@/app/components/FireBase';
+import { useAppDispatch } from '@/shared/hooks';
 import cls from '@/widgets/layouts/AuthContainer/ui/Auth/AuthContainer.module.scss';
 
 export const AuthContainer = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [user, loading, error] = useAuthState(auth);
+  const [user, ,] = useAuthState(auth);
   const router = useRouter();
   const { t } = useTranslation('common');
+  const dispatch = useAppDispatch();
+  const handleClick = () => {
+    dispatch({ type: 'RESET' });
+    logout();
+  };
 
   if (router.pathname === '/' && user) {
     return (
@@ -19,7 +24,7 @@ export const AuthContainer = () => {
         <Link href="/main">
           <Button variant="contained">{t('ToMainPage')}</Button>
         </Link>
-        <Button variant="contained" onClick={logout}>
+        <Button variant="contained" onClick={handleClick}>
           {t('Logout')}
         </Button>
       </div>

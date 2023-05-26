@@ -1,15 +1,22 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { AnyAction, combineReducers, configureStore, Reducer } from '@reduxjs/toolkit';
 
 import { searchBarReducer } from '@/features/SearchBar';
 import { documentationReducer, schemaReducer } from '@/features/SideBar';
 import rtkAPI from '@/shared/api/rtkApi';
 
-const rootReducer = combineReducers({
+const combinedReducer = combineReducers({
   graphQlSchema: schemaReducer,
   [rtkAPI.reducerPath]: rtkAPI.reducer,
   documentationState: documentationReducer,
   searchBarState: searchBarReducer,
 });
+
+const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
+  if (action.type === 'RESET') {
+    state = {} as RootState;
+  }
+  return combinedReducer(state, action);
+};
 
 export const createReduxStore = (initialState?: RootState) => {
   return configureStore({
@@ -19,6 +26,6 @@ export const createReduxStore = (initialState?: RootState) => {
   });
 };
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof combinedReducer>;
 export type AppStore = ReturnType<typeof createReduxStore>;
 export type AppDispatch = AppStore['dispatch'];

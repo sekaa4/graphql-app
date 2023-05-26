@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 
 import { LangSwitcher } from '@/shared/ui';
@@ -12,7 +11,6 @@ type HeaderType = {
 
 export const Header: FC<HeaderType> = () => {
   const [scrolled, setScrolled] = useState(false);
-  const { pathname } = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +30,7 @@ export const Header: FC<HeaderType> = () => {
   return (
     <Box component="header" className={className}>
       <div className={styles.wrapper}>
-        {pathname === '/' && <LangSwitcher />}
+        <LangSwitcher />
         <AuthContainer />
       </div>
     </Box>

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
+import cls from '@/shared/ui/LangSwitcher/LangSwitcher.module.scss';
+
 export const LangSwitcher = () => {
   const router = useRouter();
   const { t } = useTranslation('common');
@@ -10,7 +12,7 @@ export const LangSwitcher = () => {
   const { route } = router;
 
   return changeTo === 'ru' ? (
-    <div>
+    <div className={cls.switch_container}>
       <Link href={route} locale={changeTo}>
         <Button variant="contained" style={{ height: '30px', minWidth: '60px' }}>
           {t('locale-ru')}
@@ -25,7 +27,7 @@ export const LangSwitcher = () => {
       </Button>
     </div>
   ) : (
-    <div>
+    <div className={cls.switch_container}>
       <Button
         variant="contained"
         disabled

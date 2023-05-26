@@ -1,6 +1,8 @@
 import { GraphQLNamedType } from 'graphql';
 import React from 'react';
 
+import cls from '@/features/SideBar/ui/documentSchema.module.css';
+
 interface LinkDocTypeProps {
   isGraphQLList: boolean;
   isGraphQLNonNull: boolean;
@@ -16,15 +18,7 @@ export const LinkDocType = (props: LinkDocTypeProps) => {
       {isGraphQLList && !isGraphQLNonNull && (
         <span>
           [
-          <a
-            data-name={namedType.name}
-            onClick={handleClickNextPath}
-            style={{
-              cursor: 'pointer',
-              color: 'yellow',
-              textDecoration: 'underline',
-            }}
-          >
+          <a data-name={namedType.name} onClick={handleClickNextPath} className={cls['query-name']}>
             {namedType.name}
           </a>
           ]
@@ -33,15 +27,7 @@ export const LinkDocType = (props: LinkDocTypeProps) => {
       {isGraphQLList && isGraphQLNonNull && (
         <span>
           [
-          <a
-            data-name={namedType.name}
-            onClick={handleClickNextPath}
-            style={{
-              cursor: 'pointer',
-              color: 'yellow',
-              textDecoration: 'underline',
-            }}
-          >
+          <a data-name={namedType.name} onClick={handleClickNextPath} className={cls['query-name']}>
             {namedType.name}
           </a>
           !]
@@ -49,15 +35,7 @@ export const LinkDocType = (props: LinkDocTypeProps) => {
       )}
       {!isGraphQLList && isGraphQLNonNull && (
         <span>
-          <a
-            data-name={namedType.name}
-            onClick={handleClickNextPath}
-            style={{
-              cursor: 'pointer',
-              color: 'yellow',
-              textDecoration: 'underline',
-            }}
-          >
+          <a data-name={namedType.name} onClick={handleClickNextPath} className={cls['query-name']}>
             {namedType.name}
           </a>
           !
@@ -65,15 +43,7 @@ export const LinkDocType = (props: LinkDocTypeProps) => {
       )}
       {!isGraphQLList && !isGraphQLNonNull && (
         <span>
-          <a
-            data-name={namedType.name}
-            onClick={handleClickNextPath}
-            style={{
-              cursor: 'pointer',
-              color: 'yellow',
-              textDecoration: 'underline',
-            }}
-          >
+          <a data-name={namedType.name} onClick={handleClickNextPath} className={cls['query-name']}>
             {namedType.name}
           </a>
         </span>

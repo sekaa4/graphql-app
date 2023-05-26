@@ -8,39 +8,55 @@
   padding: 10px;
 
   font-size: 14px;
-
-@media (width <= 750px) {
-  width:
-
-100%;
 }
 
+@media screen and (width <= 750px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
+.breadcrumbs {
+  cursor: pointer;
+  font-size: 13px;
+  color: darkgrey;
 }
 
 .title {
-  color: #606288;
-  font-size: 24px;
+  cursor: pointer;
   margin: 20px 0;
+  font-size: 24px;
+  color: #606288;
 }
 
 .description {
-  font-family: 'Roboto';
+  margin: 15px 0 5px;
   font-size: 15px;
   color: #566376;
 }
 
-.query {
-  color: #2e7d32;
+.name-field {
   font-size: 16px;
   font-weight: 400;
+  color: #01579b;
+}
+
+.query {
+  padding-left: 11px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #2e7d32;
 }
 
 .query-name {
   cursor: pointer;
-  color: #d97221;
-  font-weight: 500;
-  font-size: 15px;
+
   padding-left: 4px;
+
+  font-size: 15px;
+  font-weight: 500;
+  color: #d97221;
+
   transition: all 0.2s;
 }
 

@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 
 import { auth, registerWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
+import cls from '@/pages/auth/signUp/signUp.module.scss';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
 
 const SignUp = () => {
@@ -31,40 +32,38 @@ const SignUp = () => {
     return <></>;
   } else {
     return (
-      <>
-        <div>
+      <div className={cls.container_signup}>
+        <div className={cls.wrapper}>
+          {/* {!name && <Alert severity="error">Please enter name</Alert>} */}
+          <TextField
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Full Name"
+          />
+          <TextField
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail Address"
+          />
+          <TextField
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <Button variant="contained" onClick={register}>
+            {t('Registered')}
+          </Button>
+          <Button variant="contained" onClick={signInWithGoogle}>
+            {t('RegisterWithGoogle')}
+          </Button>
           <div>
-            {/* {!name && <Alert severity="error">Please enter name</Alert>} */}
-            <TextField
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Full Name"
-            />
-            <TextField
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-mail Address"
-            />
-            <TextField
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-            />
-            <Button variant="contained" onClick={register}>
-              {t('Registered')}
-            </Button>
-            <Button variant="contained" onClick={signInWithGoogle}>
-              {t('RegisterWithGoogle')}
-            </Button>
-            <div>
-              {t('AlreadyHaveAnAccount')} <Link href="/auth/signIn">{t('SignIn')}</Link> {t('now')}
-            </div>
+            {t('AlreadyHaveAnAccount')} <Link href="/auth/signIn">{t('SignIn')}</Link> {t('now')}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 };

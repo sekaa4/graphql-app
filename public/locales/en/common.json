@@ -35,5 +35,6 @@
   "RegisterWithGoogle": "Register with Google",
   "AlreadyHaveAnAccount": "Already have an account?",
   "editorPlaceholder": "Write GraphQl request here",
-  "variablesPlaceholder": "Write GraphQl Variables here"
+  "variablesPlaceholder": "Write GraphQl Variables here",
+  "descriptionApp": "This application is a GraphQL query sandbox. To use, you need to select a GraphQL server, then the application will issue documentation for writing queries against it"
 }

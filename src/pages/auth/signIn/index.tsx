@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
+import cls from '@/pages/auth/signIn/signIn.module.scss';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
 
 const SignIN = () => {
@@ -24,36 +25,34 @@ const SignIN = () => {
     return <></>;
   } else {
     return (
-      <>
-        <div className="login">
-          <div className="login__container">
-            <TextField
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-mail"
-            />
-            <TextField
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-            />
-            <Button variant="contained" onClick={() => logInWithEmailAndPassword(email, password)}>
-              {t('SignIn')}
-            </Button>
-            <Button variant="contained" onClick={signInWithGoogle}>
-              {t('SignInWithGoogle')}
-            </Button>
-            <div>
-              <Link href="/reset">{t('ForgotPassword')}</Link>
-            </div>
-            <div>
-              {t('DoNotHaveAnAccount')} <Link href="/auth/signUp">{t('Register')}</Link> {t('now')}
-            </div>
+      <div className={cls.container_signin}>
+        <div className={cls.wrapper}>
+          <TextField
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail"
+          />
+          <TextField
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <Button variant="contained" onClick={() => logInWithEmailAndPassword(email, password)}>
+            {t('SignIn')}
+          </Button>
+          <Button variant="contained" onClick={signInWithGoogle}>
+            {t('SignInWithGoogle')}
+          </Button>
+          <div>
+            <Link href="/reset">{t('ForgotPassword')}</Link>
+          </div>
+          <div>
+            {t('DoNotHaveAnAccount')} <Link href="/auth/signUp">{t('Register')}</Link> {t('now')}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 };

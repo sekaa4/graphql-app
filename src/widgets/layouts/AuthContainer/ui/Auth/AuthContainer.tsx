@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 
 import { auth, logout } from '@/app/components/FireBase';
+import cls from '@/widgets/layouts/AuthContainer/ui/Auth/AuthContainer.module.scss';
 
 export const AuthContainer = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,18 +15,18 @@ export const AuthContainer = () => {
 
   if (router.pathname === '/' && user) {
     return (
-      <>
+      <div className={cls.auth_container}>
         <Link href="/main">
           <Button variant="contained">{t('ToMainPage')}</Button>
         </Link>
         <Button variant="contained" onClick={logout}>
           {t('Logout')}
         </Button>
-      </>
+      </div>
     );
   } else if (router.pathname !== '/main' && !user) {
     return (
-      <div>
+      <div className={cls.auth_container}>
         <Link href="/auth/signIn">
           <Button variant="contained">{t('SignIn')}</Button>
         </Link>
@@ -37,9 +38,11 @@ export const AuthContainer = () => {
     );
   } else {
     return (
-      <Button variant="contained" onClick={logout}>
-        {t('Logout')}
-      </Button>
+      <div className={cls.auth_container}>
+        <Button variant="contained" onClick={logout}>
+          {t('Logout')}
+        </Button>
+      </div>
     );
   }
 };

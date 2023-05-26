@@ -4,16 +4,18 @@ import { useTranslation } from 'next-i18next';
 import { DescDeveloper1 } from '@/features/SideBar';
 import { DescDeveloper2 } from '@/features/SideBar/ui/DescDeveloper2';
 import { DescDeveloper3 } from '@/features/SideBar/ui/DescDeveloper3';
+import cls from '@/pages/index.module.scss';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
 
 const Welcome = () => {
   const { t } = useTranslation('common');
 
   return (
-    <>
-      <h1>{t('Welcome')}</h1>
+    <div className={cls.welcome_container}>
+      <h1 className={cls.h1}>{t('Welcome')}</h1>
+      <h2 className={cls.description}>{t('descriptionApp')} </h2>
 
-      <ul>
+      <ul className={cls.developers_container}>
         <li>
           <Avatar
             alt="Pavel Demuskov"
@@ -33,7 +35,7 @@ const Welcome = () => {
           <DescDeveloper3 />
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 

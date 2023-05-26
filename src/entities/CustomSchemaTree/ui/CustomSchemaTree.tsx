@@ -2,9 +2,9 @@ import { getNamedType, GraphQLList, GraphQLNonNull } from 'graphql';
 import React from 'react';
 import { v4 } from 'uuid';
 
+import cls from '@/features/SideBar/ui/documentSchema.module.css';
 import { ListOfDocFields, ListOfEnumDocFields } from '@/shared/ui';
 
-import cls from '@/features/SideBar/ui/documentSchema.module.css';
 import { GraphQlSchemaObjFields } from '../types/GraphQlSchemaObjFields.type';
 
 interface CustomSchemaProps {

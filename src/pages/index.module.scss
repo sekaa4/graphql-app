@@ -1,4 +1,36 @@
-.auth_container {
+.welcome_container {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+
+  @media (width <= 750px) {
+  }
+}
+
+.description {
+  width: 50%;
+  @media (width <= 750px) {
+    width: 300px;
+  }
+}
+
+.h1 {
+  font-size: x-large;
+}
+
+.developers_container {
+  display: flex;
+  @media (width <= 750px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.developers_container > li {
+  width: 30%;
+  padding: 20px;
+  @media (width <= 750px) {
+    width: 300px;
+  }
 }

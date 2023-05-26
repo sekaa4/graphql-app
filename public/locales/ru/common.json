@@ -35,5 +35,6 @@
   "RegisterWithGoogle": "Зарегистрироваться чреез Google",
   "AlreadyHaveAnAccount": "Уже есть аккаунт?",
   "editorPlaceholder": "Напишите GraphQL запрос здесь",
-  "variablesPlaceholder": "Напишите GraphQL переменные здесь"
+  "variablesPlaceholder": "Напишите GraphQL переменные здесь",
+  "descriptionApp": "Данное приложение - это песочница для запросов к GraphQL. Для использования вам нужно выбрать сервер GraphQL, затем приложение выдаст документацию для написания запросов к ней"
 }

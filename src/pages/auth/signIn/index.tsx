@@ -46,9 +46,6 @@ const SignIN = () => {
             {t('SignInWithGoogle')}
           </Button>
           <div>
-            <Link href="/reset">{t('ForgotPassword')}</Link>
-          </div>
-          <div>
             {t('DoNotHaveAnAccount')} <Link href="/auth/signUp">{t('Register')}</Link> {t('now')}
           </div>
         </div>

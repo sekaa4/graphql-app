@@ -22,9 +22,11 @@ export const AuthContainer = () => {
     return (
       <div className={cls.auth_container}>
         <Link href="/main">
-          <Button variant="contained">{t('ToMainPage')}</Button>
+          <Button className={cls.btn} variant="contained">
+            {t('ToMainPage')}
+          </Button>
         </Link>
-        <Button variant="contained" onClick={handleClick}>
+        <Button className={cls.btn} variant="contained" onClick={handleClick}>
           {t('Logout')}
         </Button>
       </div>
@@ -33,18 +35,22 @@ export const AuthContainer = () => {
     return (
       <div className={cls.auth_container}>
         <Link href="/auth/signIn">
-          <Button variant="contained">{t('SignIn')}</Button>
+          <Button className={cls.btn} variant="contained">
+            {t('SignIn')}
+          </Button>
         </Link>
 
         <Link href="/auth/signUp">
-          <Button variant="contained">{t('SignUp')}</Button>
+          <Button className={cls.btn} variant="contained">
+            {t('SignUp')}
+          </Button>
         </Link>
       </div>
     );
   } else {
     return (
       <div className={cls.auth_container}>
-        <Button variant="contained" onClick={logout}>
+        <Button className={cls.btn} variant="contained" onClick={logout}>
           {t('Logout')}
         </Button>
       </div>

@@ -6,11 +6,10 @@ interface StoreProviderProps {
   children?: ReactNode;
   initialState?: RootState;
 }
+const store = createReduxStore();
 
 export const StoreProvider = (props: StoreProviderProps) => {
-  const { children, initialState } = props;
-
-  const store = createReduxStore(initialState);
+  const { children } = props;
 
   return <Provider store={store}>{children}</Provider>;
 };

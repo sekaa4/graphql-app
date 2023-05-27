@@ -3,8 +3,9 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 } from 'uuid';
 
-import { GraphQlSchemaFieldsObj, GraphQlSchemaKeysOfObj } from '../types/GraphQlSchemaObj.type';
 import cls from '@/features/SideBar/ui/documentSchema.module.css';
+
+import { GraphQlSchemaFieldsObj, GraphQlSchemaKeysOfObj } from '../types/GraphQlSchemaObj.type';
 
 interface CustomSchemaProps {
   schema: {

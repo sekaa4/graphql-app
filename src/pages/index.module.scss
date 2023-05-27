@@ -9,20 +9,21 @@
 
 .description {
   width: 50%;
+
   font-size: 35px;
   line-height: normal;
+  color: rgb(174 172 172);
   text-align: justify;
-  color: rgb(174, 172, 172);
 
   @media (width <= 1200px) {
-    font-size: 25px;
     width: 600px;
+    font-size: 25px;
   }
 
   @media (width <= 750px) {
     width: 300px;
-    font-size: 20px;
     padding-top: 20px;
+    font-size: 20px;
   }
 }
 
@@ -31,13 +32,14 @@
   font-size: 50px;
   font-weight: bold;
   color: #1976d2;
+
   @media (width <= 1200px) {
     font-size: 30px;
   }
 
   @media (width <= 750px) {
-    font-size: 25px;
     width: 300px;
+    font-size: 25px;
     line-height: normal;
   }
 }
@@ -45,6 +47,7 @@
 .developers_container {
   display: flex;
   justify-content: center;
+
   :hover {
     scale: 1.05;
   }
@@ -58,15 +61,18 @@
 .developers_container > li {
   display: flex;
   flex-direction: column;
-  border-radius: 25px;
-  width: 27%;
-  padding: 20px;
-  background-color: rgb(174, 172, 172);
-  margin: 20px;
-  text-align: center;
-  // justify-content: flex-start;
+
   align-items: center;
+
+  width: 27%;
+  margin: 20px;
+  padding: 20px;
+
   color: white;
+  text-align: center;
+
+  background-color: rgb(174 172 172);
+  border-radius: 25px;
 
   @media (width <= 750px) {
     width: 300px;
@@ -74,8 +80,8 @@
 }
 
 .avatar {
-  border: white solid 3px;
+  cursor: pointer;
   width: 120px;
   height: 120px;
-  cursor: pointer;
+  border: white solid 3px;
 }

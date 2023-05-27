@@ -25,3 +25,4 @@ const graphQlDataByAnyAPI = rtkAPI.injectEndpoints({
 });
 
 export const fetchGraphQlDataByAnyAPI = graphQlDataByAnyAPI.useFetchGraphQlDataByAnyAPIMutation;
+export const resetGraphQlDataByAnyAPI = graphQlDataByAnyAPI.util.resetApiState;

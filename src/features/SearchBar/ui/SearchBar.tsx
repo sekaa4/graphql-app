@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import { useTranslation } from 'next-i18next';
 import { useCallback, useState } from 'react';
 
+import { resetGraphQlDataByAnyAPI } from '@/features/Editor';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 
 import { getSearchBarInput } from '../model/selectors/getSearchBarInput/getSearchBarInput';
@@ -27,6 +28,7 @@ export const SearchBar = (props: SearchBarProps) => {
   const isEqualValue = curSearchBarInput === searchValue;
 
   const handleClick = useCallback(() => {
+    dispatch(resetGraphQlDataByAnyAPI());
     dispatch(searchBarActions.changeSearchBarInput(searchValue));
   }, [dispatch, searchValue]);
   return (
@@ -67,7 +69,7 @@ export const SearchBar = (props: SearchBarProps) => {
         aria-label="search"
         onClick={handleClick}
         color="info"
-        disabled={isEqualValue}
+        disabled={isEqualValue || searchValue === ''}
       >
         <SearchIcon />
       </IconButton>

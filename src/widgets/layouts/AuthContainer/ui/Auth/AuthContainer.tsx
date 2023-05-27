@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { auth, logout } from '@/app/components/FireBase';
 import { useAppDispatch } from '@/shared/hooks';
@@ -12,9 +13,13 @@ export const AuthContainer = () => {
   const [user, ,] = useAuthState(auth);
   const router = useRouter();
   const { t } = useTranslation('common');
+
   const dispatch = useAppDispatch();
   const handleClick = () => {
-    dispatch({ type: 'RESET' });
+    toast.dismiss();
+    dispatch({
+      type: 'RESET',
+    });
     logout();
   };
 
@@ -50,7 +55,7 @@ export const AuthContainer = () => {
   } else {
     return (
       <div className={cls.auth_container}>
-        <Button className={cls.btn} variant="contained" onClick={logout}>
+        <Button className={cls.btn} variant="contained" onClick={handleClick}>
           {t('Logout')}
         </Button>
       </div>

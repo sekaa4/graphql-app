@@ -9,6 +9,14 @@
 
 .description {
   width: 50%;
+  font-size: 30px;
+  line-height: normal;
+  text-align: justify;
+  color: grey;
+
+  @media (width <= 1200px) {
+    font-size: 30px;
+  }
 
   @media (width <= 750px) {
     width: 300px;
@@ -17,7 +25,11 @@
 
 .h1 {
   font-size: 50px;
+  font-weight: bold;
   color: #1976d2;
+  @media (width <= 1200px) {
+    font-size: 30px;
+  }
 }
 
 .developers_container {

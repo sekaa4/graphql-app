@@ -10,7 +10,7 @@
   "nameDeveloper1": "Pavel Demuskov",
   "nameDeveloper2": "Sergey Pansevich",
   "nameDeveloper3": "Anton Shliaha",
-  "Welcome": "Welcome",
+  "Welcome": "Welcome to DNIWE",
   "invalidSchema": "It is not possible to get the scheme at the specified address, check the correctness of the entered address",
   "apiError": "API Error",
   "apiSuccess": "API Success",
@@ -36,5 +36,5 @@
   "AlreadyHaveAnAccount": "Already have an account?",
   "editorPlaceholder": "Write GraphQl request here",
   "variablesPlaceholder": "Write GraphQl Variables here",
-  "descriptionApp": "This application is a GraphQL query sandbox. To use, you need to select a GraphQL server, then the application will issue documentation for writing queries against it"
+  "descriptionApp": "DNIWE is a GraphQL query sandbox. To use, you need to select a GraphQL server, then the application will issue documentation for writing queries against it"
 }

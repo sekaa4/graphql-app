@@ -13,11 +13,11 @@ export const Footer: FC = () => {
     <Box component="footer" className={styles.footer}>
       <div className={styles.rss}>
         <a href="https://rs.school/react/">
-          <Image src={rssLogo} alt="RSS logo" />
+          <Image src={rssLogo} alt="RSS logo" priority />
         </a>
       </div>
       <div className={styles.git}>
-        <Image src={gitLogo} alt="GitHub Logo" width={50} height={50} />
+        <Image src={gitLogo} alt="GitHub Logo" width={50} height={50} priority />
         <div className={styles.links}>
           <Link href="https://github.com/ImmelstronDev">{t('nameDeveloper1')}</Link>
           <Link href="https://github.com/sekaa4">{t('nameDeveloper2')}</Link>

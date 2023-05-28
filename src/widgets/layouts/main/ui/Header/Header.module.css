@@ -1,3 +1,10 @@
+.description {
+  font-size: 25px;
+  font-weight: bold;
+  line-height: normal;
+  color: #1976d2;
+}
+
 .sticky {
   position: fixed;
   z-index: 1000;
@@ -7,21 +14,40 @@
 
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
 
-  height: 70px;
+  height: 75px;
   padding: 10px;
 
   background-color: #fff;
   box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
 
   transition: all 0.5s;
+
+  @media (width <= 750px) {
+    height: 110px;
+  }
+
+  @media (width <= 400px) {
+    flex-direction: column;
+    height: 140px;
+  }
 }
 
 .sticky.scroll {
-  height: 70px;
-  background: #5b483a;
+  height: 65px;
+  background: #0a0a0a;
   transition: all 0.5s;
+
+  @media (width <= 750px) {
+    height: 100px;
+  }
+
+  @media (width <= 400px) {
+    flex-direction: column;
+    height: 135px;
+  }
 }
 
 .wrapper {

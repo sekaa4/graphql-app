@@ -19,21 +19,27 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const router = useRouter();
   const { t } = useTranslation('common');
 
-  const register = () => {
+  const register = async () => {
     if (isValidName(name) === false) {
-      toast.error(
-        'The name must contain at least 2 letters. The name must contain a capital letter. The name must be a maximum of 24 letters. The name must not contain any characters other than letters.',
-        {
-          position: toast.POSITION.TOP_CENTER,
-        }
-      );
+      toast.error(t('validName'), {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
-    registerWithEmailAndPassword(name, email, password);
+    const str = await registerWithEmailAndPassword(name, email, password);
+    if (str === 'successRegistr') {
+      toast.success(t(str), {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      str &&
+        toast.error(t(str), {
+          position: toast.POSITION.TOP_CENTER,
+        });
+    }
   };
   useEffect(() => {
     if (loading) return;

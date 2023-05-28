@@ -62,15 +62,11 @@ const signInWithGoogle = async () => {
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    toast.success('success!', {
-      position: toast.POSITION.TOP_CENTER,
-    });
+    return 'success';
   } catch (err) {
     if (err instanceof Error) {
       console.error(err.message);
-      toast.error('Wrong email or password!', {
-        position: toast.POSITION.TOP_CENTER,
-      });
+      return 'wrongPassword';
     }
   }
 };
@@ -78,12 +74,6 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
 const registerWithEmailAndPassword = async (name: string, email: string, password: string) => {
   if (isValidEmail(email) === true) {
     if (isValidPassword(password) === true) {
-      toast.success(
-        'You have successfully registered! You will be automatically redirected to the main page.',
-        {
-          position: toast.POSITION.TOP_CENTER,
-        }
-      );
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const user = res.user;
@@ -93,26 +83,17 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
           authProvider: 'local',
           email,
         });
+        return 'successRegistr';
       } catch (err) {
         if (err instanceof Error) {
           console.error(err.message);
         }
       }
     } else {
-      toast.error(
-        'Weak password The password must contain at least 8 characters, at least one capital letter, one number, one special character.',
-        {
-          position: toast.POSITION.TOP_CENTER,
-        }
-      );
+      return 'incorrectPassword';
     }
   } else {
-    toast.error(
-      'The email address must be at least 2 characters long. The email name and domain must be separated by the "@" character.',
-      {
-        position: toast.POSITION.TOP_CENTER,
-      }
-    );
+    return 'incorrectEmail';
   }
 };
 

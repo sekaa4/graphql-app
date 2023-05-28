@@ -1,7 +1,8 @@
 {
-  "wrongPassword": "Wrong password!",
+  "wrongPassword": "Wrong email or password!",
   "successRegistr": "You have successfully registered! You will be automatically redirected to the main page.",
   "incorrectPassword": "Weak password The password must contain at least 8 characters, at least one capital letter, one number, one special character.",
   "incorrectEmail": "Email does not correct",
-  "enterName": "Please enter name"
+  "enterName": "Please enter name",
+  "success": "success!"
 }

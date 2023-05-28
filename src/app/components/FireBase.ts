@@ -95,11 +95,11 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
         }
       }
     } else {
-      alert(
-        'password strength - minimum 8 symbols, at least one letter, one digit, one special character'
-      );
-      console.log(
-        'password strength - minimum 8 symbols, at least one letter, one digit, one special character'
+      toast.error(
+        'password strength - minimum 8 symbols, at least one letter, one digit, one special character',
+        {
+          position: toast.POSITION.TOP_CENTER,
+        }
       );
     }
   } else {

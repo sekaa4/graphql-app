@@ -115,7 +115,9 @@ export const Editor = () => {
         const { clientX } = e;
         const widthPx = clientX - (deltaLeft || 0) - (delta || 0);
         const widthPercent = calculateWidth(e, widthPx);
-        params.width = widthPercent < 30 ? 30 : widthPercent;
+        if (widthPercent) {
+          params.width = widthPercent < 30 ? 30 : widthPercent;
+        }
       } else if (motion.activeHorizontal) {
         const { deltaTop, delta } = motion;
         const { clientY } = e;

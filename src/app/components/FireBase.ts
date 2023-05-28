@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
@@ -11,11 +10,8 @@ import {
   signOut,
 } from 'firebase/auth';
 import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { toast } from 'react-toastify';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyCVp2oB32pTmvPltoJYCcyD6QqhL0bgtRI',
   authDomain: 'graphql-9fed6.firebaseapp.com',
@@ -34,7 +30,6 @@ const isValidPassword = (password: string) => {
   return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password);
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -57,6 +52,9 @@ const signInWithGoogle = async () => {
   } catch (err: unknown) {
     if (err instanceof Error) {
       console.error(err.message);
+      toast.error(err.message, {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
 };
@@ -64,9 +62,11 @@ const signInWithGoogle = async () => {
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    return 'success';
   } catch (err) {
     if (err instanceof Error) {
       console.error(err.message);
+      return 'wrongPassword';
     }
   }
 };
@@ -83,29 +83,23 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
           authProvider: 'local',
           email,
         });
+        return 'successRegistr';
       } catch (err) {
         if (err instanceof Error) {
           console.error(err.message);
         }
       }
     } else {
-      alert(
-        'password strength - minimum 8 symbols, at least one letter, one digit, one special character'
-      );
-      console.log(
-        'password strength - minimum 8 symbols, at least one letter, one digit, one special character'
-      );
+      return 'incorrectPassword';
     }
   } else {
-    alert('email does not correct');
-    console.log('email does not correct');
+    return 'incorrectEmail';
   }
 };
 
 const sendPasswordReset = async (email: string) => {
   try {
     await sendPasswordResetEmail(auth, email);
-    alert('Password reset link sent!');
   } catch (err) {
     if (err instanceof Error) {
       console.error(err.message);

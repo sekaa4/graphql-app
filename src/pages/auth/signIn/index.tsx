@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
 import cls from '@/pages/auth/signIn/signIn.module.css';
@@ -13,13 +14,26 @@ import { getCoreServerSideProps } from '@/shared/lib/ssr';
 const SignIN = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [user, loading, error] = useAuthState(auth);
+  const [user, ,] = useAuthState(auth);
   const router = useRouter();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common']);
   useEffect(() => {
     if (user) router.push('/main');
   }, [user, router]);
+
+  const signInHandleClick = async () => {
+    const str = await logInWithEmailAndPassword(email, password);
+    if (str === 'success') {
+      toast.success(t(str), {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      str &&
+        toast.error(t(str), {
+          position: toast.POSITION.TOP_CENTER,
+        });
+    }
+  };
 
   if (user) {
     return <></>;
@@ -39,7 +53,7 @@ const SignIN = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
-          <Button variant="contained" onClick={() => logInWithEmailAndPassword(email, password)}>
+          <Button variant="contained" onClick={signInHandleClick}>
             {t('SignIn')}
           </Button>
           <Button variant="contained" onClick={signInWithGoogle}>
@@ -49,6 +63,9 @@ const SignIN = () => {
             {t('DoNotHaveAnAccount')} <Link href="/auth/signUp">{t('Register')}</Link> {t('now')}
           </div>
         </div>
+        <Link className={cls.link} href="/">
+          <Button variant="contained">{t('toWelcomePage')} </Button>
+        </Link>
       </div>
     );
   }

@@ -22,6 +22,9 @@ export const AuthContainer = () => {
     });
     logout();
   };
+  const dismissHandler = () => {
+    toast.dismiss();
+  };
 
   if (router.pathname === '/' && user) {
     return (
@@ -40,13 +43,13 @@ export const AuthContainer = () => {
     return (
       <div className={cls.auth_container}>
         <Link href="/auth/signIn">
-          <Button className={cls.btn} variant="contained">
+          <Button className={cls.btn} variant="contained" onClick={dismissHandler}>
             {t('SignIn')}
           </Button>
         </Link>
 
         <Link href="/auth/signUp">
-          <Button className={cls.btn} variant="contained">
+          <Button className={cls.btn} variant="contained" onClick={dismissHandler}>
             {t('SignUp')}
           </Button>
         </Link>

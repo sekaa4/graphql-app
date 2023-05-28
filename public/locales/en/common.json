@@ -37,8 +37,16 @@
   "AlreadyHaveAnAccount": "Already have an account?",
   "editorPlaceholder": "Write GraphQl request here",
   "variablesPlaceholder": "Write GraphQl Variables here",
-  "descriptionApp": "DNIWE is a GraphQL query sandbox. To use, you need to select a GraphQL server, then the application will issue documentation for writing queries against it.",
+  "descriptionApp": "DNIWE is a GraphQL query sandbox. To use you need to select a GraphQL server after then the application will issue documentation for writing queries against it.",
   "documentationTooltips": "Show Documentation Explorer",
   "fetchSuccess": "The scheme was successfully obtained",
-  "fetchError": "Perhaps the error is related to the CORS policy, try entering a different API."
+  "fetchError": "Perhaps the error is related to the CORS policy, try entering a different API.",
+  "toWelcomePage": "Back to Welcome Page",
+  "wrongPassword": "Wrong email or password!",
+  "successRegistr": "You have successfully registered! You will be automatically redirected to the main page.",
+  "incorrectPassword": "Weak password The password must contain at least 8 characters, at least one capital letter, one number, one special character.",
+  "incorrectEmail": "The email address must be at least 2 characters long. The email name and domain must be separated by the '@' character.",
+  "enterName": "Please enter name",
+  "success": "success!",
+  "validName": "The name must contain at least 2 letters. The name must contain a capital letter. The name must be a maximum of 24 letters. The name must not contain any characters other than letters."
 }

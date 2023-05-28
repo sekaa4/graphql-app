@@ -16,3 +16,9 @@
 .wrapper > button {
   margin: 3px;
 }
+
+.link {
+  position: absolute;
+  top: 100px;
+  left: 10px;
+}

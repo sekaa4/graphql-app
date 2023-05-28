@@ -12,7 +12,7 @@
   "nameDeveloper2": "Sergey Pansevich",
   "nameDeveloper3": "Anton Shliaha",
   "Welcome": "Welcome to DNIWE",
-  "invalidSchema": "It is not possible to get the scheme at the specified address, check the correctness of the entered address",
+  "invalidSchema": "It is not possible to get the scheme at the specified address, check the correctness of the entered address.\n",
   "apiError": "API Error",
   "apiSuccess": "API Success",
   "apiLoading": "API Request",
@@ -27,7 +27,7 @@
   "headers": "Headers",
   "errorBoundary": "Sorry... there was an error, try one more time",
   "year": "© 2023",
-  "parseingError": "You need to get the API schema make a valid request to get the 'data'",
+  "parseingError": "You need to get the API schema and make a valid request to get the 'data'",
   "ForgotPassword": "Forgot Password",
   "DoNotHaveAnAccount": " Do not have an account?",
   "Register": "Register",
@@ -37,5 +37,8 @@
   "AlreadyHaveAnAccount": "Already have an account?",
   "editorPlaceholder": "Write GraphQl request here",
   "variablesPlaceholder": "Write GraphQl Variables here",
-  "descriptionApp": "DNIWE is a GraphQL query sandbox. To use, you need to select a GraphQL server, then the application will issue documentation for writing queries against it."
+  "descriptionApp": "DNIWE is a GraphQL query sandbox. To use, you need to select a GraphQL server, then the application will issue documentation for writing queries against it.",
+  "documentationTooltips": "Show Documentation Explorer",
+  "fetchSuccess": "The scheme was successfully obtained",
+  "fetchError": "Perhaps the error is related to the CORS policy, try entering a different API."
 }

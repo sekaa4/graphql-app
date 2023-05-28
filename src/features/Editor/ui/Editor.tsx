@@ -2,8 +2,10 @@ import SendIcon from '@mui/icons-material/Send';
 import { Button, CircularProgress, IconButton, TextareaAutosize } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import React, { useCallback, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { getSearchBarInput } from '@/features/SearchBar';
+import { fetchSchemaByAPI } from '@/features/SideBar/api/shemaByAnyAPI';
 import { useAppSelector } from '@/shared/hooks';
 
 import { fetchGraphQlDataByAnyAPI } from '../api/graphQlDataByAnyAPI';
@@ -26,6 +28,9 @@ export const Editor = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const urlAPI = useAppSelector(getSearchBarInput);
   const [getGraphQlData, { data, error, isLoading }] = fetchGraphQlDataByAnyAPI();
+  const [, { data: currentSchema, isError: isErrorSchema }] = fetchSchemaByAPI({
+    fixedCacheKey: 'schemaByAPI',
+  });
   const [isOpen, setStatusOpen] = useState<boolean>(false);
   const { t } = useTranslation('common');
   const [motion, setMotion] = useState<motionState>({
@@ -118,6 +123,18 @@ export const Editor = () => {
     };
   }, [mouseDown, mouseUp, mouseMove]);
 
+  useEffect(() => {
+    if (error && 'data' in error && error.status === 'PARSING_ERROR') {
+      toast.error(t('parseingError'), {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  }, [error, t]);
+
+  useEffect(() => {
+    setErrorMessage('');
+  }, [urlAPI]);
+
   return (
     <>
       <div className={cls.left} style={{ width: motion?.width + 'px' }} data-id="resize-vertical">
@@ -137,8 +154,11 @@ export const Editor = () => {
           </div>
           <div className={cls.tools}>
             <div className={cls.icon}>
-              <IconButton onClick={handleButtonClick}>
-                <SendIcon fontSize="large" color="info" />
+              <IconButton onClick={handleButtonClick} disabled={isErrorSchema || !currentSchema}>
+                <SendIcon
+                  fontSize="large"
+                  color={isErrorSchema || !currentSchema ? 'disabled' : 'success'}
+                />
               </IconButton>
             </div>
           </div>
@@ -172,28 +192,28 @@ export const Editor = () => {
         ></div>
       </div>
       <div className={cls.right}>
-        {errorMessage && <div>{errorMessage}</div>}
-        {!errorMessage && isLoading && <CircularProgress className={cls['circular-progress']} />}
-        {!errorMessage && !isLoading && data && (
-          <div>
-            <div>{JSON.stringify(data, null, 2)}</div>
-          </div>
-        )}
-        {!errorMessage &&
-          !isLoading &&
-          error &&
-          'data' in error &&
-          error.status !== 'PARSING_ERROR' && (
+        <>
+          {errorMessage && <div>{errorMessage}</div>}
+          {!errorMessage && isLoading && <CircularProgress className={cls['circular-progress']} />}
+          {!errorMessage && !isLoading && data && (
             <div>
-              <div>{JSON.stringify(error.data, null, 2)}</div>
+              <div>{JSON.stringify(data, null, 2)}</div>
             </div>
           )}
-        {!errorMessage && !isLoading && error && 'message' in error && (
-          <div>{JSON.stringify(error)}</div>
-        )}
-        {error && 'data' in error && error.status === 'PARSING_ERROR' && (
-          <div>{t('parseingError')}</div>
-        )}
+          {!errorMessage &&
+            !isLoading &&
+            error &&
+            'data' in error &&
+            error.status !== 'PARSING_ERROR' &&
+            error.data && (
+              <div>
+                <div>{JSON.stringify(error.data, null, 2)}</div>
+              </div>
+            )}
+          {!errorMessage && !isLoading && error && 'message' in error && (
+            <div>{JSON.stringify(error)}</div>
+          )}
+        </>
       </div>
     </>
   );

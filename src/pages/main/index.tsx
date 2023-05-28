@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import React, { Suspense, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 
 import { auth } from '@/app/components/FireBase';
 import { Editor } from '@/features/Editor';
@@ -26,14 +27,16 @@ const Home = () => {
   const { t } = useTranslation('common');
 
   const [getSchemaByAPI, { data: currentSchema, error: errorAPI, isLoading, isError }] =
-    fetchSchemaByAPI();
+    fetchSchemaByAPI({ fixedCacheKey: 'schemaByAPI' });
 
   useEffect(() => {
-    setDisabledButton(true);
-    setStatusOpen(false);
-    dispatch(documentationActions.setupInitialState());
-    dispatch(searchBarActions.changeStatusSearchBarInput(false));
-    curSearchBarInput && getSchemaByAPI(curSearchBarInput);
+    if (curSearchBarInput) {
+      setDisabledButton(true);
+      setStatusOpen(false);
+      dispatch(documentationActions.setupInitialState());
+      dispatch(searchBarActions.changeStatusSearchBarInput(false));
+      getSchemaByAPI(curSearchBarInput);
+    }
   }, [curSearchBarInput, dispatch, getSchemaByAPI]);
 
   useEffect(() => {
@@ -46,6 +49,24 @@ const Home = () => {
       dispatch(searchBarActions.changeStatusSearchBarInput(true));
     }
   }, [currentSchema, dispatch, isLoading]);
+
+  useEffect(() => {
+    if (!isLoading && isError && errorAPI) {
+      toast.error(
+        `${t('invalidSchema')}${
+          ('status' in errorAPI && errorAPI.status === 'FETCH_ERROR' && t('fetchError')) || ''
+        }`,
+        {
+          position: toast.POSITION.TOP_CENTER,
+        }
+      );
+    }
+    if (!isLoading && !isError && currentSchema) {
+      toast.success(t('fetchSuccess'), {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  }, [currentSchema, errorAPI, isError, isLoading, t]);
 
   const handleDocClick = () => {
     currentSchema && setStatusOpen(!isOpen);
@@ -73,12 +94,6 @@ const Home = () => {
                   >
                     <DocumentSchemaLazy schema={currentSchema} />
                   </Suspense>
-                </>
-              )}
-              {!isLoading && errorAPI && (
-                <>
-                  <div>{t('invalidSchema')}</div>
-                  {/* <div>{JSON.stringify(errorAPI, null, '\t')}</div> */}
                 </>
               )}
             </div>

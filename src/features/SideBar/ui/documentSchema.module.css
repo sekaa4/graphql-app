@@ -23,26 +23,31 @@
 }
 
 .title {
-  cursor: pointer;
+  cursor: default;
   margin: 20px 0;
   font-size: 24px;
   color: #606288;
 }
 
 .description {
+  cursor: default;
   margin: 15px 0 5px;
   font-size: 15px;
   color: #566376;
 }
 
 .name-field {
+  cursor: default;
   font-size: 16px;
   font-weight: 400;
   color: #01579b;
 }
 
 .query {
+  cursor: default;
+
   padding-left: 11px;
+
   font-size: 16px;
   font-weight: 400;
   color: #2e7d32;

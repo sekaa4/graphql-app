@@ -19,21 +19,6 @@ export const Sidebar = (props: SidebarProps) => {
           <MenuBookIcon color={disabled ? undefined : 'success'} />
         </IconButton>
       </div>
-      {/* <div className={sidebarStyles.icon}>
-        <IconButton>
-          <HistoryIcon />
-        </IconButton>
-      </div>
-      <div className={sidebarStyles.icon}>
-        <IconButton>
-          <RefreshIcon />
-        </IconButton>
-      </div>
-      <div className={sidebarStyles.icon}>
-        <IconButton>
-          <SettingsIcon />
-        </IconButton>
-      </div> */}
     </div>
   );
 };

@@ -81,7 +81,14 @@ const SignUp = () => {
           </div>
         </div>
         <Link className={cls.link} href="/">
-          <Button variant="contained">{t('toWelcomePage')} </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              toast.dismiss();
+            }}
+          >
+            {t('toWelcomePage')}{' '}
+          </Button>
         </Link>
       </div>
     );

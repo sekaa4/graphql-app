@@ -1,4 +1,6 @@
 .description {
+  cursor: pointer;
+
   font-size: 25px;
   font-weight: bold;
   line-height: normal;

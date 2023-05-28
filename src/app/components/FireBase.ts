@@ -78,6 +78,12 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
 const registerWithEmailAndPassword = async (name: string, email: string, password: string) => {
   if (isValidEmail(email) === true) {
     if (isValidPassword(password) === true) {
+      toast.success(
+        'You have successfully registered! You will be automatically redirected to the main page.',
+        {
+          position: toast.POSITION.TOP_CENTER,
+        }
+      );
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const user = res.user;

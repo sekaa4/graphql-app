@@ -11,7 +11,6 @@ import {
   signOut,
 } from 'firebase/auth';
 import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
-import error from 'next/error';
 import { toast } from 'react-toastify';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -69,6 +68,9 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
   } catch (err) {
     if (err instanceof Error) {
       console.error(err.message);
+      toast.error(err.message, {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
 };
@@ -85,10 +87,6 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
           authProvider: 'local',
           email,
         });
-        return {
-          resType: 'success',
-          message: 'registration success',
-        };
       } catch (err) {
         if (err instanceof Error) {
           console.error(err.message);

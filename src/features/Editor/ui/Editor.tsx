@@ -79,7 +79,7 @@ export const Editor = () => {
     }));
   }, []);
 
-  const calculateWidth = (e: React.MouseEvent, width: number) => {
+  const calculateWidth = (e: React.MouseEvent, width: number = 0) => {
     const target = e.target as HTMLDivElement;
     const elem = target.closest('[data-id="resizer-container"]');
     return elem?.clientWidth && (100 * width) / elem?.clientWidth;

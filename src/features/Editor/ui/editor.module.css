@@ -1,3 +1,8 @@
+.resizer-container {
+  display: flex;
+  flex-grow: 1;
+}
+
 .left {
   position: relative;
 

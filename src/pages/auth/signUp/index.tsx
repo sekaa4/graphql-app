@@ -74,6 +74,9 @@ const SignUp = () => {
             {t('AlreadyHaveAnAccount')} <Link href="/auth/signIn">{t('SignIn')}</Link> {t('now')}
           </div>
         </div>
+        <Link className={cls.link} href="/">
+          <Button variant="contained">{t('toWelcomePage')} </Button>
+        </Link>
       </div>
     );
   }

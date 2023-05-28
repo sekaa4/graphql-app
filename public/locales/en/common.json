@@ -40,5 +40,6 @@
   "descriptionApp": "DNIWE is a GraphQL query sandbox. To use you need to select a GraphQL server after then the application will issue documentation for writing queries against it.",
   "documentationTooltips": "Show Documentation Explorer",
   "fetchSuccess": "The scheme was successfully obtained",
-  "fetchError": "Perhaps the error is related to the CORS policy, try entering a different API."
+  "fetchError": "Perhaps the error is related to the CORS policy, try entering a different API.",
+  "toWelcomePage": "To Welcome Page"
 }

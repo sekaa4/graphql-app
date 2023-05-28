@@ -29,7 +29,7 @@ const NoteFoundPage = () => {
       <Container maxWidth="lg" sx={{ p: 0 }}>
         <Grid container className={cls.container}>
           <Grid item sx={{ gap: '10px', p: 0 }}>
-            <Typography variant="h1" sx={{ textAlign: 'center' }}>
+            <Typography variant="h2" sx={{ textAlign: 'center', fontSize: '6rem' }}>
               404
             </Typography>
             <Typography variant="h6" sx={{ textAlign: 'center', pb: 2 }}>

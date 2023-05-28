@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth } from '@/app/components/FireBase';
-import cls from '@/shared/ui/Preloader/Preloader.module.scss';
+import cls from '@/shared/ui/Preloader/Preloader.module.css';
 
 interface PreloaderProps {
   loading?: boolean;

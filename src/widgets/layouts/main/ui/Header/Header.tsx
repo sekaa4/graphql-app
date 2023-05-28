@@ -29,6 +29,7 @@ export const Header: FC<HeaderType> = () => {
 
   return (
     <Box component="header" className={className}>
+      <h1 className={styles.description}>DNIWE</h1>
       <div className={styles.wrapper}>
         <LangSwitcher />
         <AuthContainer />

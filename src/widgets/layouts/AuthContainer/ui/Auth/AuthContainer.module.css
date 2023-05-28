@@ -1,7 +1,11 @@
 .auth_container {
+  display: flex;
+  column-gap: 5px;
+
   @media (width <= 750px) {
     display: flex;
     flex-direction: column;
+    row-gap: 5px;
   }
 }
 

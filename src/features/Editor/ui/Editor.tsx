@@ -82,7 +82,7 @@ export const Editor = () => {
   const calculateWidth = (e: React.MouseEvent, width: number) => {
     const target = e.target as HTMLDivElement;
     const elem = target.closest('[data-id="resizer-container"]');
-    return elem?.clientWidth ? (100 * width) / elem?.clientWidth : 100;
+    return elem?.clientWidth && (100 * width) / elem?.clientWidth;
   };
 
   const mouseDown = useCallback((e: React.MouseEvent) => {
@@ -114,7 +114,8 @@ export const Editor = () => {
         const { deltaLeft, delta } = motion;
         const { clientX } = e;
         const widthPx = clientX - (deltaLeft || 0) - (delta || 0);
-        params.width = calculateWidth(e, widthPx);
+        const widthPercent = calculateWidth(e, widthPx);
+        params.width = widthPercent < 30 ? 30 : widthPercent;
       } else if (motion.activeHorizontal) {
         const { deltaTop, delta } = motion;
         const { clientY } = e;

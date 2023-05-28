@@ -65,7 +65,7 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
   } catch (err) {
     if (err instanceof Error) {
       console.error(err.message);
-      toast.error('wrong password', {
+      toast.error('Wrong password!', {
         position: toast.POSITION.TOP_CENTER,
       });
     }
@@ -97,14 +97,14 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
       }
     } else {
       toast.error(
-        'password strength - minimum 8 symbols, at least one letter, one digit, one special character',
+        'Weak password The password must contain at least 8 characters, at least one capital letter, one number, one special character.',
         {
           position: toast.POSITION.TOP_CENTER,
         }
       );
     }
   } else {
-    toast.error('email does not correct', {
+    toast.error('Email does not correct', {
       position: toast.POSITION.TOP_CENTER,
     });
   }

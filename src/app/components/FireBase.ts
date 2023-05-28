@@ -113,7 +113,6 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
 const sendPasswordReset = async (email: string) => {
   try {
     await sendPasswordResetEmail(auth, email);
-    alert('Password reset link sent!');
   } catch (err) {
     if (err instanceof Error) {
       console.error(err.message);

@@ -42,6 +42,7 @@ export const Editor = () => {
     width: null,
     height: null,
   });
+  const [isMove, setIsMove] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
@@ -69,23 +70,8 @@ export const Editor = () => {
     }
   };
 
-  const mouseMove = useCallback(
-    (e: MouseEvent) => {
-      let params: Partial<motionState> = {};
-      if (motion.activeVertical) {
-        const { deltaLeft, delta } = motion;
-        const { clientX } = e;
-        params.width = clientX - (deltaLeft || 0) - (delta || 0);
-      } else if (motion.activeHorizontal) {
-        const { deltaTop, delta } = motion;
-        const { clientY } = e;
-        params.height = clientY - (deltaTop || 0) - (delta || 0);
-      }
-      setMotion((motion) => ({ ...motion, ...params }));
-    },
-    [motion]
-  );
   const mouseUp = useCallback(() => {
+    setIsMove(false);
     setMotion((motion) => ({
       ...motion,
       activeVertical: false,
@@ -93,7 +79,14 @@ export const Editor = () => {
     }));
   }, []);
 
+  const calculateWidth = (e: React.MouseEvent, width: number = 0) => {
+    const target = e.target as HTMLDivElement;
+    const elem = target.closest('[data-id="resizer-container"]');
+    return elem?.clientWidth && (100 * width) / elem?.clientWidth;
+  };
+
   const mouseDown = useCallback((e: React.MouseEvent) => {
+    setIsMove(true);
     const el = e.target as HTMLDivElement;
     const dataResize = el.dataset?.resize;
     const parent = el.closest(`[data-id=${dataResize}]`);
@@ -103,7 +96,8 @@ export const Editor = () => {
     if (dataResize === 'resize-vertical') {
       const { width, left } = coords ?? {};
       const delta: number = e.clientX - (width || 0) - (left || 0);
-      params = { activeVertical: true, width, deltaLeft: left, delta };
+      params = { activeVertical: true, deltaLeft: left, delta };
+      params.width = calculateWidth(e, width);
     }
     if (dataResize === 'resize-horizontal') {
       const { height, top } = coords ?? {};
@@ -113,15 +107,25 @@ export const Editor = () => {
     setMotion((motion: motionState) => ({ ...motion, ...params }));
   }, []);
 
-  useEffect(() => {
-    window.addEventListener('mousemove', mouseMove);
-    window.addEventListener('mouseup', mouseUp);
-
-    return () => {
-      window.removeEventListener('mousemove', mouseMove);
-      window.removeEventListener('mouseup', mouseUp);
-    };
-  }, [mouseDown, mouseUp, mouseMove]);
+  const move = (e: React.MouseEvent) => {
+    if (isMove && e.buttons === 1) {
+      let params: Partial<motionState> = {};
+      if (motion.activeVertical) {
+        const { deltaLeft, delta } = motion;
+        const { clientX } = e;
+        const widthPx = clientX - (deltaLeft || 0) - (delta || 0);
+        const widthPercent = calculateWidth(e, widthPx);
+        if (widthPercent) {
+          params.width = widthPercent < 30 ? 30 : widthPercent;
+        }
+      } else if (motion.activeHorizontal) {
+        const { deltaTop, delta } = motion;
+        const { clientY } = e;
+        params.height = clientY - (deltaTop || 0) - (delta || 0);
+      }
+      setMotion((motion) => ({ ...motion, ...params }));
+    }
+  };
 
   useEffect(() => {
     if (error && 'data' in error && error.status === 'PARSING_ERROR') {
@@ -136,8 +140,8 @@ export const Editor = () => {
   }, [urlAPI]);
 
   return (
-    <>
-      <div className={cls.left} style={{ width: motion?.width + 'px' }} data-id="resize-vertical">
+    <div className={cls['resizer-container']} onMouseMove={move} data-id="resizer-container">
+      <div className={cls.left} style={{ width: motion?.width + '%' }} data-id="resize-vertical">
         <div
           className={cls.editorarea}
           data-id="resize-horizontal"
@@ -215,6 +219,6 @@ export const Editor = () => {
           )}
         </>
       </div>
-    </>
+    </div>
   );
 };

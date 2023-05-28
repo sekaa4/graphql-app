@@ -61,6 +61,9 @@ const signInWithGoogle = async () => {
 
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
+    toast.success('success!', {
+      position: toast.POSITION.TOP_CENTER,
+    });
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     if (err instanceof Error) {

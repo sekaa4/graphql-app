@@ -11,6 +11,10 @@ import { auth, registerWithEmailAndPassword, signInWithGoogle } from '@/app/comp
 import cls from '@/pages/auth/signUp/signUp.module.css';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
 
+const isValidName = (name: string) => {
+  return /^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/.test(name);
+};
+
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,10 +25,13 @@ const SignUp = () => {
   const { t } = useTranslation('common');
 
   const register = () => {
-    if (!name) {
-      toast.error('Please enter name', {
-        position: toast.POSITION.TOP_CENTER,
-      });
+    if (isValidName(name) === false) {
+      toast.error(
+        'The name must contain at least 2 letters. The name must contain a capital letter. The name must be a maximum of 24 letters. The name must not contain any characters other than letters.',
+        {
+          position: toast.POSITION.TOP_CENTER,
+        }
+      );
     }
     registerWithEmailAndPassword(name, email, password);
   };

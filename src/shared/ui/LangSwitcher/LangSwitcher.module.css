@@ -16,7 +16,7 @@
   padding: 10px;
 }
 
-.button:disabled {
+.disabled {
   pointer-events: none;
   min-width: 50px;
   color: white;

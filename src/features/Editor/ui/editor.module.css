@@ -2,6 +2,11 @@
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
+
+  @media (width <= 450px) {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .left {
@@ -19,8 +24,8 @@
   border: 1px solid #e5e5e5;
   border-radius: 10px;
 
-  @media (width <= 750px) {
-    width: 100%;
+  @media (width <= 450px) {
+    width: 100% !important;
   }
 }
 
@@ -89,6 +94,10 @@
   background-color: #3c74ff;
 
   transition: opacity 0.3s;
+
+  @media (width <= 450px) {
+    display: none;
+  }
 }
 
 .resizer-horizontal {

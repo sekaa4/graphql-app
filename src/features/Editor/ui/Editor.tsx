@@ -79,6 +79,12 @@ export const Editor = () => {
     }));
   }, []);
 
+  const calculateWidth = (e: React.MouseEvent, width: number) => {
+    const target = e.target as HTMLDivElement;
+    const elem = target.closest('[data-id="resizer-container"]');
+    return elem?.clientWidth ? (100 * width) / elem?.clientWidth : 100;
+  };
+
   const mouseDown = useCallback((e: React.MouseEvent) => {
     setIsMove(true);
     const el = e.target as HTMLDivElement;
@@ -90,7 +96,8 @@ export const Editor = () => {
     if (dataResize === 'resize-vertical') {
       const { width, left } = coords ?? {};
       const delta: number = e.clientX - (width || 0) - (left || 0);
-      params = { activeVertical: true, width, deltaLeft: left, delta };
+      params = { activeVertical: true, deltaLeft: left, delta };
+      params.width = calculateWidth(e, width);
     }
     if (dataResize === 'resize-horizontal') {
       const { height, top } = coords ?? {};
@@ -106,7 +113,8 @@ export const Editor = () => {
       if (motion.activeVertical) {
         const { deltaLeft, delta } = motion;
         const { clientX } = e;
-        params.width = clientX - (deltaLeft || 0) - (delta || 0);
+        const widthPx = clientX - (deltaLeft || 0) - (delta || 0);
+        params.width = calculateWidth(e, widthPx);
       } else if (motion.activeHorizontal) {
         const { deltaTop, delta } = motion;
         const { clientY } = e;
@@ -129,8 +137,8 @@ export const Editor = () => {
   }, [urlAPI]);
 
   return (
-    <div className={cls['resizer-container']} onMouseMove={move}>
-      <div className={cls.left} style={{ width: motion?.width + 'px' }} data-id="resize-vertical">
+    <div className={cls['resizer-container']} onMouseMove={move} data-id="resizer-container">
+      <div className={cls.left} style={{ width: motion?.width + '%' }} data-id="resize-vertical">
         <div
           className={cls.editorarea}
           data-id="resize-horizontal"

@@ -27,7 +27,7 @@
   }
 }
 
-.h1 {
+.h2 {
   padding-top: 50px;
   font-size: 50px;
   font-weight: bold;
@@ -47,11 +47,6 @@
 .developers_container {
   display: flex;
   justify-content: center;
-
-  :hover {
-    scale: 1.05;
-    transition: all 0.4s;
-  }
 
   @media (width <= 750px) {
     flex-direction: column;
@@ -79,9 +74,19 @@
   }
 }
 
+.developers_container > li:hover {
+  scale: 1.05;
+  transition: all 0.4s;
+}
+
 .avatar {
   cursor: pointer;
   width: 120px;
   height: 120px;
   border: white solid 3px;
+}
+
+.avatar:hover {
+  scale: 1.05;
+  transition: all 0.4s;
 }

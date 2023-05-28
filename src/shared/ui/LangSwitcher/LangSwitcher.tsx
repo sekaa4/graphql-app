@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
-import cls from '@/shared/ui/LangSwitcher/LangSwitcher.module.scss';
+import cls from '@/shared/ui/LangSwitcher/LangSwitcher.module.css';
 
 export const LangSwitcher = () => {
   const router = useRouter();

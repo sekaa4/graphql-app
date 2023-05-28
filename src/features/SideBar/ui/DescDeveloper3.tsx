@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next';
 
-import cls from '@/features/SideBar/ui/DescDeveloper.module.scss';
+import cls from '@/features/SideBar/ui/DescDeveloper.module.css';
 
 export const DescDeveloper3 = () => {
   const { t } = useTranslation('common');

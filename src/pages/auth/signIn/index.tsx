@@ -7,7 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
-import cls from '@/pages/auth/signIn/signIn.module.scss';
+import cls from '@/pages/auth/signIn/signIn.module.css';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
 
 const SignIN = () => {

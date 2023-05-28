@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 import { auth, logout } from '@/app/components/FireBase';
 import { useAppDispatch } from '@/shared/hooks';
-import cls from '@/widgets/layouts/AuthContainer/ui/Auth/AuthContainer.module.scss';
+import cls from '@/widgets/layouts/AuthContainer/ui/Auth/AuthContainer.module.css';
 
 export const AuthContainer = () => {
   const [user, ,] = useAuthState(auth);

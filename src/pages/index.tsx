@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { DescDeveloper1 } from '@/features/SideBar';
 import { DescDeveloper2 } from '@/features/SideBar/ui/DescDeveloper2';
 import { DescDeveloper3 } from '@/features/SideBar/ui/DescDeveloper3';
-import cls from '@/pages/index.module.scss';
+import cls from '@/pages/index.module.css';
 import { getCoreServerSideProps } from '@/shared/lib/ssr';
 
 const Welcome = () => {
@@ -12,8 +12,8 @@ const Welcome = () => {
 
   return (
     <div className={cls.welcome_container}>
-      <h1 className={cls.h1}>{t('Welcome')}</h1>
-      <h2 className={cls.description}>{t('descriptionApp')} </h2>
+      <h2 className={cls.h2}>{t('Welcome')}</h2>
+      <h3 className={cls.description}>{t('descriptionApp')} </h3>
 
       <ul className={cls.developers_container}>
         <li>

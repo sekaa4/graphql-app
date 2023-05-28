@@ -1,5 +1,7 @@
 import { Box } from '@mui/material';
+import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { LangSwitcher } from '@/shared/ui';
 import { AuthContainer } from '@/widgets/layouts/AuthContainer';
@@ -29,7 +31,17 @@ export const Header: FC<HeaderType> = () => {
 
   return (
     <Box component="header" className={className}>
-      <h1 className={styles.description}>DNIWE</h1>
+      <Link href="/">
+        <h1
+          className={styles.description}
+          onClick={() => {
+            toast.dismiss();
+          }}
+        >
+          DNIWE
+        </h1>
+      </Link>
+
       <div className={styles.wrapper}>
         <LangSwitcher />
         <AuthContainer />

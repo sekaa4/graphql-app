@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { auth, registerWithEmailAndPassword, signInWithGoogle } from '@/app/components/FireBase';
 import cls from '@/pages/auth/signUp/signUp.module.css';
@@ -20,7 +21,11 @@ const SignUp = () => {
   const { t } = useTranslation('common');
 
   const register = () => {
-    // if (!name) alert('Please enter name');
+    if (!name) {
+      toast.error('Please enter name', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
     registerWithEmailAndPassword(name, email, password);
   };
   useEffect(() => {
@@ -34,7 +39,6 @@ const SignUp = () => {
     return (
       <div className={cls.container_signup}>
         <div className={cls.wrapper}>
-          {/* {!name && <Alert severity="error">Please enter name</Alert>} */}
           <TextField
             type="text"
             value={name}

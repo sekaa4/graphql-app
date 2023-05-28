@@ -61,14 +61,14 @@ const signInWithGoogle = async () => {
 
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
+    await signInWithEmailAndPassword(auth, email, password);
     toast.success('success!', {
       position: toast.POSITION.TOP_CENTER,
     });
-    await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     if (err instanceof Error) {
       console.error(err.message);
-      toast.error('Wrong password!', {
+      toast.error('Wrong email or password!', {
         position: toast.POSITION.TOP_CENTER,
       });
     }
@@ -107,9 +107,12 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
       );
     }
   } else {
-    toast.error('Email does not correct', {
-      position: toast.POSITION.TOP_CENTER,
-    });
+    toast.error(
+      'The email address must be at least 2 characters long. The email name and domain must be separated by the "@" character.',
+      {
+        position: toast.POSITION.TOP_CENTER,
+      }
+    );
   }
 };
 

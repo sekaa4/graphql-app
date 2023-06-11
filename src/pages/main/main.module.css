@@ -1,0 +1,188 @@
+.wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  flex-shrink: 1;
+  row-gap: 10px;
+
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+
+  background-color: #eff7ff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+
+  @media (width <= 750px) {
+    flex-direction: column;
+  }
+}
+
+.left {
+  resize: horizontal;
+
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+
+  width: 50%;
+  padding-right: 4px;
+
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+}
+
+.left .editorarea {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+}
+
+.left .settings {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  align-items: stretch;
+}
+
+.left .settings .header {
+  height: 40px;
+  padding: 5px;
+}
+
+.left .editor {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.left .tools {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+
+  padding: 15px;
+
+  color: green;
+}
+
+.left .tools .icon {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.left .tools .icon:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.resizer-vertical {
+  cursor: col-resize;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  opacity: 0.2;
+  background-color: #3c74ff;
+
+  transition: opacity 0.3s;
+}
+
+.resizer-horizontal {
+  cursor: row-resize;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  opacity: 0.2;
+  background-color: #3c74ff;
+
+  transition: opacity 0.3s;
+}
+
+.resizer-vertical:hover,
+.resizer-horizontal:hover {
+  opacity: 1;
+}
+
+.right {
+  resize: block;
+  overflow: auto;
+  flex: 1;
+}
+
+.textareawrapper {
+  display: flex;
+  flex-basis: 70%;
+  background-color: lightgrey;
+}
+
+.textarea {
+  max-width: 50%;
+  height: 100%;
+
+  border: 1px solid #fff;
+  border-radius: 5px;
+  outline: #fff 1px;
+}
+
+.editor-wrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+
+  @media (width <= 750px) {
+    flex-direction: column;
+  }
+}
+
+.whithout-bar {
+  display: flex;
+  width: 100%;
+
+  @media (width <= 750px) {
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.divider {
+  display: block;
+  height: '100%';
+  margin: 0.5rem;
+
+  @media (width <= 750px) {
+    display: none;
+  }
+}
+
+.circular-section {
+  width: 25vw;
+
+  @media (width <= 750px) {
+    width: 100vw;
+    padding: 10px 0;
+  }
+}
+
+.circular {
+  display: block;
+  margin: 0 auto;
+}

@@ -1,0 +1,20 @@
+body {
+  @extend %font-prim;
+  @extend %transition;
+
+  @include font($size: 1rem, $height: 1.2rem, $weight: normal);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(221 218 213);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3f4244;
+  border: 2px solid rgb(221 218 213);
+  border-radius: 20px;
+}

@@ -1,0 +1,71 @@
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  flex-wrap: nowrap;
+  row-gap: 5px;
+
+  width: 25vw;
+  height: 100%;
+  padding: 10px;
+
+  font-size: 14px;
+}
+
+@media screen and (width <= 750px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
+.breadcrumbs {
+  cursor: pointer;
+  font-size: 13px;
+  color: darkgrey;
+}
+
+.title {
+  cursor: default;
+  margin: 20px 0;
+  font-size: 24px;
+  color: #606288;
+}
+
+.description {
+  cursor: default;
+  margin: 15px 0 5px;
+  font-size: 15px;
+  color: #566376;
+}
+
+.name-field {
+  cursor: default;
+  font-size: 16px;
+  font-weight: 400;
+  color: #01579b;
+}
+
+.query {
+  cursor: default;
+
+  padding-left: 11px;
+
+  font-size: 16px;
+  font-weight: 400;
+  color: #2e7d32;
+}
+
+.query-name {
+  cursor: pointer;
+
+  padding-left: 4px;
+
+  font-size: 15px;
+  font-weight: 500;
+  color: #d97221;
+
+  transition: all 0.2s;
+}
+
+.query-name:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,24 @@
+.container_signup {
+  display: flex;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper > div {
+  padding: 5px;
+}
+
+.wrapper > button {
+  margin: 3px;
+}
+
+.link {
+  position: absolute;
+  top: 100px;
+  left: 10px;
+}

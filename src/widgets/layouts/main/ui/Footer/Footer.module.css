@@ -1,0 +1,37 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+  width: 100%;
+  padding: 5px;
+
+  @media (width <= 750px) {
+    flex-direction: column;
+    row-gap: 15px;
+  }
+}
+
+.git {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.git img {
+  max-height: 50px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.rss img {
+  display: block;
+  width: 120px;
+  height: 45px;
+}
